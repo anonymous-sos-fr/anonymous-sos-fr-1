@@ -1,105 +1,117 @@
- <!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anonymous SOS FR</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Courier New', Courier, monospace;
-            background: url('https://images.unsplash.com/photo-1475274047050-1d0c0975c63e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
-            background-size: cover;
-            color: #00FF00; /* Vert Matrix */
-            text-align: center;
-        }
+<style>
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0a0a0a; color: white; margin: 0; }
+    .navbar { background: #111; padding: 15px; display: flex; gap: 20px; border-bottom: 2px solid #333; }
+    .id-colore { color: #00ebff; font-weight: bold; text-shadow: 0 0 5px #00ebff; }
+    
+    /* Pages */
+    .page { padding: 20px; display: none; }
+    .active { display: block; }
 
-        .overlay {
-            background: rgba(0, 0, 0, 0.7);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-   …
-[15:53, 19/01/2026] Anonymous sos fr: <style>
-    body { font-family: sans-serif; background: #1a1a1a; color: white; }
-    .id-colore { color: #ff00ff; font-weight: bold; } /* Identifiants colorés permanents */
-    .coin-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; padding: 20px; }
-    .coin-card { border: 2px solid #444; padding: 15px; text-align: center; border-radius: 10px; }
-    .special-offer { border: 3px solid #ffd700; background: rgba(255, 215, 0, 0.1); }
-    .coin-logo { width: 50px; height: 50px; margin-bottom: 10px; }
-    .btn-buy { background: #25D366; color: white; border: none; padding: 10px; cursor: pointer; width: 100%; }
-    .hidden { display: none; }
+    /* Boutique VIP */
+    .vip-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
+    .vip-card { background: #1a1a1a; border: 1px solid #444; border-radius: 12px; padding: 20px; text-align: center; transition: 0.3s; }
+    .vip-card:hover { border-color: #00ebff; }
+    .price-tag { font-size: 24px; color: #25D366; font-weight: bold; }
+    .special { border: 2px solid #ffd700; background: linear-gradient(145deg, #1a1a1a, #2a2200); }
+
+    /* Formulaires */
+    .auth-box { max-width: 400px; margin: 50px auto; background: #1a1a1a; padding: 30px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
+    input[type="text"], input[type="password"] { width: 100%; padding: 12px; margin: 10px 0; background: #222; border: 1px solid #444; color: white; border-radius: 5px; }
+    .btn-pro { width: 100%; padding: 12px; background: #00ebff; color: black; border: none; font-weight: bold; cursor: pointer; border-radius: 5px; }
 </style>
 
-<div id="auth-section">
-    <h3>Inscription / Connexion</h3>
-    <input type="text" id="user-id" class="id-colore" placeholder="Votre ID choisi">
-    <input type="password" id="password" placeholder="Mot de passe">
-    
-    <div style="margin: 10px 0;">
-        <input type="checkbox" id="accept-terms">
-        <label for="accept-terms">Si vous acceptez les conditions, vous acceptez toutes les conditions du service.</label>
-    </div>
-
-    <div style="margin: 10px 0;">
-        <input type="checkbox" id="save-pc">
-        <label for="save-pc">Voulez-vous enregistrer toutes les données sur votre PC ?</label>
-    </div>
-
-    <button onclick="validerInscription()">Se connecter / S'inscrire</button>
+<div class="navbar">
+    <span style="font-weight: bold; color: #00ebff;">ANONYMOUS SOS FR</span>
+    <button onclick="showPage('accueil')" style="background:none; border:none; color:white; cursor:pointer;">Accueil (Radio)</button>
+    <button onclick="showPage('boutique')" style="background:none; border:none; color:#ffd700; cursor:pointer; font-weight:bold;">✨ BOUTIQUE VIP</button>
+    <button onclick="showPage('connexion')" id="btn-login" style="margin-left:auto; background:none; border:none; color:white; cursor:pointer;">Connexion / Inscription</button>
 </div>
 
-<div id="shop-section" class="hidden">
-    <h2>Boutique de Pièces - Anonymous sos fr</h2>
-    <p><em>Note : Pour tous les achats, contactez uniquement sur WhatsApp. Achats réservés uniquement à Anonymous.</em></p>
-    
-    <div class="coin-grid">
-        <div class="coin-card">
-            <img src="logo_coin.png" class="coin-logo">
-            <p>7 800 pièces</p>
-            <button class="btn-buy" onclick="contactWhatsApp('Pack 100€')">100 €</button>
+<div id="accueil" class="page active">
+    <h2>Bienvenue sur l'accueil</h2>
+    <div id="radio-container" style="background: #222; padding: 20px; border-radius: 10px;">
+        <p>📻 Radio en direct...</p>
+        <div style="width: 100%; height: 60px; background: #333; border-radius: 5px; display: flex; align-items: center; justify-content: center;">
+            [ LECTEUR RADIO ]
         </div>
-        <div class="coin-card">
-            <img src="logo_coin.png" class="coin-logo">
-            <p>11 700 pièces</p>
-            <button class="btn-buy" onclick="contactWhatsApp('Pack 150€')">150 €</button>
-        </div>
-        <div class="coin-card">
-            <img src="logo_coin.png" class="coin-logo">
-            <p>15 600 pièces</p>
-            <button class="btn-buy" onclick="contactWhatsApp('Pack 200€')">200 €</button>
-        </div>
+    </div>
+</div>
+
+<div id="connexion" class="page">
+    <div class="auth-box">
+        <h2 id="auth-title">Inscription</h2>
+        <input type="text" id="user-id" class="id-colore" placeholder="Choisissez votre ID (ex: AnonymousUser)">
+        <input type="password" id="password" placeholder="Mot de passe">
         
-        <div class="coin-card special-offer">
-            <img src="logo_coin_special.png" class="coin-logo">
-            <p><strong>55 000 pièces</strong></p>
-            <p><small>(Inclus 200€ de pièces offertes - Valeur 700€)</small></p>
-            <button class="btn-buy" onclick="contactWhatsApp('Offre Spéciale 600€')">600 €</button>
+        <div style="font-size: 13px; margin: 15px 0; color: #bbb;">
+            <input type="checkbox" id="accept-terms"> 
+            <label for="accept-terms">Si vous cochez cette case, vous acceptez toutes les conditions du service Anonymous sos fr.</label>
+        </div>
+
+        <div style="font-size: 13px; margin: 10px 0; color: #bbb;">
+            <input type="checkbox" id="save-pc"> 
+            <label for="save-pc">Voulez-vous enregistrer toutes les données sur votre PC ?</label>
+        </div>
+
+        <button class="btn-pro" onclick="validerInscription()">VALIDER</button>
+        <p style="text-align: center; font-size: 12px; cursor: pointer;" onclick="toggleAuth()">Déjà un compte ? Se connecter</p>
+    </div>
+</div>
+
+<div id="boutique" class="page">
+    <h2 style="text-align: center; color: #ffd700;">💎 BOUTIQUE VIP PIÈCES</h2>
+    <p style="text-align: center; color: #25D366; font-weight: bold;">
+        ⚠️ Uniquement sur WhatsApp auprès d'Anonymous
+    </p>
+
+    <div class="vip-grid">
+        <div class="vip-card">
+            <div style="font-size: 40px;">🪙</div>
+            <h3>Pack Standard</h3>
+            <p>7 800 Pièces</p>
+            <div class="price-tag">100 €</div>
+            <button class="btn-pro" style="background:#25D366; margin-top:10px;" onclick="goWhatsApp('100€ - 7800 pièces')">Acheter via WhatsApp</button>
+        </div>
+
+        <div class="vip-card">
+            <div style="font-size: 40px;">🪙🪙</div>
+            <h3>Pack Bronze</h3>
+            <p>11 700 Pièces</p>
+            <div class="price-tag">150 €</div>
+            <button class="btn-pro" style="background:#25D366; margin-top:10px;" onclick="goWhatsApp('150€ - 11700 pièces')">Acheter via WhatsApp</button>
+        </div>
+
+        <div class="vip-card special">
+            <div style="font-size: 45px;">🔥</div>
+            <h3 style="color:#ffd700;">OFFRE MÉGA PRO</h3>
+            <p><strong>55 000 Pièces</strong></p>
+            <p><small>(Valeur 700€ : 200€ OFFERTS)</small></p>
+            <div class="price-tag">600 €</div>
+            <button class="btn-pro" style="background:#ffd700; color: black; margin-top:10px;" onclick="goWhatsApp('OFFRE 600€ - 55000 pièces')">PROFITER DE L'OFFRE</button>
         </div>
     </div>
 </div>
 
 <script>
+    function showPage(pageId) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.getElementById(pageId).classList.add('active');
+    }
+
     function validerInscription() {
         const id = document.getElementById('user-id').value;
         const accept = document.getElementById('accept-terms').checked;
+        if (!id) { alert("Entrez un ID !"); return; }
+        if (!accept) { alert("Vous devez accepter les conditions pour continuer !"); return; }
         
-        if (!id) { alert("Veuillez entrer votre ID."); return; }
-        
-        if (!accept) {
-            alert("Vous devez cocher la case pour accepter les conditions, sinon cela ne se valide pas.");
-            return;
-        }
-
-        alert("Connexion réussie ! Vos données sont enregistrées sur ce PC.");
-        document.getElementById('auth-section').classList.add('hidden');
-        document.getElementById('shop-section').classList.remove('hidden');
+        alert("Félicitations " + id + " ! Données enregistrées sur votre PC.");
+        showPage('accueil');
+        document.getElementById('btn-login').innerText = "Profil: " + id;
+        document.getElementById('btn-login').classList.add('id-colore');
     }
 
-    function contactWhatsApp(pack) {
-        const message = encodeURIComponent("Bonjour Anonymous, je souhaite acheter le " + pack);
-        // Lien vers votre WhatsApp
-        window.open("https://wa.me/+32456894335?text=" + message, "_blank");
+    function goWhatsApp(offre) {
+        const msg = encodeURIComponent("Bonjour Anonymous, je souhaite acheter l'offre : " + offre);
+        window.open("https://wa.me/+32456894335?text=" + msg, "_blank");
     }
 </script>
