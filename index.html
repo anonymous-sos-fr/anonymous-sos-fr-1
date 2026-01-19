@@ -2,74 +2,99 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>anonymous sos fr</title>
+    <title>ANONYMOUS SOS FR</title>
     <style>
-        /* STYLE GÉNÉRAL */
-        body { background-color: #121212; color: white; font-family: 'Segoe UI', sans-serif; text-align: center; padding: 20px; }
-        
-        /* COULEURS DES GRADES (FIXES) */
-        .dev { color: #ffffff !important; text-shadow: 0 0 10px #00ffff; font-weight: bold; } /* Toi */
-        .pseudo-admin { color: #ff0000 !important; font-weight: bold; } /* Administrateur en ROUGE */
-        .pseudo-modo { color: #00ff00 !important; font-weight: bold; }  /* Modérateur en VERT */
-        .pseudo-vip { color: #ffae00 !important; font-weight: bold; }   /* VIP en ORANGE */
-        .badge-bleu { color: #1DA1F2; margin-left: 5px; font-weight: bold; } /* Badge Certifié */
+        /* DESIGN ORIGINAL MATRIX */
+        body { 
+            background: #000 url('https://i.imgur.com/8Q9S8X4.png'); /* Fond étoilé */
+            color: #00ff00; 
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+        }
 
-        /* BOUTIQUE ET BOUTONS */
-        .container { border: 2px solid #333; background: #1e1e1e; padding: 20px; border-radius: 15px; margin: 20px auto; max-width: 600px; }
-        .btn-whatsapp { background: #25D366; color: white; padding: 15px 25px; border-radius: 10px; text-decoration: none; display: inline-block; font-weight: bold; margin-top: 10px; transition: 0.3s; }
-        .btn-whatsapp:hover { background: #128C7E; }
-        .contact-footer { margin-top: 40px; border-top: 1px solid #444; padding-top: 20px; color: #888; font-size: 0.9em; }
+        .header-title { font-size: 30px; letter-spacing: 5px; text-shadow: 0 0 10px #00ff00; margin: 20px; }
+
+        /* BOUTONS DU MENU */
+        .nav-menu { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; }
+        .nav-btn { 
+            border: 2px solid #00ff00; background: none; color: #00ff00; 
+            padding: 10px 20px; cursor: pointer; text-decoration: none; font-weight: bold;
+        }
+        .nav-btn:hover { background: #00ff00; color: #000; }
+
+        /* BOUTIQUE ET CONTENU */
+        .box-container { border: 2px solid #00ff00; padding: 20px; margin: 20px auto; width: 80%; max-width: 800px; background: rgba(0,0,0,0.8); }
+        
+        /* GRADES COLORÉS PERMANENTS */
+        .admin { color: #ff0000 !important; font-weight: bold; text-shadow: 0 0 5px #ff0000; }
+        .modo { color: #00ff00 !important; font-weight: bold; }
+        .vip { color: #ffae00 !important; font-weight: bold; }
+        .badge-bleu { color: #1DA1F2; margin-left: 5px; }
+
+        /* BOUTONS ACHAT */
+        .price-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
+        .btn-buy { 
+            background: #25D366; color: white; padding: 10px; border-radius: 5px; 
+            text-decoration: none; font-size: 14px; border: none;
+        }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Bienvenue sur <span class="dev">anonymous sos fr</span></h1>
-    </header>
+    <img src="https://i.imgur.com/YOUR_LOGO_URL.png" width="100" style="margin-top:20px;">
+    <div class="header-title">ANONYMOUS SOS FR</div>
 
-    <div class="container">
-        <h2>💎 Boutique de Pièces</h2>
-        <p>Prix Flash : <strong style="color:#00ff00;">1€ = 50 Pièces</strong></p>
-        <p><i>(Moins cher que sur TikTok !)</i></p>
-        
-        <a href="https://wa.me/TON_NUMERO?text=Bonjour%20je%20souhaite%20acheter%20des%20pièces%20sur%20anonymous%20sos%20fr" class="btn-whatsapp">
-            COMMANDER VIA WHATSAPP
-        </a>
+    <div class="nav-menu">
+        <a href="#" class="nav-btn">ACCUEIL</a>
+        <a href="#" class="nav-btn" onclick="ouvrirConnexion()">CONNEXION</a>
+        <a href="#" class="nav-btn" onclick="ouvrirInscription()">INSCRIPTION</a>
+        <a href="#vip" class="nav-btn">VIP / LICENCES</a>
     </div>
 
-    <div class="container">
+    <div class="box-container">
+        <h3>Radio en Direct : Skyrock</h3>
+        <audio controls>
+            <source src="https://icecast.skyrock.net/s/natio_mp3_128k" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <div id="vip" class="box-container">
+        <h2>💎 BOUTIQUE DE PIÈCES & LICENCES</h2>
+        <div class="price-grid">
+            <a href="https://wa.me/32456894335?text=Achat%2010%E2%82%AC" class="btn-buy">10€ - 500 Pièces</a>
+            <a href="https://wa.me/32456894335?text=Achat%2020%E2%82%AC" class="btn-buy">20€ - 1200 Pièces</a>
+            <a href="https://wa.me/32456894335?text=Achat%2050%E2%82%AC" class="btn-buy">50€ - 3500 Pièces</a>
+            <a href="https://wa.me/32456894335?text=Achat%2080%E2%82%AC" class="btn-buy">80€ - 6000 Pièces</a>
+        </div>
+    </div>
+
+    <div class="box-container">
         <h3>Gestion de la plateforme</h3>
-        <p><span class="pseudo-admin">Admin_Principal</span><span class="badge-bleu">✔</span></p>
-        <p><span class="pseudo-modo">Modérateur_SOS</span></p>
-        <p><span class="pseudo-vip">Membre_Donateur</span><span class="badge-bleu">✔</span></p>
+        <p><span class="admin">Admin_Anonymous</span><span class="badge-bleu">✔</span></p>
+        <p><span class="modo">Modérateur_SOS</span></p>
+        <p><span class="vip">Membre_Donateur</span><span class="badge-bleu">✔</span></p>
     </div>
 
-    <footer class="contact-footer">
-        <p>📱 WhatsApp :+32456894335</p>
-        <p>📧 Email :despreschez@gmail.com</p>
-        <p>Pour tout problème technique, cliquez sur commander et précisez "SOS".</p>
-    </footer>
+    <div style="margin-top:30px;">
+        <p>Email: despreschez@gmail.com</p>
+        <p>Tel: +32456894335</p>
+        <a href="https://wa.me/32456894335?text=SOS%20BESOIN%20AIDE" class="nav-btn" style="background: #00ff00; color: #000;">SOS WHATSAPP</a>
+    </div>
 
     <script>
-        // Ton grade à toi
-        const utilisateurConnecte = "DEVELOPPEUR";
+        // LOGIQUE DÉVELOPPEUR POUR ACTIVER LICENCES
+        const userStatus = "DEVELOPPEUR";
 
-        // Fonction pour les badges (à déclencher depuis ton PC)
-        function activerBadgeBleu(pseudo) {
-            console.log("Badge certifié activé pour : " + pseudo);
-            alert("BOUM ! Badge bleu activé.");
-        }
-
-        // SÉCURITÉ : Seul le Développeur (Toi) peut bannir
-        function actionBannir(cible, gradeUtilisateur) {
-            if (gradeUtilisateur === "DEVELOPPEUR") {
-                let confirmation = confirm("Voulez-vous vraiment bannir " + cible + " ?");
-                if(confirmation) alert(cible + " banni.");
+        function gererLicence(user, action) {
+            if (userStatus === "DEVELOPPEUR") {
+                alert("Licence mise à jour pour " + user);
             } else {
-                alert("ERREUR : En tant qu'Admin ou Modo, vous n'avez pas le droit de bannir.");
+                alert("Accès refusé. Seul le développeur peut modifier les licences.");
             }
         }
+
+        function ouvrirConnexion() { alert("Ouverture du formulaire de connexion..."); }
+        function ouvrirInscription() { alert("Ouverture du formulaire d'inscription..."); }
     </script>
 
 </body>
