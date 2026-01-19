@@ -1,0 +1,19 @@
+// COPIE CE BLOC POUR LA LOGIQUE
+
+const monGrade = "DEVELOPPEUR"; // C'est ton grade à TOI
+
+// Fonction pour mettre le Badge Bleu
+function donnerBadgeBleu(pseudo) {
+    alert("BOUM ! Le badge bleu est activé pour " + pseudo);
+    // Ici, le code enverra l'info à ta base de données
+}
+
+// Sécurité : Interdire aux Modos de bannir
+function actionBannir(quiVeutBannir, cible) {
+    if (quiVeutBannir === "DEVELOPPEUR") {
+        const confirmation = confirm("Voulez-vous vraiment bannir définitivement " + cible + " ?");
+        if(confirmation) alert(cible + " a été supprimé.");
+    } else {
+        alert("ERREUR : Seul l'Admin principal (Anonymous sos fr) a le bouton de bannissement !");
+    }
+}
