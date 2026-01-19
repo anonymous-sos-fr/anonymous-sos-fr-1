@@ -3,163 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anonymous SOS FR - Site Officiel</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Anonymous SOS FR</title>
     <style>
-        :root {
-            --primary-color: #00d4ff;
-            --vip-gold: #ffd700;
-            --bg-dark: #0a0a0a;
-        }
-
         body {
-            background-color: var(--bg-dark);
-            color: white;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
+            font-family: 'Courier New', Courier, monospace;
+            background: url('https://images.unsplash.com/photo-1475274047050-1d0c0975c63e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
+            background-size: cover;
+            color: #00FF00; /* Vert Matrix */
             text-align: center;
         }
 
-        /* --- HEADER & PROFIL --- */
-        .profile-header {
-            padding: 40px 20px;
-            background: linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%);
+        .overlay {
+            background: rgba(0, 0, 0, 0.7);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
-        .official-badge {
-            color: #1DA1F2; /* Bleu certification */
-            margin-left: 5px;
+        header {
+            margin-bottom: 30px;
         }
 
-        .vip-status {
-            color: var(--vip-gold);
-            font-weight: bold;
-            text-transform: uppercase;
-            font-size: 0.8em;
-            display: block;
-            margin-top: 5px;
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
         }
 
-        /* --- BOUTON FOLLOW (Style TikTok) --- */
-        .follow-btn {
-            background-color: #fe2c55;
-            color: white;
-            border: none;
-            padding: 10px 40px;
-            border-radius: 5px;
-            font-weight: bold;
-            font-size: 1.1em;
+        .logo-container img {
+            width: 80px;
+        }
+
+        .earth-icon {
+            font-size: 50px;
+        }
+
+        nav {
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background: transparent;
+            border: 2px solid #00FF00;
+            color: #00FF00;
+            padding: 10px 20px;
+            margin: 5px;
             cursor: pointer;
+            text-decoration: none;
+            font-weight: bold;
             transition: 0.3s;
-            margin: 20px 0;
-        }
-        .follow-btn.following {
-            background-color: #333;
-            color: white;
         }
 
-        /* --- SECTION RADIO --- */
+        .btn:hover {
+            background: #00FF00;
+            color: #000;
+        }
+
         .radio-section {
-            background: #111;
+            margin: 20px;
             padding: 20px;
-            margin: 20px auto;
-            width: 80%;
-            border-radius: 15px;
-            border: 1px solid #222;
+            border: 1px solid #00FF00;
+            border-radius: 10px;
         }
 
-        /* --- BOUTON SOS WHATSAPP --- */
-        .sos-container {
-            margin: 40px 0;
-            padding: 20px;
+        .contact-section {
+            position: fixed;
+            bottom: 20px;
+            width: 100%;
         }
 
-        .whatsapp-btn {
-            background-color: #25D366;
+        .sos-whatsapp {
+            background: #25D366;
             color: white;
             padding: 15px 30px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: bold;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
-            transition: 0.3s;
-        }
-
-        .whatsapp-btn:hover {
-            transform: scale(1.05);
-        }
-
-        .contact-info {
-            font-size: 0.9em;
-            color: #aaa;
+            display: inline-block;
             margin-top: 10px;
-        }
-
-        /* --- TEXTES PRO --- */
-        .about-section {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            line-height: 1.6;
-        }
-
-        footer {
-            padding: 20px;
-            font-size: 0.8em;
-            color: #555;
         }
     </style>
 </head>
 <body>
+    <div class="overlay">
+        <header>
+            <div class="logo-container">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Anonymous_emblem.svg" alt="Anonymous">
+                <span class="earth-icon">🌍</span>
+            </div>
+            <h1>ANONYMOUS SOS FR</h1>
+        </header>
 
-    <div class="profile-header">
-        <h1>Anonymous SOS FR <i class="fas fa-check-circle official-badge"></i></h1>
-        <p class="vip-status"><i class="fas fa-crown"></i> Mode VIP Activé</p>
-        
-        <button id="followBtn" class="follow-btn" onclick="toggleFollow()">S'abonner</button>
+        <nav>
+            <a href="#" class="btn">Accueil</a>
+            <a href="#" class="btn">Connexion</a>
+            <a href="#" class="btn">Inscription</a>
+            <a href="#" class="btn">VIP / Licences</a>
+        </nav>
+
+        <div class="radio-section">
+            <h2>Radio en Direct : Skyrock</h2>
+            <audio controls autoplay>
+                <source src="https://icecast.skyrock.net/s/natio_mp3_128k" type="audio/mpeg">
+                Votre navigateur ne supporte pas le lecteur audio.
+            </audio>
+        </div>
+
+        <div class="contact-section">
+            <p>Email: despreschez@gmail.com</p>
+            <p>Tel: +32456894335</p>
+            <a href="https://wa.me/+32456894335" class="sos-whatsapp">SOS WHATSAPP</a>
+        </div>
     </div>
-
-    <div class="about-section">
-        <h3>Bienvenue sur le forum officiel</h3>
-        <p>Découvrez un espace dédié à l'entraide et au partage. Suivez nos lives en direct, participez aux discussions et gérez votre accès membre en toute simplicité.</p>
-    </div>
-
-    <div class="radio-section">
-        <h3><i class="fas fa-broadcast-tower"></i> Radio en Direct</h3>
-        <p>[ Lecteur Radio Actif ]</p>
-    </div>
-
-    <div class="sos-container">
-        <p>Un problème ? Une question technique ?</p>
-        <a href="https://wa.me/TON_NUMERO" class="whatsapp-btn">
-            <i class="fab fa-whatsapp"></i> CONTACTER SOS WHATSAPP
-        </a>
-        <p class="contact-info">Nous sommes actifs. Réponse rapide garantie.</p>
-        <p class="contact-info"><i class="fas fa-envelope"></i> Email : contact@anonymoussosfr.com</p>
-    </div>
-
-    <hr style="border: 0.5px solid #222; width: 50%;">
-
-    <footer>
-        &copy; 2026 Anonymous SOS FR - Tous droits réservés.
-        <br>Signé Anonymous SOS FR.
-    </footer>
-
-    <script>
-        function toggleFollow() {
-            const btn = document.getElementById('followBtn');
-            if (btn.innerText === "S'abonner") {
-                btn.innerText = "Abonné";
-                btn.classList.add('following');
-            } else {
-                btn.innerText = "S'abonner";
-                btn.classList.remove('following');
-            }
-        }
-    </script>
 </body>
 </html>
