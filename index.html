@@ -8,31 +8,26 @@
         :root { --blue: #1DA1F2; --gold: #ffd700; --bg: #0d0d0d; --gray: #1a1a1a; --red: #ff4757; }
         body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: white; margin: 0; padding: 10px; text-align: center; padding-bottom: 80px; }
         
-        /* TITRE CENTRE */
         .header-main { margin-bottom: 15px; }
         .site-title { font-size: 1.3em; display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 15px; font-weight: bold; }
         .vrai-badge { width: 20px; height: 20px; cursor: pointer; }
 
-        /* NAVIGATION */
         .nav-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; margin-bottom: 5px; }
         .nav-grid-bottom { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-bottom: 15px; }
-        .btn-small { padding: 10px 2px; font-size: 0.8em; border: none; border-radius: 4px; background: var(--gray); color: white; cursor: pointer; font-weight: bold; text-transform: uppercase; }
+        .btn-small { padding: 12px 2px; font-size: 0.8em; border: none; border-radius: 4px; background: var(--gray); color: white; cursor: pointer; font-weight: bold; text-transform: uppercase; }
         .btn-active { background: var(--blue) !important; }
 
-        /* SECTIONS CACHÉES PAR DÉFAUT */
         .content-sec { display: none; background: #111; padding: 15px; border-radius: 8px; border: 1px solid #333; margin-top: 10px; text-align: left; }
 
-        /* BOUTIQUE */
         .coin-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-        .coin-item { background: #1a1a1a; border: 1px solid #333; padding: 12px; border-radius: 6px; display: flex; flex-direction: column; align-items: center; text-decoration: none; color: white; }
+        .coin-item { background: #1a1a1a; border: 1px solid #333; padding: 12px; border-radius: 6px; display: flex; flex-direction: column; align-items: center; text-decoration: none; color: white; transition: 0.2s; }
+        .coin-item:active { transform: scale(0.95); background: #222; }
         .c-qty { color: var(--gold); font-weight: bold; font-size: 1.1em; }
         .c-price { color: #4cd137; font-weight: bold; margin-top: 5px; }
 
-        /* FORMULAIRES */
         input, textarea { width: 100%; padding: 12px; margin: 8px 0; background: #222; border: 1px solid #444; color: white; border-radius: 5px; box-sizing: border-box; }
         .warning { color: var(--red); font-size: 0.8em; font-weight: bold; margin-bottom: 10px; border: 1px solid var(--red); padding: 5px; border-radius: 4px; text-align: center; }
 
-        /* RADIO & SOS FIXE */
         .footer-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #000; padding: 10px; border-top: 1px solid #333; display: flex; align-items: center; justify-content: space-around; z-index: 1000; }
     </style>
 </head>
@@ -41,94 +36,122 @@
     <div class="header-main">
         <div class="site-title">
             anonymous sos fr 
-            <img class="vrai-badge" src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Twitter_Verified_Badge.svg" onclick="toggleAdmin()">
+            <img class="vrai-badge" src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Twitter_Verified_Badge.svg" onclick="checkAdmin()">
         </div>
 
         <div class="nav-grid">
-            <button class="btn-small" onclick="show('boutique')">Boutique</button>
-            <button class="btn-small" onclick="show('annonces')">Annonces</button>
-            <button class="btn-small" onclick="show('consignes')">Consignes</button>
+            <button class="btn-small" onclick="nav('boutique')">Boutique</button>
+            <button class="btn-small" onclick="nav('annonces')">Annonces</button>
+            <button class="btn-small" onclick="nav('consignes')">Consignes</button>
         </div>
         <div class="nav-grid-bottom">
-            <button class="btn-small" onclick="show('inscription')">Inscription</button>
-            <button class="btn-small" onclick="show('connexion')">Connexion</button>
+            <button class="btn-small" onclick="nav('inscription')">Inscription</button>
+            <button class="btn-small" onclick="nav('connexion')">Connexion</button>
         </div>
     </div>
 
     <div id="boutique" class="content-sec">
         <div class="warning">🔞 +18 ANS OBLIGATOIRE. AUCUN REMBOURSEMENT.</div>
-        <div class="coin-list">
-            <a href="https://wa.me/+32456894335?text=Achat+15+pieces" class="coin-item"><span class="c-qty">15 Pièces</span><span class="c-price">0.15€</span></a>
-            <a href="https://wa.me/+32456894335?text=Achat+1000+pieces" class="coin-item"><span class="c-qty">1 000 Pièces</span><span class="c-price">10€</span></a>
-            <a href="https://wa.me/+32456894335?text=Achat+6000+pieces" class="coin-item"><span class="c-qty">6 000 Pièces</span><span class="c-price">50€</span></a>
-            <a href="https://wa.me/+32456894335?text=Achat+13000+pieces" class="coin-item"><span class="c-qty">13 000 Pièces</span><span class="c-price">100€</span></a>
-            <a href="https://wa.me/+32456894335?text=Achat+55000+pieces" class="coin-item"><span class="c-qty">55 000 Pièces</span><span class="c-price">400€</span></a>
-            <a href="https://wa.me/+32456894335?text=Achat+120000+pieces" class="coin-item"><span class="c-qty">120 000 Pièces</span><span class="c-price">800€</span></a>
+        <div class="coin-list" id="shop-container">
+            </div>
+    </div>
+
+    <div id="inscription" class="content-sec">
+        <h3>Créer un compte</h3>
+        <p style="font-size: 0.75em; color: #1DA1F2;">Vérifiez votre boîte mail après l'inscription pour confirmer.</p>
+        <input type="text" placeholder="Pseudo">
+        <input type="email" id="user-email" placeholder="Adresse Email">
+        <input type="password" placeholder="Mot de passe">
+        <button class="btn-small" style="width:100%; background:var(--blue);" onclick="validerEmail()">S'inscrire</button>
+        
+        <div id="email-confirm" style="display:none; margin-top:15px; border-top:1px solid #333; padding-top:10px;">
+            <p style="font-size: 0.8em; color: var(--gold);">Entrez le code de confirmation reçu par mail :</p>
+            <input type="text" placeholder="Code (ex: 8821)">
+            <button class="btn-small" style="width:100%; background:green;">Valider mon compte</button>
         </div>
     </div>
 
     <div id="annonces" class="content-sec">
-        <div style="color:var(--blue); font-size:0.8em; margin-bottom:10px;">ℹ️ Les annonces sont vérifiées avant d'être validées.</div>
-        <textarea id="msg-annonce" placeholder="Votre message..."></textarea>
-        <button class="btn-small btn-active" style="width:100%" onclick="envoyerAnnonce()">Envoyer pour validation</button>
+        <p style="font-size:0.8em; color:var(--blue);">📢 Validation manuelle par Anonymous SOS FR.</p>
+        <textarea id="txt-annonce" placeholder="Votre message..."></textarea>
+        <button class="btn-small btn-active" style="width:100%" onclick="envoyerWA()">Envoyer l'annonce</button>
     </div>
 
     <div id="consignes" class="content-sec">
-        <h3>Règles du site</h3>
-        <p>• Respectez tous les membres.<br>• Pas d'insultes.<br>• <strong>Aucun remboursement possible</strong> après achat de pièces.<br>• 18 ans minimum pour utiliser la boutique.</p>
-    </div>
-
-    <div id="inscription" class="content-sec">
-        <h3>Inscription (+18 ans)</h3>
-        <input type="text" placeholder="Pseudo">
-        <input type="password" placeholder="Mot de passe">
-        <button class="btn-small btn-active" style="width:100%">Créer mon compte</button>
+        <h3>Règles Officielles</h3>
+        <p>• Respect absolu entre les membres.<br>• 🔞 Boutique strictement interdite aux -18 ans.<br>• 🚫 <strong>Aucun remboursement</strong> sur les achats de pièces.<br>• Toutes les annonces sont vérifiées avant validation.</p>
     </div>
 
     <div id="connexion" class="content-sec">
         <h3>Connexion</h3>
-        <input type="text" placeholder="Pseudo">
+        <input type="text" placeholder="Pseudo / Email">
         <input type="password" placeholder="Mot de passe">
         <button class="btn-small btn-active" style="width:100%">Entrer</button>
     </div>
 
     <div id="admin-panel" class="content-sec" style="border: 2px solid var(--blue);">
         <h3 style="color:var(--blue);">🛠 MODE TOOL</h3>
-        <div id="liste-users">
-            <div style="display:flex; justify-content:space-between; padding:5px; border-bottom:1px solid #333;">
-                <span>User_ID_01</span>
-                <button onclick="alert('Désactivé')" style="background:red; color:white; border:none; border-radius:3px;">Désactiver</button>
-            </div>
-        </div>
-        <p style="font-size:0.8em; margin-top:10px;">Définir Licence :</p>
+        <input type="text" placeholder="ID Utilisateur à bannir">
+        <button class="btn-small" style="width:100%; background:red; margin-bottom:15px;">Désactiver l'accès</button>
+        
+        <p style="font-size:0.8em;">Gérer la licence :</p>
         <input type="text" placeholder="ID Utilisateur">
-        <input type="number" placeholder="Montant payé (€)">
-        <button class="btn-small" style="width:100%; background:green;">Valider Licence</button>
+        <input type="number" placeholder="Montant licence payé (€)">
+        <button class="btn-small" style="width:100%; background:green;">Appliquer Licence</button>
     </div>
 
     <div class="footer-bar">
         <span style="color:red; font-weight:bold; font-size:0.8em;">SKYROCK</span>
         <audio controls style="height:25px; width:100px;"><source src="https://icecast.skyrock.net/s/natio_aac_64k"></audio>
-        <a href="https://wa.me/+32456894335" style="background:red; color:white; padding:8px 15px; border-radius:20px; text-decoration:none; font-size:0.8em; font-weight:bold;">SOS DIRECT</a>
+        <a href="https://wa.me/33600000000" style="background:red; color:white; padding:8px 15px; border-radius:20px; text-decoration:none; font-size:0.8em; font-weight:bold;">SOS DIRECT</a>
     </div>
 
     <script>
-        function show(id) {
-            // Cache toutes les sections
+        const WHATSAPP = "33600000000"; // Ton numéro ici
+
+        // Liste des prix complète (Petites et Grosses sommes)
+        const tarifs = [
+            {p: "15", e: "0.15"}, {p: "50", e: "0.50"}, {p: "100", e: "1"}, 
+            {p: "500", e: "5"}, {p: "1200", e: "10"}, {p: "2500", e: "20"}, 
+            {p: "6500", e: "50"}, {p: "9500", e: "70"}, {p: "11000", e: "80"}, 
+            {p: "13000", e: "90"}, {p: "15000", e: "100"}, {p: "18000", e: "120"}, 
+            {p: "21000", e: "140"}, {p: "29000", e: "190"}, {p: "65000", e: "400"}, 
+            {p: "150000", e: "800"}
+        ];
+
+        // Générer la boutique
+        const container = document.getElementById('shop-container');
+        tarifs.forEach(t => {
+            const item = document.createElement('a');
+            item.className = 'coin-item';
+            item.href = https://wa.me/${WHATSAPP}?text=Achat+${t.p}+pieces+pour+${t.e}euros;
+            item.innerHTML = <span class="c-qty">${t.p} Pièces</span><span class="c-price">${t.e}€</span>;
+            container.appendChild(item);
+        });
+
+        function nav(id) {
             const sections = ['boutique', 'annonces', 'consignes', 'inscription', 'connexion', 'admin-panel'];
-            sections.forEach(s => document.getElementById(s).style.display = 'none');
-            // Affiche la bonne
-            document.getElementById(id).style.display = 'block';
+            sections.forEach(s => document.getElementById(s).style.display = (s === id) ? 'block' : 'none');
+            window.scrollTo(0,0);
         }
 
-        function toggleAdmin() {
-            let p = prompt("Loulou12 :");
-            if(p === "admin") show('admin-panel');
+        function validerEmail() {
+            let email = document.getElementById('user-email').value;
+            if(email.includes('@')) {
+                alert("Un code de validation a été envoyé sur votre email : " + email + ". Veuillez le copier sur le site pour confirmer.");
+                document.getElementById('email-confirm').style.display = 'block';
+            } else { alert("Email invalide."); }
         }
 
-        function envoyerAnnonce() {
-            let m = document.getElementById('msg-annonce').value;
-            if(m) window.location.href = "https://wa.me/+32456894335?text=ANNONCE_A_VALIDER: " + encodeURIComponent(m);
+        function envoyerWA() {
+            const m = document.getElementById('txt-annonce').value;
+            if(m) window.location.href = https://wa.me/${WHATSAPP}?text=ANNONCE_VALIDATION: ${encodeURIComponent(m)};
+        }
+
+        function checkAdmin() {
+            let p = prompt("Mot de passe Mode Tool :");
+            if(p === "Loulou12") nav('admin-panel'); // Ton nouveau mot de passe
+            else if(p !== null) alert("Accès refusé.");
         }
     </script>
 </body>
