@@ -3,138 +3,231 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anonymous SOS FR - Official Site</title>
+    <title>anonymous sos fr - Officiel</title>
     <style>
+        :root {
+            --primary: #00d2ff;
+            --secondary: #3a7bd5;
+            --vip: #ffcc00;
+            --tiktok-pink: #fe2c55;
+            --bg: #0b0b0b;
+            --card: #181818;
+        }
+
         body {
-            background-color: #000;
-            color: #fff;
-            font-family: 'Courier New', Courier, monospace;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--bg);
+            color: white;
             margin: 0;
+            padding: 0;
+        }
+
+        /* --- HEADER & BADGE QUEBEC --- */
+        header {
+            background: linear-gradient(135deg, #0033ad, #00d2ff);
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        }
+
+        .quebec-certif {
+            display: inline-block;
+            background: white;
+            color: #0033ad;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 900;
+            font-size: 1.3rem;
+            border: 4px solid #0033ad;
+            margin-bottom: 20px;
+            box-shadow: 0 0 20px rgba(255,255,255,0.6);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
             display: flex;
-            flex-direction: column;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.4s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-blue { background: rgba(255,255,255,0.15); color: white; }
+        .btn-blue:hover { background: white; color: #0033ad; }
+        .btn-vip { background: var(--vip); color: black; box-shadow: 0 0 15px var(--vip); }
+        .btn-admin { background: #444; color: #ccc; font-size: 0.8rem; }
+
+        /* --- CONTENU --- */
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        /* IDs COLORÉS PERMANENTS */
+        .id-colored {
+            font-weight: bold;
+            font-size: 1.2rem;
+            background: linear-gradient(90deg, #ff00cc, #3333ff, #00ff00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        /* BOUTIQUE PIÈCES TIKTOK */
+        .shop-section {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 30px;
+            border: 2px solid var(--vip);
+            margin-bottom: 40px;
+        }
+
+        .price-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .price-card {
+            background: #222;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid #333;
+        }
+
+        .coin-amount { font-size: 1.5rem; color: var(--vip); display: block; margin-bottom: 10px; }
+
+        .buy-now {
+            background: var(--tiktok-pink);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            display: block;
+            margin-top: 10px;
+        }
+
+        /* FORMULAIRE INSCRIPTION */
+        .reg-box {
+            background: var(--card);
+            padding: 40px;
+            border-radius: 20px;
+        }
+
+        .field { margin-bottom: 20px; }
+        .field label { display: block; margin-bottom: 10px; }
+        .field input, .field select {
+            width: 100%;
+            padding: 15px;
+            border-radius: 10px;
+            background: #000;
+            border: 1px solid #333;
+            color: white;
+            box-sizing: border-box;
+        }
+
+        .check-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
             align-items: center;
         }
 
-        /* HEADER JAUNE ET BLANC */
-        .header {
-            padding: 20px;
+        footer {
             text-align: center;
-            width: 100%;
-        }
-        .header span:nth-child(1) { color: #FFD700; font-size: 1.8rem; font-weight: bold; }
-        .header span:nth-child(2) { color: #FFFFFF; font-size: 1.8rem; font-weight: bold; }
-        .badge { color: #1DA1F2; font-size: 1.5rem; }
-
-        /* LOGO ANONYMOUS CENTRAL */
-        .logo-container {
-            margin: 20px 0;
-            text-align: center;
-        }
-        .logo-img {
-            width: 150px; /* Taille du dessin */
-            filter: drop-shadow(0 0 10px #fff);
-        }
-
-        /* BOUTONS CONNEXION / INSCRIPTION */
-        .auth-buttons {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 30px;
-        }
-        .btn-auth {
-            background: #222;
-            color: white;
-            border: 1px solid #444;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
+            padding: 50px;
+            opacity: 0.5;
             font-size: 0.9rem;
-        }
-        .btn-admin { background: #FFD700; color: #000; font-weight: bold; }
-
-        /* SECTION TARIFS VIP */
-        .price-section {
-            width: 90%;
-            max-width: 500px;
-            background: #111;
-            padding: 20px;
-            border-radius: 10px;
-            border: 1px solid #333;
-        }
-        .price-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px 0;
-            border-bottom: 1px solid #222;
-        }
-        .price-name { color: #FFD700; font-weight: bold; }
-
-        /* BANDEAU ANNONCE VERIFICATION */
-        .verify-banner {
-            background: rgba(0, 255, 0, 0.1);
-            color: #00ff00;
-            padding: 15px;
-            margin: 20px 0;
-            border: 1px dashed #00ff00;
-            width: 85%;
-            text-align: center;
-            font-size: 0.8rem;
-        }
-
-        /* IDENTIFIANTS VERTS PERMANENTS */
-        .user-id { color: #00ff00 !important; }
-
-        .btn-work {
-            background: #FFD700;
-            color: #000;
-            width: 90%;
-            padding: 20px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            margin-bottom: 50px;
         }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <span>ANONYMOUS</span> <span>OFFICIEL SOSFR</span> <span class="badge">☑</span>
+<header>
+    <div class="quebec-certif">⚜️ CERTIFIÉ QUÉBEC ⚜️</div>
+    <h1>ANONYMOUS SOS FR</h1>
+    <nav>
+        <a href="#login" class="btn btn-blue">Connexion</a>
+        <a href="#register" class="btn btn-blue">Inscription</a>
+        <a href="#shop" class="btn btn-vip">💎 BOUTIQUE PIÈCES</a>
+        <a href="#admin" class="btn btn-admin">Admin Panel</a>
+    </nav>
+</header>
+
+<div class="container">
+    
+    <div style="text-align:center; margin-bottom: 50px;">
+        <h2>Bienvenue sur le réseau <span class="id-colored">anonymous sos fr</span></h2>
+        <p>Le présent est très important pour nous.</p>
     </div>
 
-    <div class="logo-container">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Anonymous_emblem.svg" class="logo-img" alt="Anonymous">
+    <div id="shop" class="shop-section">
+        <h2 style="text-align:center;">💰 Recharge de Pièces</h2>
+        <div class="price-grid">
+            <div class="price-card"><span class="coin-amount">100 🪙</span> 1.00 € <a href="#" class="buy-now">Acheter</a></div>
+            <div class="price-card"><span class="coin-amount">220 🪙</span> 2.00 € <a href="#" class="buy-now">Acheter</a></div>
+            <div class="price-card"><span class="coin-amount">1,200 🪙</span> 10.00 € <a href="#" class="buy-now">Acheter</a></div>
+            <div class="price-card"><span class="coin-amount">14,500 🪙</span> 100.00 € <a href="#" class="buy-now">Acheter</a></div>
+            <div class="price-card"><span class="coin-amount">45,000 🪙</span> 300.00 € <a href="#" class="buy-now">Acheter</a></div>
+        </div>
+        <div style="margin-top: 30px; background: rgba(255,204,0,0.1); padding: 15px; border-radius: 10px; text-align: center;">
+            <p><strong>Note:</strong> Seuls les VIP peuvent publier des annonces. Chaque annonce est vérifiée par les admins.</p>
+        </div>
     </div>
 
-    <div class="auth-buttons">
-        <a href="#" class="btn-auth">CONNEXION</a>
-        <a href="#" class="btn-auth">INSCRIPTION</a>
-        <a href="#" class="btn-auth btn-admin">ADMIN</a>
+    <div id="register" class="reg-box">
+        <h2>Créer un compte</h2>
+        <form>
+            <div class="field">
+                <label>Pseudo (ID permanent)</label>
+                <input type="text" placeholder="Ton pseudo ici..." required>
+            </div>
+            <div class="field">
+                <label>Genre</label>
+                <select required>
+                    <option value="">-- Choisir --</option>
+                    <option value="H">Homme</option>
+                    <option value="F">Femme</option>
+                </select>
+            </div>
+            <div class="check-row">
+                <input type="checkbox" required>
+                <span>J'accepte les conditions d'utilisation (clic 1)</span>
+            </div>
+            <div class="check-row">
+                <input type="checkbox" required>
+                <span>Je confirme avoir lu le règlement (clic 2)</span>
+            </div>
+            <button type="submit" class="btn btn-blue" style="width:100%; background: var(--secondary); margin-top: 20px;">VALIDER L'INSCRIPTION</button>
+        </form>
     </div>
 
-    <button class="btn-work" onclick="window.location.href='publicite.html'">COMMENCER LE TRAVAIL</button>
+</div>
 
-    <div class="price-section">
-        <h3 style="text-align:center; margin-top:0;">MODE VIP - TARIFS</h3>
-        <div class="price-item"><span>LICENCE STANDARD</span> <span>10€</span></div>
-        <div class="price-item"><span class="price-name">LICENCE VIP GOLD</span> <span>25€</span></div>
-        <div class="price-item"><span>LICENCE ADMIN</span> <span>50€</span></div>
-    </div>
-
-    <div class="verify-banner">
-        ⚠ ANNONCE : Toutes les transactions doivent être vérifiées par un administrateur pour activation manuelle.
-    </div>
-
-    <div style="margin-bottom: 20px;">
-        TOP : <span class="user-id">Anonymous_sos_fr</span> | <span class="user-id">User_Vip_01</span>
-    </div>
-
-    <script>
-        const audio = new Audio("https://audio.nrj.fr/nrj/live/mp3/128");
-        window.onclick = () => audio.play();
-    </script>
+<footer>
+    anonymous sos fr. &copy; 2026<br>
+    Identifiants certifiés Québec.
+</footer>
 
 </body>
 </html>
