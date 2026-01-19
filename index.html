@@ -6,7 +6,7 @@
     <style>
         body { background-color: #000; color: white; font-family: 'Courier New', Courier, monospace; margin: 0; overflow-x: hidden; }
         
-        /* BARRE DE MODÉRATION (CACHÉE PAR DÉFAUT) */
+        /* BARRE DE MODÉRATION (CACHÉE) */
         .mod-tool-bar {
             display: none; 
             background: #ff0000; padding: 10px; text-align: center; 
@@ -93,8 +93,9 @@
 
     <div id="annonces" class="box" style="display:none;">
         <h2 class="title-pink">📢 Annonces VIP</h2>
-        <textarea id="msg-vip" placeholder="Votre annonce ici..."></textarea>
-        <button class="action-btn" onclick="alert('Annonce envoyée pour validation.')">PUBLIER L'ANNONCE</button>
+        <textarea id="msg-vip" placeholder="Écrivez votre annonce ici..."></textarea>
+        <p style="font-size: 0.8em; color: gray; text-align: center;">* Sera vérifiée par les admins avant publication.</p>
+        <button class="action-btn" onclick="alert('Annonce envoyée pour validation.')">ENVOYER POUR VALIDATION</button>
     </div>
 
     <div id="connexion" class="box" style="display:none;">
@@ -109,8 +110,7 @@
     <iframe src="https://www.skyrock.fm/radio/player" width="200" height="80" frameborder="0"></iframe>
 </div>
 
-<div class="sos-btn" onclick="alert('🚨 SERVICE CLIENT\nSOS:+32456894335
-\nWhatsApp: Actif\nEmail: despreschez@gmail.com)">SERVICE CLIENT & SOS</div>
+<div class="sos-btn" onclick="alert('🚨 SERVICE CLIENT\nSOS: +32456894335\nWhatsApp: Actif\nEmail:despreschez@gmail.com')">SERVICE CLIENT & SOS</div>
 
 <script>
     function showSection(id) {
