@@ -1,93 +1,93 @@
-[18:28, 19/01/2026] Anonymous sos fr: <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>ANONYMOUS SOS FR</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>anonymous sos fr - Officiel</title>
     <style>
-        /* DESIGN ORIGINAL MATRIX */
+        /* Correction du fond : On utilise un noir profond pour éviter les erreurs d'image */
         body { 
-            background: #000 url('https://i.imgur.com/8Q9S8X4.png'); /* Fond étoilé */
-            color: #00ff00; 
-            font-family: 'Courier New', Courier, monospace;
-            text-align: center;
-        }
-
-        .header-title { font-size: 30px; letter-spacing: 5px; text-shadow: 0 0 10px #00ff00; margin: 20px; }
-
-        /* BOUTONS DU MENU */
-        .nav-menu { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; }
-        .nav-btn { 
-            border: 2px solid #00ff00; background: none; color: #00ff00; 
-            padding: 10px 20px; cursor: pointer; text…
-[18:36, 19/01/2026] Anonymous sos fr: <!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>ANONYMOUS SOS FR - OFFICIEL</title>
-    <style>
-        body { 
-            background: #000 url('https://i.imgur.com/8Q9S8X4.png'); 
+            background-color: #000000; 
             color: #00ff00; 
             font-family: 'Courier New', monospace;
             text-align: center;
+            margin: 0;
+            padding: 20px;
         }
-        .matrix-border { border: 2px solid #00ff00; padding: 15px; margin: 15px auto; width: 90%; max-width: 600px; background: rgba(0,0,0,0.8); box-shadow: 0 0 15px #00ff00; }
-        
-        /* GRADES */
-        .admin { color: #ff0000; font-weight: bold; text-shadow: 0 0 5px #ff0000; }
-        .modo { color: #00ff00; font-weight: bold; }
-        .vip { color: #ffae00; font-weight: bold; }
-        .badge { color: #1DA1F2; font-size: 0.9em; }
 
-        /* BOUTONS MENU */
-        .btn-menu { border: 1px solid #00ff00; background: none; color: #00ff00; padding: 8px 15px; margin: 5px; cursor: pointer; text-decoration: none; display: inline-block; }
-        .btn-menu:hover { background: #00ff00; color: #000; }
+        .container {
+            border: 3px solid #00ff00;
+            padding: 20px;
+            background: rgba(0, 20, 0, 0.9);
+            box-shadow: 0 0 20px #00ff00;
+            max-width: 800px;
+            margin: auto;
+        }
 
-        /* BOUTONS ACHAT */
-        .shop-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px; }
-        .btn-buy { background: #25D366; color: #fff; padding: 10px; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 0.9em; border: 1px solid white; }
+        /* Menu Navigation */
+        .nav-bar { margin-bottom: 25px; border-bottom: 1px solid #00ff00; padding-bottom: 10px; }
+        .btn-nav { color: #00ff00; text-decoration: none; border: 1px solid #00ff00; padding: 10px 15px; margin: 5px; display: inline-block; font-weight: bold; }
+        .btn-nav:hover { background: #00ff00; color: #000; }
+
+        /* Boutique Grille */
+        .shop-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin: 20px 0; }
+        .pack { border: 1px solid #fff; padding: 10px; border-radius: 5px; background: #111; }
+        .btn-buy { background: #25D366; color: white; text-decoration: none; padding: 8px; display: block; margin-top: 10px; border-radius: 3px; font-size: 0.8em; }
+
+        /* Grades Staff */
+        .admin { color: #ff0000; font-weight: bold; text-shadow: 0 0 8px #ff0000; }
+        .modo { color: #00ff00; }
+        .vip { color: #ffae00; }
+        .badge-blue { color: #1DA1F2; margin-left: 5px; }
+
+        /* SOS Bouton */
+        .sos-footer { margin-top: 30px; border-top: 2px solid #ff0000; padding-top: 20px; }
+        .btn-sos { background: #ff0000; color: white; padding: 15px 30px; text-decoration: none; font-size: 1.2em; font-weight: bold; border-radius: 50px; box-shadow: 0 0 15px #ff0000; display: inline-block; }
     </style>
 </head>
 <body>
 
-    <h1 style="text-shadow: 0 0 20px #00ff00;">ANONYMOUS SOS FR</h1>
+<div class="container">
+    <h1 style="font-size: 2.5em; letter-spacing: 5px;">ANONYMOUS SOS FR</h1>
+    <p>19/01/2026 - Le présent est notre force.</p>
 
-    <div class="nav">
-        <a href="#" class="btn-menu">ACCUEIL</a>
-        <a href="#" class="btn-menu">CONNEXION</a>
-        <a href="#" class="btn-menu">INSCRIPTION</a>
-        <a href="#shop" class="btn-menu">VIP / PIÈCES</a>
+    <div class="nav-bar">
+        <a href="#" class="btn-nav">ACCUEIL</a>
+        <a href="https://wa.me/32456894335?text=Connexion" class="btn-nav">CONNEXION</a>
+        <a href="https://wa.me/32456894335?text=Inscription" class="btn-nav">INSCRIPTION</a>
+        <a href="#boutique" class="btn-nav">VIP</a>
     </div>
 
-    <div class="matrix-border" id="shop">
-        <h3>💎 BOUTIQUE (MOINS CHER QUE TIKTOK)</h3>
+    <div id="boutique">
+        <h2 style="color: #ffae00;">💎 BOUTIQUE (MOINS CHER QUE TIKTOK)</h2>
         <div class="shop-grid">
-            <a href="https://wa.me/32456894335?text=Achat%201.50€%20(100%20pièces)" class="btn-buy">1,50€ - 100 Pièces</a>
-            <a href="https://wa.me/32456894335?text=Achat%202€%20(150%20pièces)" class="btn-buy">2,00€ - 150 Pièces</a>
-            <a href="https://wa.me/32456894335?text=Achat%205€%20(400%20pièces)" class="btn-buy">5,00€ - 400 Pièces</a>
-            <a href="https://wa.me/32456894335?text=Achat%2010€%20(850%20pièces)" class="btn-buy">10,00€ - 850 Pièces</a>
-            <a href="https://wa.me/32456894335?text=Achat%2050€%20(4500%20pièces)" class="btn-buy">50,00€ - 4500 Pièces</a>
-            <a href="https://wa.me/32456894335?text=Achat%20100€%20(10000%20pièces)" class="btn-buy">100,00€ - 10000 Pièces</a>
-            <a href="https://wa.me/32456894335?text=Achat%20300€%20(35000%20pièces)" class="btn-buy">300,00€ - 35000 Pièces</a>
+            <div class="pack">1,50€ <br> 100 Pièces <a href="https://wa.me/32456894335?text=Achat%20Pack%201.50€" class="btn-buy">ACHETER</a></div>
+            <div class="pack">2,00€ <br> 150 Pièces <a href="https://wa.me/32456894335?text=Achat%20Pack%202.00€" class="btn-buy">ACHETER</a></div>
+            <div class="pack">5,00€ <br> 400 Pièces <a href="https://wa.me/32456894335?text=Achat%20Pack%205.00€" class="btn-buy">ACHETER</a></div>
+            <div class="pack">10,00€ <br> 850 Pièces <a href="https://wa.me/32456894335?text=Achat%20Pack%2010.00€" class="btn-buy">ACHETER</a></div>
+            <div class="pack">50,00€ <br> 4500 Pièces <a href="https://wa.me/32456894335?text=Achat%20Pack%2050.00€" class="btn-buy">ACHETER</a></div>
+            <div class="pack">100,00€ <br> 10k Pièces <a href="https://wa.me/32456894335?text=Achat%20Pack%20100.00€" class="btn-buy">ACHETER</a></div>
+            <div class="pack">300,00€ <br> 35k Pièces <a href="https://wa.me/32456894335?text=Achat%20Pack%20300.00€" class="btn-buy">ACHETER</a></div>
         </div>
     </div>
 
-    <div class="matrix-border">
+    <div style="border: 1px dashed #00ff00; padding: 10px; margin: 20px 0;">
         <h3>📢 ANNONCES VIP (Vérifiées par Admin)</h3>
-        <p style="font-style: italic; color: #aaa;">Aucune annonce en attente...</p>
+        <p>Prêt pour vos annonces personnalisées.</p>
     </div>
 
-    <div class="matrix-border">
+    <div class="staff">
         <h3>STAFF EN LIGNE</h3>
-        <p><span class="admin">Anonymous_Boss</span> <span class="badge">✔</span></p>
+        <p><span class="admin">Anonymous_Boss</span> <span class="badge-blue">✔</span></p>
         <p><span class="modo">Modo_Secours</span></p>
-        <p><span class="vip">Client_Fidèle</span> <span class="badge">✔</span></p>
+        <p><span class="vip">Client_Fidèle</span> <span class="badge-blue">✔</span></p>
     </div>
 
-    <div style="margin-top: 20px;">
-        <p>Contact : despreschez@gmail.com</p>
-        <a href="https://wa.me/32456894335" class="btn-buy" style="background: #00ff00; color: black;">SOS CONTACT DIRECT</a>
+    <div class="sos-footer">
+        <a href="https://wa.me/32456894335?text=URGENCE%20SOS" class="btn-sos">BOUTON SOS CONTACT</a>
+        <p style="margin-top: 15px; font-size: 0.8em;">Contact : despreschez@gmail.com</p>
     </div>
+</div>
 
 </body>
 </html>
