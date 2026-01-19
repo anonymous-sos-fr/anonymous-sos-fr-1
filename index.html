@@ -3,220 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANONYMOUS SOS FR - OFFICIAL</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>Anonymous SOS FR - Official Site</title>
     <style>
-        :root {
-            --gold: #FFD700;
-            --white: #FFFFFF;
-            --green: #00FF00;
-            --red: #FF4444;
-            --bg: #000000;
-            --card: #111111;
-        }
-
         body {
-            background-color: var(--bg);
-            color: var(--white);
-            font-family: 'Roboto', sans-serif;
+            background-color: #000;
+            color: #fff;
+            font-family: 'Courier New', Courier, monospace;
             margin: 0;
-            padding-bottom: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        /* HEADER AVEC BADGE */
+        /* HEADER JAUNE ET BLANC */
         .header {
-            padding: 30px 15px;
-            text-align: center;
-            border-bottom: 2px solid var(--gold);
-            background: linear-gradient(to bottom, #1a1a1a, #000);
-        }
-
-        .title-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .name-gold { color: var(--gold); font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 1.8rem; }
-        .name-white { color: var(--white); font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 1.8rem; }
-
-        .verified-badge {
-            background: #1DA1F2; /* Bleu certifié */
-            color: white;
-            border-radius: 50%;
-            width: 22px;
-            height: 22px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-        }
-
-        /* SECTION TARIFS & LICENCES */
-        .section-title {
-            color: var(--gold);
-            text-align: left;
-            padding: 15px 20px 5px;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .grid-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            padding: 10px 20px;
-        }
-
-        .price-card {
-            background: var(--card);
-            padding: 15px;
-            border-radius: 12px;
-            border: 1px solid #222;
-            text-align: center;
-        }
-
-        .price-card.vip { border: 1px solid var(--gold); }
-        .price-card h4 { margin: 0; font-size: 0.8rem; color: #888; }
-        .price-card div { font-size: 1.1rem; font-weight: bold; margin-top: 5px; }
-
-        /* BOUTONS D'ACTION */
-        .action-area { padding: 20px; }
-        .btn-main {
-            display: block;
-            width: 100%;
-            padding: 22px;
-            background: var(--gold);
-            color: #000;
-            text-decoration: none;
-            text-align: center;
-            border-radius: 15px;
-            font-weight: 900;
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn-secondary {
-            display: block;
-            width: 100%;
-            padding: 15px;
-            background: transparent;
-            color: var(--white);
-            border: 2px solid var(--white);
-            text-align: center;
-            border-radius: 15px;
-            text-decoration: none;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        /* CLASSEMENT */
-        .ranking-box {
-            background: var(--card);
-            margin: 10px 20px;
-            padding: 15px;
-            border-radius: 15px;
-        }
-        .user-id { color: var(--green) !important; font-weight: bold; }
-
-        /* SOS SECTION */
-        .sos-footer {
-            margin: 20px;
             padding: 20px;
-            background: #1a0000;
-            border-radius: 15px;
-            border: 1px solid var(--red);
+            text-align: center;
+            width: 100%;
+        }
+        .header span:nth-child(1) { color: #FFD700; font-size: 1.8rem; font-weight: bold; }
+        .header span:nth-child(2) { color: #FFFFFF; font-size: 1.8rem; font-weight: bold; }
+        .badge { color: #1DA1F2; font-size: 1.5rem; }
+
+        /* LOGO ANONYMOUS CENTRAL */
+        .logo-container {
+            margin: 20px 0;
             text-align: center;
         }
-        .whatsapp-btn {
-            background: #25d366;
-            color: white;
-            display: block;
-            padding: 12px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: bold;
-            margin-top: 10px;
+        .logo-img {
+            width: 150px; /* Taille du dessin */
+            filter: drop-shadow(0 0 10px #fff);
         }
 
-        /* NAV BAR BASSE */
-        .nav-bottom {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background: #000;
+        /* BOUTONS CONNEXION / INSCRIPTION */
+        .auth-buttons {
             display: flex;
-            justify-content: space-around;
-            padding: 15px 0;
-            border-top: 1px solid #222;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        .btn-auth {
+            background: #222;
+            color: white;
+            border: 1px solid #444;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+        .btn-admin { background: #FFD700; color: #000; font-weight: bold; }
+
+        /* SECTION TARIFS VIP */
+        .price-section {
+            width: 90%;
+            max-width: 500px;
+            background: #111;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #333;
+        }
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #222;
+        }
+        .price-name { color: #FFD700; font-weight: bold; }
+
+        /* BANDEAU ANNONCE VERIFICATION */
+        .verify-banner {
+            background: rgba(0, 255, 0, 0.1);
+            color: #00ff00;
+            padding: 15px;
+            margin: 20px 0;
+            border: 1px dashed #00ff00;
+            width: 85%;
+            text-align: center;
+            font-size: 0.8rem;
+        }
+
+        /* IDENTIFIANTS VERTS PERMANENTS */
+        .user-id { color: #00ff00 !important; }
+
+        .btn-work {
+            background: #FFD700;
+            color: #000;
+            width: 90%;
+            padding: 20px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-bottom: 50px;
         }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <div class="title-container">
-            <span class="name-yellow">ANONYMOUS</span>
-            <span class="name-white">OFFICIEL</span>
-            <div class="verified-badge">✓</div>
-        </div>
-        <div style="font-size: 0.8rem; color: var(--gold); margin-top: 5px;">PLATEFORME SOS FR</div>
+        <span>ANONYMOUS</span> <span>OFFICIEL SOSFR</span> <span class="badge">☑</span>
     </div>
 
-    <div class="section-title">Nos Tarifs & Licences</div>
-    <div class="grid-container">
-        <div class="price-card">
-            <h4>STANDARD</h4>
-            <div>10 €</div>
-        </div>
-        <div class="price-card vip">
-            <h4>VIP GOLD</h4>
-            <div style="color: var(--gold);">25 €</div>
-        </div>
-        <div class="price-card">
-            <h4>ADMIN</h4>
-            <div>50 €</div>
-        </div>
-        <div class="price-card">
-            <h4>INSCRIPTION</h4>
-            <div style="color: var(--green);">GRATUIT</div>
-        </div>
+    <div class="logo-container">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Anonymous_emblem.svg" class="logo-img" alt="Anonymous">
     </div>
 
-    <div class="action-area">
-        <button class="btn-main" onclick="goJob()">COMMENCER LE TRAVAIL</button>
-        <a href="#" class="btn-secondary">S'INSCRIRE / CONNEXION</a>
+    <div class="auth-buttons">
+        <a href="#" class="btn-auth">CONNEXION</a>
+        <a href="#" class="btn-auth">INSCRIPTION</a>
+        <a href="#" class="btn-auth btn-admin">ADMIN</a>
     </div>
 
-    <div class="section-title">Classement en direct</div>
-    <div class="ranking-box">
-        <div>1. <span class="user-id">Anonymous_Boss</span> (ADMIN)</div>
-        <div>2. <span class="user-id">Vip_User_77</span> (VIP)</div>
+    <button class="btn-work" onclick="window.location.href='publicite.html'">COMMENCER LE TRAVAIL</button>
+
+    <div class="price-section">
+        <h3 style="text-align:center; margin-top:0;">MODE VIP - TARIFS</h3>
+        <div class="price-item"><span>LICENCE STANDARD</span> <span>10€</span></div>
+        <div class="price-item"><span class="price-name">LICENCE VIP GOLD</span> <span>25€</span></div>
+        <div class="price-item"><span>LICENCE ADMIN</span> <span>50€</span></div>
     </div>
 
-    <div class="sos-footer">
-        <div style="color: var(--red); font-weight: bold;">ASSISTANCE SOS 24/7</div>
-        <div style="margin: 10px 0;">+32456894335</div>
-        <a href="https://wa.me/+32456894335" class="whatsapp-btn">CONTACTER WHATSAPP</a>
+    <div class="verify-banner">
+        ⚠ ANNONCE : Toutes les transactions doivent être vérifiées par un administrateur pour activation manuelle.
     </div>
 
-    <nav class="nav-bottom">
-        <span>🏠</span>
-        <span>💰</span>
-        <span>👤</span>
-    </nav>
+    <div style="margin-bottom: 20px;">
+        TOP : <span class="user-id">Anonymous_sos_fr</span> | <span class="user-id">User_Vip_01</span>
+    </div>
 
     <script>
         const audio = new Audio("https://audio.nrj.fr/nrj/live/mp3/128");
-        function goJob() {
-            audio.play();
-            setTimeout(() => { window.location.href = "publicite.html"; }, 500);
-        }
         window.onclick = () => audio.play();
     </script>
 
 </body>
+</html>
