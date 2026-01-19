@@ -4,117 +4,168 @@
     <meta charset="UTF-8">
     <title>anonymous sos fr</title>
     <style>
-        /* FOND D'ÉCRAN (Placeholder pour ta photo) */
+        /* CONFIGURATION DU FOND (Ta photo) */
         body {
-            background-image: url('votre_image.jpg'); /* Tu remplaceras par le nom de ta photo */
+            background-image: url('fond_anonymous.jpg'); /* Mets le nom de ton image ici */
             background-size: cover;
+            background-position: center;
             background-attachment: fixed;
+            background-color: #000; /* Fond noir si l'image charge mal */
             color: white;
-            font-family: Arial, sans-serif;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            overflow-x: hidden;
         }
 
-        /* IDENTIFIANTS COLORÉS PERMANENTS */
-        .user-id {
-            color: #FFD700; /* Or pour les IDs, modifiable selon tes goûts */
-            font-weight: bold;
-        }
-
-        /* NAVIGATION */
+        /* NAVIGATION SANS FOND BLANC */
         nav {
-            background: rgba(0, 0, 0, 0.7);
-            padding: 15px;
+            background: rgba(0, 0, 0, 0.85);
+            padding: 20px;
             text-align: center;
+            border-bottom: 1px solid #00ff00; /* Ligne verte style Matrix */
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         nav a {
-            color: white;
-            margin: 0 15px;
+            color: #00ff00;
+            margin: 0 20px;
             text-decoration: none;
+            font-weight: bold;
             cursor: pointer;
+            text-transform: uppercase;
+            font-size: 1.1em;
         }
 
-        /* SECTIONS FORMULAIRES */
-        .form-container {
-            background: rgba(0, 0, 0, 0.8);
-            padding: 20px;
-            width: 350px;
-            margin: 50px auto;
-            border-radius: 10px;
+        nav a:hover {
+            text-shadow: 0 0 10px #00ff00;
         }
+
+        /* FORMULAIRES TRANSPARENTS SOMBRES */
+        .main-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh;
+        }
+
+        .box {
+            background: rgba(0, 0, 0, 0.75);
+            padding: 40px;
+            border-radius: 15px;
+            border: 1px solid #333;
+            width: 100%;
+            max-width: 450px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 1);
+        }
+
+        /* IDENTIFIANTS COLORÉS PERMANENTS */
+        .user-id-style {
+            color: #ff00ff; /* Couleur permanente pour les IDs */
+            font-weight: bold;
+        }
+
+        h2 { text-align: center; margin-bottom: 20px; }
 
         input, select {
             width: 100%;
-            padding: 8px;
+            padding: 12px;
             margin: 10px 0;
-            display: block;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid #444;
+            color: white;
+            border-radius: 5px;
+            box-sizing: border-box;
         }
 
-        .dob-group {
-            display: flex;
-            gap: 5px;
+        button {
+            width: 100%;
+            padding: 15px;
+            background: #00ff00;
+            color: black;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            border-radius: 5px;
         }
 
-        /* RADIO (On ne touche pas !) */
-        .radio-player {
+        /* RADIO (Touche pas, elle est parfaite) */
+        .radio-fixed {
             position: fixed;
             bottom: 20px;
-            right: 20px;
-            background: #000;
-            padding: 10px;
+            left: 20px;
+            z-index: 9999;
         }
     </style>
 </head>
 <body>
 
 <nav>
-    <a onclick="showSection('accueil')">ACCUEIL</a>
-    <a onclick="showSection('connexion')">CONNEXION</a>
-    <a onclick="showSection('inscription')">INSCRIPTION</a>
-    <a onclick="showSection('vip')">VIP</a>
+    <a onclick="show('accueil')">Accueil</a>
+    <a onclick="show('connexion')">Connexion</a>
+    <a onclick="show('inscription')">Inscription</a>
+    <a onclick="show('vp')">VP</a>
 </nav>
 
-<div id="inscription" class="form-container">
-    <h2>Inscription</h2>
-    <input type="text" placeholder="Nom / ID (Identifiant)">
-    <input type="email" placeholder="Adresse Mail">
-    <input type="password" placeholder="Mot de passe">
+<div class="main-container">
     
-    <label>Genre :</label>
-    <select>
-        <option value="H">Homme</option>
-        <option value="F">Femme</option>
-    </select>
-
-    <label>Date de naissance :</label>
-    <div class="dob-group">
-        <input type="number" placeholder="Jour" min="1" max="31">
-        <input type="number" placeholder="Mois" min="1" max="12">
-        <input type="number" placeholder="Année" min="1900" max="2026">
+    <div id="accueil" class="box" style="display:none;">
+        <h2>Bienvenue sur <br><span style="color:#00ff00">anonymous sos fr</span></h2>
+        <p style="text-align:center;">Toutes les pages seront regroupées ici une fois actives.</p>
     </div>
-    <button style="width:100%">Valider l'inscription</button>
+
+    <div id="connexion" class="box" style="display:none;">
+        <h2 class="user-id-style">Connexion</h2>
+        <input type="text" placeholder="Identifiant">
+        <input type="password" placeholder="Mot de passe">
+        <button>SE CONNECTER</button>
+    </div>
+
+    <div id="inscription" class="box">
+        <h2 class="user-id-style">Inscription</h2>
+        <input type="text" placeholder="Nom / ID de l'idée">
+        <input type="email" placeholder="Adresse Mail">
+        <input type="password" placeholder="Mot de passe">
+        
+        <select>
+            <option value="">Sexe</option>
+            <option value="H">Homme</option>
+            <option value="F">Femme</option>
+        </select>
+
+        <p style="margin-top:10px; font-size: 0.9em;">Date de naissance :</p>
+        <div style="display:flex; gap:10px;">
+            <input type="number" placeholder="Jour" min="1" max="31">
+            <input type="number" placeholder="Mois" min="1" max="12">
+            <input type="number" placeholder="Année" min="1900" max="2026">
+        </div>
+        <button>CRÉER MON COMPTE</button>
+    </div>
+
+    <div id="vp" class="box" style="display:none;">
+        <h2 style="color: gold;">💎 ESPACE VP</h2>
+        <p>Abonnements et Licences.</p>
+        <hr>
+        <p>Statut : <span style="color:red">Non payé</span></p>
+    </div>
+
 </div>
 
-<div id="connexion" class="form-container" style="display:none;">
-    <h2>Connexion</h2>
-    <input type="text" placeholder="Identifiant">
-    <input type="password" placeholder="Mot de passe">
-    <button style="width:100%">Se connecter</button>
-</div>
-
-<div id="vip" class="form-container" style="display:none;">
-    <h2>Espace VIP</h2>
-    <p>Accès réservé aux membres licenciés.</p>
-</div>
-
-<div class="radio-player">
+<div class="radio-fixed">
     <iframe src="https://www.skyrock.fm/radio/player" width="300" height="100" frameborder="0"></iframe>
 </div>
 
 <script>
-    function showSection(id) {
-        document.getElementById('inscription').style.display = 'none';
+    function show(id) {
+        // Cache toutes les boites
+        document.getElementById('accueil').style.display = 'none';
         document.getElementById('connexion').style.display = 'none';
-        document.getElementById('vip').style.display = 'none';
+        document.getElementById('inscription').style.display = 'none';
+        document.getElementById('vp').style.display = 'none';
+        
+        // Affiche celle demandée
         document.getElementById(id).style.display = 'block';
     }
 </script>
