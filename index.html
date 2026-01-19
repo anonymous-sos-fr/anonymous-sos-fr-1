@@ -6,8 +6,9 @@
     <style>
         body { background-color: #000; color: white; font-family: 'Courier New', Courier, monospace; margin: 0; overflow-x: hidden; }
         
-        /* BARRE DE MODÉRATION (VISIBLE QUE POUR TOI SUR PC) */
+        /* BARRE DE MODÉRATION (CACHÉE PAR DÉFAUT) */
         .mod-tool-bar {
+            display: none; 
             background: #ff0000; padding: 10px; text-align: center; 
             position: sticky; top: 0; z-index: 9999; border-bottom: 2px solid white;
         }
@@ -88,13 +89,11 @@
             <tr><td class="coins">7000 Pièces</td><td class="price">100.00€</td></tr>
             <tr><td class="coins">30000 Pièces</td><td class="price">400.00€</td></tr>
         </table>
-        <p style="text-align:center; font-size:0.8em; margin-top:10px;">Contactez le service client pour payer.</p>
     </div>
 
     <div id="annonces" class="box" style="display:none;">
         <h2 class="title-pink">📢 Annonces VIP</h2>
         <textarea id="msg-vip" placeholder="Votre annonce ici..."></textarea>
-        <p style="font-size: 0.7em; color: #aaa;">⚠️ Toute annonce sera vérifiée par les admins avant d'être publiée.</p>
         <button class="action-btn" onclick="alert('Annonce envoyée pour validation.')">PUBLIER L'ANNONCE</button>
     </div>
 
@@ -110,7 +109,8 @@
     <iframe src="https://www.skyrock.fm/radio/player" width="200" height="80" frameborder="0"></iframe>
 </div>
 
-<div class="sos-btn" onclick="alert('🚨 SERVICE CLIENT\nSOS: +32456894335\nWhatsApp: Actif\nEmail: despreschez@gmail.com')">SERVICE CLIENT & SOS</div>
+<div class="sos-btn" onclick="alert('🚨 SERVICE CLIENT\nSOS:+32456894335
+\nWhatsApp: Actif\nEmail: despreschez@gmail.com)">SERVICE CLIENT & SOS</div>
 
 <script>
     function showSection(id) {
@@ -120,16 +120,27 @@
         document.getElementById(id).style.display = 'block';
     }
 
+    // --- SYSTÈME SÉCURITÉ LOULOU12 ---
+    let typed = "";
+    window.addEventListener("keydown", function(e) {
+        typed += e.key;
+        if (typed.includes("Loulou12")) {
+            document.querySelector('.mod-tool-bar').style.display = 'block';
+            alert("🛠️ ACCÈS ADMIN VALIDÉ");
+            typed = "";
+        }
+    });
+
     function modAction(type) {
-        let target = prompt("Entrez l'ID de l'utilisateur :");
+        let target = prompt("ID de l'utilisateur :");
         if (target) {
-            if(type === 'ban') alert("⛔ ID [" + target + "] BANNIE.");
+            if(type === 'ban') alert("⛔ " + target + " BANNIE.");
             if(type === 'licence') {
-                let m = prompt("Type de licence ou nombre de pièces :");
-                alert("✅ Mise à jour pour " + target + " : " + m);
+                let m = prompt("Montant ou Type de licence :");
+                alert("✅ Validé pour " + target + " : " + m);
             }
-            if(type === 'badge') alert("🔵 Badge Certifié ajouté à " + target);
-            if(type === 'annonce_ok') alert("📢 Annonce de " + target + " validée !");
+            if(type === 'badge') alert("🔵 Badge ajouté à " + target);
+            if(type === 'annonce_ok') alert("📢 Annonce validée !");
         }
     }
 </script>
