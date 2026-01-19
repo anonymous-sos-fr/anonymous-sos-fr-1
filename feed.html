@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pour Toi - Anonymous SOS FR</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            background-color: black;
+            font-family: 'ProximaNova', sans-serif;
+            overflow: hidden; /* Pour l'effet plein écran TikTok */
+        }
+
+        /* Container du feed */
+        .feed-container {
+            height: 100vh;
+            scroll-snap-type: y mandatory;
+            overflow-y: scroll;
+        }
+
+        /* Une vidéo/post à la fois */
+        .video-post {
+            height: 100vh;
+            width: 100vw;
+            scroll-snap-align: start;
+            position: relative;
+            background: linear-gradient(to bottom, #000428, #004e92);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Overlay des infos (Pseudo, Musique, etc.) */
+        .post-info {
+            position: absolute;
+            bottom: 100px;
+            left: 20px;
+            color: white;
+            z-index: 10;
+        }
+
+        .post-username {
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 18px;
+        }
+
+        .badge-blue { color: #1DA1F2; font-size: 16px; }
+
+        .post-caption {
+            margin-top: 8px;
+            font-size: 14px;
+        }
+
+        /* Boutons d'interaction sur le côté */
+        .side-bar {
+            position: absolute;
+            right: 15px;
+            bottom: 150px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .action-btn {
+            text-align: center;
+            color: white;
+            font-size: 12px;
+        }
+
+        .action-icon {
+            font-size: 30px;
+            margin-bottom: 5px;
+            cursor: pointer;
+        }
+
+        /* Navigation bas de page */
+        .nav-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: black;
+            padding: 15px;
+            display: flex;
+            justify-content: space-around;
+            z-index: 100;
+        }
+        
+        .nav-bar a { color: white; text-decoration: none; font-size: 24px; }
+    </style>
+</head>
+<body>
+
+<div class="feed-container">
+    <div class="video-post">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Anonymous_emblem.svg" style="width: 150px; opacity: 0.5;">
+        
+        <div class="post-info">
+            <div class="post-username">Anonymous SOS FR <span class="badge-blue">✔</span></div>
+            <div class="post-caption">Bienvenue sur le site officiel. Le combat continue. #Anonymous #Liberté</div>
+        </div>
+
+        <div class="side-bar">
+            <div class="action-btn"><div class="action-icon">❤️</div><span>1.2k</span></div>
+            <div class="action-btn"><div class="action-icon">💬</div><span>450</span></div>
+            <div class="action-btn"><div class="action-icon">🔗</div><span>Partager</span></div>
+        </div>
+    </div>
+
+    <div class="video-post" style="background: linear-gradient(to bottom, #004e92, #000000);">
+        <h2 style="color: white; opacity: 0.3;">CONTENU VIDÉO ICI</h2>
+        
+        <div class="post-info">
+            <div class="post-username">User_01</div>
+            <div class="post-caption">Test du nouveau flux vidéo ! #NewSite</div>
+        </div>
+
+        <div class="side-bar">
+            <div class="action-btn"><div class="action-icon">❤️</div><span>85</span></div>
+            <div class="action-btn"><div class="action-icon">💬</div><span>12</span></div>
+            <div class="action-btn"><div class="action-icon">🔗</div><span>Partager</span></div>
+        </div>
+    </div>
+</div>
+
+<div class="nav-bar">
+    <a href="index.html">🏠</a>
+    <a href="recherche.html">🔍</a>
+    <a href="profil.html" style="font-size: 32px; color: #fe2c55;">+</a>
+    <a href="#">📩</a>
+    <a href="profil.html">👤</a>
+</div>
+
+</body>
+</html>
