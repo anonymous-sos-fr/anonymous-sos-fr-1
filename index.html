@@ -2,62 +2,75 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>anonymous sos fr</title>
     <style>
-        body { background-color: #121212; color: white; font-family: sans-serif; text-align: center; padding: 20px; }
+        /* STYLE GÉNÉRAL */
+        body { background-color: #121212; color: white; font-family: 'Segoe UI', sans-serif; text-align: center; padding: 20px; }
         
-        /* COULEURS DES GRADES (PERMANENT) */
-        .dev { color: #ffffff !important; text-shadow: 0 0 10px #00ffff; font-weight: bold; }
+        /* COULEURS DES GRADES (FIXES) */
+        .dev { color: #ffffff !important; text-shadow: 0 0 10px #00ffff; font-weight: bold; } /* Toi */
         .pseudo-admin { color: #ff0000 !important; font-weight: bold; } /* Administrateur en ROUGE */
         .pseudo-modo { color: #00ff00 !important; font-weight: bold; }  /* Modérateur en VERT */
         .pseudo-vip { color: #ffae00 !important; font-weight: bold; }   /* VIP en ORANGE */
-        .badge-bleu { color: #1DA1F2; margin-left: 5px; font-weight: bold; }
+        .badge-bleu { color: #1DA1F2; margin-left: 5px; font-weight: bold; } /* Badge Certifié */
 
         /* BOUTIQUE ET BOUTONS */
-        .boutique { border: 2px solid #333; background: #1e1e1e; padding: 20px; border-radius: 15px; margin: 20px auto; max-width: 500px; }
-        .btn-whatsapp { background: #25D366; color: white; padding: 15px 25px; border-radius: 10px; text-decoration: none; display: inline-block; font-weight: bold; margin-top: 10px; }
-        .contact-info { margin-top: 30px; font-size: 0.9em; color: #bbb; }
+        .container { border: 2px solid #333; background: #1e1e1e; padding: 20px; border-radius: 15px; margin: 20px auto; max-width: 600px; }
+        .btn-whatsapp { background: #25D366; color: white; padding: 15px 25px; border-radius: 10px; text-decoration: none; display: inline-block; font-weight: bold; margin-top: 10px; transition: 0.3s; }
+        .btn-whatsapp:hover { background: #128C7E; }
+        .contact-footer { margin-top: 40px; border-top: 1px solid #444; padding-top: 20px; color: #888; font-size: 0.9em; }
     </style>
 </head>
 <body>
 
-    <h1>Bienvenue sur <span class="dev">anonymous sos fr</span></h1>
+    <header>
+        <h1>Bienvenue sur <span class="dev">anonymous sos fr</span></h1>
+    </header>
 
-    <div class="boutique">
+    <div class="container">
         <h2>💎 Boutique de Pièces</h2>
-        <p>Tarif spécial : 1€ = 50 Pièces</p>
-        <p><i>(Bien moins cher que sur TikTok !)</i></p>
+        <p>Prix Flash : <strong style="color:#00ff00;">1€ = 50 Pièces</strong></p>
+        <p><i>(Moins cher que sur TikTok !)</i></p>
         
-        <a href="https://wa.me/+32456894335?text=Bonjour%20je%20souhaite%20acheter%20des%20pièces" class="btn-whatsapp">
-            COMMANDER SUR WHATSAPP
+        <a href="https://wa.me/TON_NUMERO?text=Bonjour%20je%20souhaite%20acheter%20des%20pièces%20sur%20anonymous%20sos%20fr" class="btn-whatsapp">
+            COMMANDER VIA WHATSAPP
         </a>
     </div>
 
-    <div>
-        <h3>Équipe de gestion :</h3>
+    <div class="container">
+        <h3>Gestion de la plateforme</h3>
         <p><span class="pseudo-admin">Admin_Principal</span><span class="badge-bleu">✔</span></p>
-        <p><span class="pseudo-modo">Moderateur_1</span></p>
+        <p><span class="pseudo-modo">Modérateur_SOS</span></p>
+        <p><span class="pseudo-vip">Membre_Donateur</span><span class="badge-bleu">✔</span></p>
     </div>
 
-    <div class="contact-info">
-        <p>📧 despreschez@gmail.com :</p>
-        <p>📱 WhatsApp : +32456894335</p>
-        <p>En cas de problème, utilisez le bouton SOS ci-dessus.</p>
-    </div>
+    <footer class="contact-footer">
+        <p>📱 WhatsApp :+32456894335</p>
+        <p>📧 Email :despreschez@gmail.com</p>
+        <p>Pour tout problème technique, cliquez sur commander et précisez "SOS".</p>
+    </footer>
 
     <script>
-        // Sécurité de bannissement : Uniquement pour le Dev
-        const monRole = "DEVELOPPEUR"; 
-        function bannir(cible) {
-            if(monRole === "DEVELOPPEUR") {
-                confirm("Voulez-vous bannir " + cible + " ?");
+        // Ton grade à toi
+        const utilisateurConnecte = "DEVELOPPEUR";
+
+        // Fonction pour les badges (à déclencher depuis ton PC)
+        function activerBadgeBleu(pseudo) {
+            console.log("Badge certifié activé pour : " + pseudo);
+            alert("BOUM ! Badge bleu activé.");
+        }
+
+        // SÉCURITÉ : Seul le Développeur (Toi) peut bannir
+        function actionBannir(cible, gradeUtilisateur) {
+            if (gradeUtilisateur === "DEVELOPPEUR") {
+                let confirmation = confirm("Voulez-vous vraiment bannir " + cible + " ?");
+                if(confirmation) alert(cible + " banni.");
             } else {
-                alert("Action interdite !");
+                alert("ERREUR : En tant qu'Admin ou Modo, vous n'avez pas le droit de bannir.");
             }
         }
     </script>
-<span class="pseudo-admin">NOM_DE_L_ADMIN</span><span class="badge-bleu">✔</span>
 
-<span class="dev">anonymous sos fr</span><span class="badge-bleu">✔</span>
 </body>
 </html>
