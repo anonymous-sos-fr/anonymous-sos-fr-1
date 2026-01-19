@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messages - Anonymous SOS FR</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'ProximaNova', sans-serif;
+            background: linear-gradient(to bottom, #000428, #004e92);
+            color: white;
+            min-height: 100vh;
+            padding-bottom: 80px;
+        }
+
+        .chat-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header-msg {
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Liste des discussions */
+        .msg-list {
+            margin-top: 10px;
+        }
+
+        .msg-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            margin-bottom: 10px;
+            text-decoration: none;
+            color: white;
+            transition: 0.2s;
+        }
+
+        .msg-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .user-avatar {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            margin-right: 15px;
+            background: #333;
+            border: 2px solid #fe2c55;
+        }
+
+        .msg-content {
+            flex-grow: 1;
+        }
+
+        .msg-user {
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .badge-blue { color: #1DA1F2; font-size: 14px; }
+
+        .last-msg {
+            font-size: 13px;
+            color: #bbb;
+            margin-top: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 200px;
+        }
+
+        .msg-time {
+            font-size: 11px;
+            color: #777;
+        }
+
+        /* Barre de navigation */
+        .nav-bar {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            background: black; padding: 15px;
+            display: flex; justify-content: space-around;
+            z-index: 100;
+        }
+        .nav-bar a { color: white; text-decoration: none; font-size: 24px; }
+    </style>
+</head>
+<body>
+
+<div class="chat-container">
+    <div class="header-msg">Boîte de réception</div>
+
+    <div class="msg-list">
+        <a href="#" class="msg-item">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Anonymous_emblem.svg" class="user-avatar">
+            <div class="msg-content">
+                <div class="msg-user">Anonymous SOS FR <span class="badge-blue">✔</span></div>
+                <div class="last-msg">Bienvenue ! Votre compte est activé.</div>
+            </div>
+            <div class="msg-time">À l'instant</div>
+        </a>
+
+        <a href="#" class="msg-item">
+            <div class="user-avatar" style="background: #555;"></div>
+            <div class="msg-content">
+                <div class="msg-user">Cyber_Warrior</div>
+                <div class="last-msg">L'opération de ce soir est maintenue ?</div>
+            </div>
+            <div class="msg-time">14h05</div>
+        </a>
+    </div>
+</div>
+
+<div class="nav-bar">
+    <a href="index.html">🏠</a>
+    <a href="recherche.html">🔍</a>
+    <a href="publicite.html" style="font-size: 32px; color: #fe2c55;">+</a>
+    <a href="messagerie.html">📩</a>
+    <a href="profil.html">👤</a>
+</div>
+
+</body>
+</html>
