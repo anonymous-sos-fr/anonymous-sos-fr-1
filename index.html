@@ -3,158 +3,162 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anonymous SOS FR - Official</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <title>ANONYMOUS SOS FR - PREMIUM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        * { box-sizing: border-box; }
-        body { 
-            margin: 0; 
-            padding: 0; 
-            background: radial-gradient(circle at top, #1a1a1a 0%, #000 100%); 
-            color: #fff; 
-            font-family: 'Poppins', sans-serif;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
+        :root {
+            --gold: #FFD700;
+            --gold-dark: #B8860B;
+            --bg: #050505;
+            --card: #121212;
+            --green: #00ff00;
         }
 
-        /* Logo Style TikTok */
-        .brand-header {
-            padding: 40px 20px;
-            text-align: center;
-        }
-        .brand-name {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.5rem;
-            text-transform: uppercase;
-            letter-spacing: -1px;
-            background: linear-gradient(to right, #fff 20%, #ffd700 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 10px 20px rgba(255, 215, 0, 0.2);
+        body {
+            background-color: var(--bg);
+            color: white;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
         }
 
-        /* Container central type App Mobile */
-        .content {
-            flex: 1;
-            padding: 20px;
+        /* HEADER IMPACT */
+        .hero {
+            height: 30vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1000'); /* Image tech de fond */
+            background-size: cover;
+            border-bottom: 3px solid var(--gold);
         }
 
-        .promo-text {
-            color: #00ff00;
-            font-weight: bold;
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            text-transform: uppercase;
+        .hero h1 {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 2rem;
+            color: var(--gold);
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            margin: 0;
         }
 
-        /* BOUTONS MASSIFS */
-        .big-btn {
-            width: 100%;
-            max-width: 350px;
-            background: #ffd700;
-            color: #000;
-            border: none;
-            padding: 25px;
-            border-radius: 20px;
-            font-size: 1.4rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-            cursor: pointer;
-            transition: 0.2s;
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
-        }
-        .big-btn:active { transform: scale(0.95); }
-
-        /* Section SOS / Contact Mobile */
-        .sos-container {
-            background: rgba(255, 255, 255, 0.05);
-            width: 100%;
-            max-width: 350px;
+        /* BOUTONS ACTIONS MASSIVES */
+        .actions {
             padding: 20px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            text-align: center;
-            margin-bottom: 80px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: -40px; /* Chevauchement stylé */
         }
-        .sos-label { color: #ff4444; font-weight: 800; font-size: 1.2rem; }
-        .wa-btn {
+
+        .main-btn {
+            background: linear-gradient(45deg, var(--gold-dark), var(--gold));
+            color: black;
+            text-decoration: none;
+            padding: 30px;
+            border-radius: 15px;
+            font-weight: 900;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            border: none;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .main-btn:active { transform: scale(0.98); }
+
+        /* SECTION INFO / GAINS */
+        .status-bar {
+            background: var(--card);
+            margin: 0 20px;
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .user-id { color: var(--green) !important; font-weight: bold; font-family: monospace; }
+
+        /* SUPPORT SOS PRO */
+        .support-box {
+            margin: 20px;
+            padding: 25px;
+            background: #1a1a1a;
+            border-radius: 15px;
+            border-left: 5px solid #ff4444;
+        }
+
+        .support-box h3 { color: #ff4444; margin-top: 0; }
+
+        .btn-whatsapp {
             display: block;
             background: #25d366;
             color: white;
+            text-align: center;
+            padding: 15px;
+            border-radius: 10px;
             text-decoration: none;
-            padding: 12px;
-            border-radius: 12px;
-            margin-top: 10px;
-            font-weight: 600;
+            font-weight: bold;
+            margin-top: 15px;
         }
 
-        /* Classement Identifiants Verts */
-        .rank-list { width: 100%; max-width: 350px; margin-bottom: 20px; }
-        .user-id { color: #00ff00 !important; font-weight: bold; }
-
-        /* Navigation Basse (Style TikTok) */
-        .nav-bar {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background: #000;
-            border-top: 1px solid #333;
-            display: flex;
-            justify-content: space-around;
-            padding: 15px 0;
-        }
-        .nav-item { color: #888; text-decoration: none; font-size: 0.8rem; }
-        .nav-active { color: #fff; font-weight: bold; }
+        /* RADIO HIDDEN BUT WORKING */
+        #radio-status { font-size: 0.7rem; color: #444; margin-top: 10px; }
 
     </style>
 </head>
 <body>
 
-    <div class="brand-header">
-        <div class="brand-name">ANONYMOUS</div>
-        <div style="color: #888; font-size: 0.9rem;">SOS FR OFFICIEL</div>
+    <div class="hero">
+        <h1>ANONYMOUS</h1>
+        <p style="letter-spacing: 3px; color: #ccc;">OFFICIEL SOS FR</p>
     </div>
 
-    <div class="content">
-        <div class="promo-text">🔥 50€ À GAGNER CE MOIS !</div>
-
-        <button class="big-btn" onclick="start()">JOUER & GAGNER</button>
-        <button class="big-btn" onclick="start()" style="background: #fff;">MES RÉCOMPENSES</button>
-
-        <div class="rank-list">
-            <div style="font-size: 0.8rem; color: #555; margin-bottom: 5px;">TOP GAGNANTS :</div>
-            <div>🏆 <span class="user-id">Anonymous_Boss</span></div>
-            <div>🥈 <span class="user-id">User_Vip88</span></div>
-        </div>
-
-        <div class="sos-container">
-            <div class="sos-label">BESOIN D'AIDE ?</div>
-            <div style="margin: 5px 0;">SOS:+32456894335</div>
-            <a href="https://wa.me/+32456894335" class="wa-btn">CONTACT WHATSAPP</a>
+    <div class="actions">
+        <button class="main-btn" onclick="playSystem()">COMMENCER LE TRAVAIL</button>
+        
+        <div class="status-bar">
+            <div>
+                <span style="display:block; font-size: 0.8rem; color: #888;">TOP RÉCOMPENSE</span>
+                <span style="font-size: 1.2rem; font-weight: bold;">50.00 € / Mois</span>
+            </div>
+            <div style="text-align: right;">
+                <span style="display:block; font-size: 0.8rem; color: #888;">ADMIN EN LIGNE</span>
+                <span class="user-id">Anonymous_Boss</span>
+            </div>
         </div>
     </div>
 
-    <nav class="nav-bar">
-        <a href="#" class="nav-item nav-active">ACCUEIL</a>
-        <a href="#" class="nav-item">VIDÉOS</a>
-        <a href="#" class="nav-item">PROFIL</a>
-    </nav>
+    <div class="support-box">
+        <h3>SUPPORT TECHNIQUE SOS</h3>
+        <p>Un problème ? Une question sur vos gains ?</p>
+        <div style="font-size: 1.2rem; font-weight: bold;">Tél:+32456894335</div>
+        <a href="https://wa.me/+32456894335" class="btn-whatsapp">OUVRIR WHATSAPP</a>
+    </div>
+
+    <div id="radio-status">Système Audio: Prêt (cliquez n'importe où)</div>
 
     <script>
         const audio = new Audio("https://audio.nrj.fr/nrj/live/mp3/128");
-        function start() {
+        
+        function playSystem() {
             audio.play();
+            // Petit délai pour laisser le son partir avant de changer de page
             setTimeout(() => {
                 window.location.href = "publicite.html";
-            }, 500);
+            }, 800);
         }
-        window.addEventListener('click', () => audio.play(), {once: true});
+
+        // Débloque l'audio sur le premier clic écran
+        document.body.addEventListener('click', () => {
+            audio.play().then(() => {
+                document.getElementById('radio-status').innerText = "Système Audio: Connecté (NRJ)";
+            }).catch(() => {});
+        }, { once: true });
     </script>
 
 </body>
