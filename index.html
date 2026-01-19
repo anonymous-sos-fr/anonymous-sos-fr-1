@@ -2,90 +2,89 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>anonymous sos fr - Officiel</title>
     <style>
-        /* Correction du fond : On utilise un noir profond pour éviter les erreurs d'image */
         body { 
-            background-color: #000000; 
+            background-color: #000; 
             color: #00ff00; 
             font-family: 'Courier New', monospace;
             text-align: center;
-            margin: 0;
-            padding: 20px;
+            margin: 0; padding: 20px;
         }
-
-        .container {
-            border: 3px solid #00ff00;
-            padding: 20px;
-            background: rgba(0, 20, 0, 0.9);
+        .main-container {
+            border: 2px solid #00ff00;
+            background: rgba(0, 15, 0, 0.95);
             box-shadow: 0 0 20px #00ff00;
-            max-width: 800px;
-            margin: auto;
+            max-width: 800px; margin: auto; padding: 20px;
         }
-
-        /* Menu Navigation */
-        .nav-bar { margin-bottom: 25px; border-bottom: 1px solid #00ff00; padding-bottom: 10px; }
-        .btn-nav { color: #00ff00; text-decoration: none; border: 1px solid #00ff00; padding: 10px 15px; margin: 5px; display: inline-block; font-weight: bold; }
+        .badge-certif { color: #1DA1F2; font-size: 0.8em; vertical-align: middle; }
+        
+        /* MENU */
+        .navbar { margin: 20px 0; border-bottom: 1px solid #00ff00; padding-bottom: 10px; }
+        .btn-nav { 
+            color: #00ff00; text-decoration: none; border: 1px solid #00ff00; 
+            padding: 8px 15px; margin: 5px; display: inline-block; font-weight: bold;
+        }
         .btn-nav:hover { background: #00ff00; color: #000; }
 
-        /* Boutique Grille */
-        .shop-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin: 20px 0; }
-        .pack { border: 1px solid #fff; padding: 10px; border-radius: 5px; background: #111; }
-        .btn-buy { background: #25D366; color: white; text-decoration: none; padding: 8px; display: block; margin-top: 10px; border-radius: 3px; font-size: 0.8em; }
+        /* SECTION CACHÉE VIP */
+        #section-vip { display: none; border: 2px dashed #ffae00; padding: 20px; margin-top: 20px; }
+        .grid-pieces { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; }
+        .pack { border: 1px solid #fff; padding: 10px; background: #111; }
+        .btn-buy { background: #25D366; color: #fff; text-decoration: none; display: block; margin-top: 5px; font-size: 0.8em; padding: 5px; }
 
-        /* Grades Staff */
-        .admin { color: #ff0000; font-weight: bold; text-shadow: 0 0 8px #ff0000; }
-        .modo { color: #00ff00; }
-        .vip { color: #ffae00; }
-        .badge-blue { color: #1DA1F2; margin-left: 5px; }
-
-        /* SOS Bouton */
-        .sos-footer { margin-top: 30px; border-top: 2px solid #ff0000; padding-top: 20px; }
-        .btn-sos { background: #ff0000; color: white; padding: 15px 30px; text-decoration: none; font-size: 1.2em; font-weight: bold; border-radius: 50px; box-shadow: 0 0 15px #ff0000; display: inline-block; }
+        /* RADIO */
+        .radio-box { margin: 15px 0; }
     </style>
+    <script>
+        function toggleVIP() {
+            var x = document.getElementById("section-vip");
+            if (x.style.display === "none") { x.style.display = "block"; } 
+            else { x.style.display = "none"; }
+        }
+    </script>
 </head>
 <body>
 
-<div class="container">
-    <h1 style="font-size: 2.5em; letter-spacing: 5px;">ANONYMOUS SOS FR</h1>
-    <p>19/01/2026 - Le présent est notre force.</p>
-
-    <div class="nav-bar">
-        <a href="#" class="btn-nav">ACCUEIL</a>
-        <a href="https://wa.me/32456894335?text=Connexion" class="btn-nav">CONNEXION</a>
-        <a href="https://wa.me/32456894335?text=Inscription" class="btn-nav">INSCRIPTION</a>
-        <a href="#boutique" class="btn-nav">VIP</a>
+<div class="main-container">
+    <div class="radio-box">
+        <p style="font-size: 0.7em;">LIVE RADIO NRJ</p>
+        <audio controls autoplay style="height: 30px; filter: invert(1);">
+            <source src="https://scdn.nrjaudio.fm/adwz7/fr/30001/mp3_128.mp3" type="audio/mpeg">
+        </audio>
     </div>
 
-    <div id="boutique">
-        <h2 style="color: #ffae00;">💎 BOUTIQUE (MOINS CHER QUE TIKTOK)</h2>
-        <div class="shop-grid">
-            <div class="pack">1,50€ <br> 100 Pièces <a href="https://wa.me/32456894335?text=Achat%20Pack%201.50€" class="btn-buy">ACHETER</a></div>
-            <div class="pack">2,00€ <br> 150 Pièces <a href="https://wa.me/32456894335?text=Achat%20Pack%202.00€" class="btn-buy">ACHETER</a></div>
-            <div class="pack">5,00€ <br> 400 Pièces <a href="https://wa.me/32456894335?text=Achat%20Pack%205.00€" class="btn-buy">ACHETER</a></div>
-            <div class="pack">10,00€ <br> 850 Pièces <a href="https://wa.me/32456894335?text=Achat%20Pack%2010.00€" class="btn-buy">ACHETER</a></div>
-            <div class="pack">50,00€ <br> 4500 Pièces <a href="https://wa.me/32456894335?text=Achat%20Pack%2050.00€" class="btn-buy">ACHETER</a></div>
-            <div class="pack">100,00€ <br> 10k Pièces <a href="https://wa.me/32456894335?text=Achat%20Pack%20100.00€" class="btn-buy">ACHETER</a></div>
-            <div class="pack">300,00€ <br> 35k Pièces <a href="https://wa.me/32456894335?text=Achat%20Pack%20300.00€" class="btn-buy">ACHETER</a></div>
+    <h1 style="font-size: 2em;">ANONYMOUS SOS FR <span class="badge-certif">✔</span></h1>
+    <p>Vous êtes sur le site officiel <strong>anonymous sos fr</strong></p>
+    
+    <img src="https://i.imgur.com/8Q9S8X4.png" alt="Anonymous" style="width: 150px; border: 1px solid #00ff00; margin: 10px 0;">
+
+    <div class="navbar">
+        <a href="#" class="btn-nav">CONNEXION</a>
+        <a href="#" class="btn-nav">INSCRIPTION</a>
+        <a href="javascript:void(0)" class="btn-nav" onclick="toggleVIP()" style="color: #ffae00; border-color: #ffae00;">💎 ACCÈS VIP / ADMIN</a>
+    </div>
+
+    <div id="section-vip">
+        <h2 style="color: #ffae00;">💰 BOUTIQUE PIÈCES</h2>
+        <div class="grid-pieces">
+            <div class="pack">1,50€ <br> 100p <a href="https://wa.me/32456894335?text=Achat%201.50" class="btn-buy">ACHETER</a></div>
+            <div class="pack">2,00€ <br> 150p <a href="https://wa.me/32456894335?text=Achat%202.00" class="btn-buy">ACHETER</a></div>
+            <div class="pack">5,00€ <br> 400p <a href="https://wa.me/32456894335?text=Achat%205.00" class="btn-buy">ACHETER</a></div>
+            <div class="pack">10,00€ <br> 850p <a href="https://wa.me/32456894335?text=Achat%2010.00" class="btn-buy">ACHETER</a></div>
+            <div class="pack">300,00€ <br> 35k p <a href="https://wa.me/32456894335?text=Achat%20300.00" class="btn-buy">ACHETER</a></div>
+        </div>
+
+        <div style="margin-top: 20px; border-top: 1px solid #ffae00; padding-top: 10px;">
+            <h3 style="color: #ffae00;">📢 ESPACE ANNONCES VIP</h3>
+            <p style="font-size: 0.8em; color: #fff;">Les annonces sont soumises à la validation de l'Admin.</p>
+            <textarea placeholder="Votre annonce ici..." style="width: 80%; background: #000; color: #00ff00; border: 1px solid #00ff00;"></textarea><br>
+            <a href="https://wa.me/32456894335?text=Demande%20Annonce%20VIP" class="btn-nav" style="margin-top: 10px;">ENVOYER POUR VALIDATION</a>
         </div>
     </div>
 
-    <div style="border: 1px dashed #00ff00; padding: 10px; margin: 20px 0;">
-        <h3>📢 ANNONCES VIP (Vérifiées par Admin)</h3>
-        <p>Prêt pour vos annonces personnalisées.</p>
-    </div>
-
-    <div class="staff">
-        <h3>STAFF EN LIGNE</h3>
-        <p><span class="admin">Anonymous_Boss</span> <span class="badge-blue">✔</span></p>
-        <p><span class="modo">Modo_Secours</span></p>
-        <p><span class="vip">Client_Fidèle</span> <span class="badge-blue">✔</span></p>
-    </div>
-
-    <div class="sos-footer">
-        <a href="https://wa.me/32456894335?text=URGENCE%20SOS" class="btn-sos">BOUTON SOS CONTACT</a>
-        <p style="margin-top: 15px; font-size: 0.8em;">Contact : despreschez@gmail.com</p>
+    <div style="margin-top: 30px; font-size: 0.8em;">
+        <p>Contact : despreschez@gmail.com</p>
     </div>
 </div>
 
