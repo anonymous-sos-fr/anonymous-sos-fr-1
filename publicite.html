@@ -166,9 +166,20 @@
         // Ici on pourra intégrer les vrais scripts de pub plus tard
     }
 <div class="pub-block">
-    <h3>Regardez cette vidéo</h3>
-    <p>Gagnez des points en regardant des pubs !</p>
-    <button onclick="jouerPub()">Lancer la pub</button>
+   <div class="mission-tiktok">
+    <h3>Mission en cours : Regardez la vidéo</h3>
+    <div class="video-placeholder">Zone vidéo</div>
+    <p>Gains actuels : <span id="gains">0</span> €</p>
+    <button onclick="validerGains()">Valider les gains</button>
+</div>
+<script>
+    let gains = 0;
+    function validerGains() {
+        gains += 0.50; // Simulation : 0.50€ par validation
+        document.getElementById('gains').textContent = gains.toFixed(2);
+        alert("Gains validés ! Nouveau solde : " + gains.toFixed(2) + " €");
+    }
+</script>
 </div></script>
 
 </body>
