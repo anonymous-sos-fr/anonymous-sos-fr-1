@@ -137,7 +137,10 @@
                             <tr>
                                 <td class="rank">${i}</td>
                                 <td>${name}</td>
-                                <td>${150 - i}</td>
+ function jouerPub() {
+    alert("Mission démarre, ne fermez pas la fenêtre pour valider vos gains !");
+    // Le code pour les points viendra ici après
+}                               <td>${150 - i}</td>
                                 <td style="color: #2ecc71;">${(100 / i).toFixed(2)} €</td>
                             </tr>
                         `);
@@ -162,7 +165,11 @@
         alert("Mission démarrée. Ne fermez pas la fenêtre pour valider vos gains.");
         // Ici on pourra intégrer les vrais scripts de pub plus tard
     }
-</script>
+<div class="pub-block">
+    <h3>Regardez cette vidéo</h3>
+    <p>Gagnez des points en regardant des pubs !</p>
+    <button onclick="jouerPub()">Lancer la pub</button>
+</div></script>
 
 </body>
 </html>
