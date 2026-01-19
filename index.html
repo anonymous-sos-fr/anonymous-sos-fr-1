@@ -6,112 +6,128 @@
     <title>anonymous sos fr</title>
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #0b0b0b;
-            color: #ffffff;
+            font-family: 'Arial Black', sans-serif;
+            background-color: #000000;
+            color: white;
             text-align: center;
-            padding: 20px;
+            margin: 0;
+            padding: 0;
         }
-        .header-box {
-            border: 2px solid #ffd700;
-            padding: 20px;
-            border-radius: 15px;
-            background: rgba(255, 215, 0, 0.05);
+        .header {
+            background: linear-gradient(180deg, #ffd700 0%, #000 100%);
+            padding: 40px 20px;
+            border-bottom: 3px solid #ffd700;
+        }
+        h1 { font-size: 3em; color: #fff; text-shadow: 2px 2px #000; margin: 0; }
+        
+        .nav-home {
+            background: #222;
+            padding: 15px;
+            border-bottom: 2px solid #444;
             margin-bottom: 20px;
         }
-        h1 { color: #ffd700; text-transform: uppercase; letter-spacing: 2px; }
+
+        .main-content {
+            padding: 20px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .info-card {
+            background: #1a1a1a;
+            border: 2px solid #ffd700;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .gain-text { color: #00ff00; font-size: 1.5em; }
         
-        .btn-main {
-            background-color: #ffd700;
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+
+        .btn-action {
+            background: #ffd700;
             color: #000;
-            padding: 20px 50px;
-            font-size: 22px;
+            padding: 25px 40px;
+            font-size: 1.8em;
             font-weight: bold;
             border: none;
-            border-radius: 10px;
+            border-radius: 15px;
             cursor: pointer;
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
-            margin: 10px;
+            box-shadow: 0 10px 0 #b8860b;
         }
-        .btn-vip {
-            background-color: #9b59b6;
-            color: white;
-            padding: 15px 30px;
-            font-size: 18px;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
+        .btn-action:active { transform: translateY(5px); box-shadow: 0 5px 0 #b8860b; }
 
-        .section {
-            background: #1a1a1a;
-            margin: 20px auto;
+        .vip-section {
+            background: #4b0082;
             padding: 20px;
-            max-width: 600px;
-            border-radius: 10px;
-            border-left: 5px solid #ffd700;
+            border-radius: 15px;
+            margin-top: 40px;
+            border: 2px solid #9b59b6;
         }
 
-        /* Identifiants colorés en permanence */
-        .user-id { color: #00ff00; font-weight: bold; }
-        .vip-status { color: #9b59b6; font-weight: bold; }
-
-        .admin-panel {
-            margin-top: 50px;
-            border-top: 1px solid #333;
-            padding-top: 20px;
-            font-size: 0.9em;
-            color: #666;
-        }
+        /* Identifiants colorés PERMANENTS */
+        .user-id { color: #00ff00 !important; font-weight: bold; }
+        .ranking { text-align: left; background: #111; padding: 15px; border-radius: 10px; }
     </style>
 </head>
 <body>
 
-    <div class="header-box">
+    <div class="nav-home">
+        🏠 ACCUEIL - anonymous sos fr
+    </div>
+
+    <div class="header">
         <h1>anonymous sos fr</h1>
-        <p>🎥 Gagner des vidéos | 🏆 Classement | 🎁 Cadeaux ou 50 € / mois</p>
     </div>
 
-    <div>
-        <button class="btn-main" onclick="startWork()">GAGNER DE L'ARGENT</button>
-        <button class="btn-main" onclick="startWork()">GAGNER DE L'ARGENT</button>
-    </div>
+    <div class="main-content">
+        <div class="info-card">
+            <p>📺 <strong>Gagner des vidéos</strong></p>
+            <p>📊 Limite participant au classement</p>
+            <p class="gain-text">🎁 Gagner des cadeaux ou 50 € tous les mois !</p>
+        </div>
 
-    <div class="section">
-        <h3>🌟 ZONE VIP & LICENCES</h3>
-        <p>Statut actuel : <span class="vip-status">Vérification en cours...</span></p>
-        <button class="btn-vip" onclick="window.location.href='vip.html'">ACCÈS VIP</button>
-    </div>
+        <div class="btn-container">
+            <button class="btn-action" onclick="startWork()">GAGNER DE L'ARGENT</button>
+            <button class="btn-action" onclick="startWork()">GAGNER DE L'ARGENT</button>
+        </div>
 
-    <div class="section">
-        <h3>🏆 CLASSEMENT ACTUEL</h3>
-        <p><span class="user-id">ID_001 (Anonymous)</span> : 2500 pts - <span class="vip-status">LICENCE OR</span></p>
-        <p><span class="user-id">ID_002 (User)</span> : 1200 pts - <span class="highlight">LICENCE BASE</span></p>
-    </div>
+        <div class="ranking">
+            <h3>🏆 CLASSEMENT DES JOUEURS</h3>
+            <p>1. <span class="user-id">ADMIN_SOS_FR</span> - Licence Or</p>
+            <p>2. <span class="user-id">JOUEUR_PRO</span> - Licence Argent</p>
+        </div>
 
-    <div class="admin-panel">
-        <p>Panel Admin : [Désactiver Utilisateur] | [Régler Licence]</p>
+        <div class="vip-section">
+            <h2>💎 ESPACE VIP</h2>
+            <p>Gérez vos licences et vos accès ici.</p>
+            <button style="padding:10px; cursor:pointer;" onclick="location.href='vip.html'">Accéder au Panel VIP</button>
+        </div>
     </div>
 
     <script>
-        // Redirection vers la publicité
+        // Redirection
         function startWork() {
             window.location.href = "publicite.html";
         }
 
-        // --- RADIO NRJ EN CONTINU ---
-        const radioAudio = new Audio("https://audio.nrj.fr/nrj/live/mp3/128");
-        radioAudio.loop = true;
+        // --- SYSTÈME RADIO ---
+        const radio = new Audio("https://audio.nrj.fr/nrj/live/mp3/128");
         
-        function playRadio() {
-            radioAudio.play().then(() => {
-                console.log("Radio activée");
-            }).catch(e => console.log("En attente d'interaction pour le son."));
+        function lancerRadio() {
+            radio.play();
+            console.log("Radio NRJ en ligne");
         }
 
-        // Active la radio au premier clic
-        window.addEventListener('click', playRadio, { once: true });
+        // Se lance au premier clic de l'utilisateur sur la page
+        window.addEventListener('click', lancerRadio, { once: true });
     </script>
 
 </body>
