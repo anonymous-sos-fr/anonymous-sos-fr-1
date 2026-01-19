@@ -3,231 +3,212 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>anonymous sos fr - Officiel</title>
+    <title>ANONYMOUS SOS FR - Officiel</title>
     <style>
-        :root {
-            --primary: #00d2ff;
-            --secondary: #3a7bd5;
-            --vip: #ffcc00;
-            --tiktok-pink: #fe2c55;
-            --bg: #0b0b0b;
-            --card: #181818;
-        }
-
         body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            background-color: var(--bg);
-            color: white;
+            background: #000 url('https://i.postimg.cc/520yvM7N/stars.gif');
+            color: #00ff00;
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
             margin: 0;
             padding: 0;
         }
 
-        /* --- HEADER & BADGE QUEBEC --- */
-        header {
-            background: linear-gradient(135deg, #0033ad, #00d2ff);
-            padding: 40px 20px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        /* --- VRAI BADGE CERTIFIÉ TIKTOK --- */
+        .verified-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 22px;
+            height: 22px;
+            background-color: #20d5ec;
+            border-radius: 50%;
+            position: relative;
+            margin-left: 8px;
+            vertical-align: middle;
+            box-shadow: 0 0 8px rgba(32, 213, 236, 0.6);
         }
 
-        .quebec-certif {
-            display: inline-block;
-            background: white;
+        .verified-badge::after {
+            content: '✔';
+            color: white;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        /* Badge Québec */
+        .quebec-header {
+            background: #fff;
             color: #0033ad;
-            padding: 10px 25px;
-            border-radius: 50px;
-            font-weight: 900;
-            font-size: 1.3rem;
-            border: 4px solid #0033ad;
-            margin-bottom: 20px;
-            box-shadow: 0 0 20px rgba(255,255,255,0.6);
-            animation: bounce 2s infinite;
+            padding: 8px 15px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 15px;
+            border-radius: 4px;
+            border: 2px solid #0033ad;
+            text-transform: uppercase;
         }
 
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
+        h1 { 
+            font-size: 2.2em; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            text-shadow: 0 0 15px #00ff00;
+            margin-top: 20px;
         }
 
-        /* --- NAVIGATION --- */
-        nav {
+        /* NAVIGATION PHOTO */
+        .nav-container {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin-top: 25px;
+            gap: 10px;
+            margin: 30px auto;
             flex-wrap: wrap;
         }
 
         .btn {
-            padding: 12px 25px;
-            border-radius: 10px;
+            border: 2px solid #00ff00;
+            background: transparent;
+            color: #00ff00;
+            padding: 10px 18px;
             text-decoration: none;
             font-weight: bold;
-            transition: 0.4s;
-            border: none;
-            cursor: pointer;
+            transition: 0.3s;
         }
 
-        .btn-blue { background: rgba(255,255,255,0.15); color: white; }
-        .btn-blue:hover { background: white; color: #0033ad; }
-        .btn-vip { background: var(--vip); color: black; box-shadow: 0 0 15px var(--vip); }
-        .btn-admin { background: #444; color: #ccc; font-size: 0.8rem; }
+        .btn:hover { background: #00ff00; color: #000; }
+        .btn-vip { border-color: #ffcc00; color: #ffcc00; }
+        .btn-vip:hover { background: #ffcc00; color: #000; }
 
-        /* --- CONTENU --- */
-        .container {
-            max-width: 1100px;
-            margin: 40px auto;
+        /* BOUTIQUE */
+        .shop-box {
+            border: 2px solid #00ff00;
+            width: 85%;
+            margin: 20px auto;
             padding: 20px;
-        }
-
-        /* IDs COLORÉS PERMANENTS */
-        .id-colored {
-            font-weight: bold;
-            font-size: 1.2rem;
-            background: linear-gradient(90deg, #ff00cc, #3333ff, #00ff00);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: inline-block;
-        }
-
-        /* BOUTIQUE PIÈCES TIKTOK */
-        .shop-section {
-            background: var(--card);
-            border-radius: 20px;
-            padding: 30px;
-            border: 2px solid var(--vip);
-            margin-bottom: 40px;
-        }
-
-        .price-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
+            background: rgba(0,0,0,0.85);
+            border-radius: 15px;
         }
 
         .price-card {
-            background: #222;
-            padding: 20px;
-            border-radius: 15px;
-            text-align: center;
-            border: 1px solid #333;
+            border: 1px solid #00ff00;
+            padding: 15px;
+            border-radius: 10px;
+            min-width: 120px;
         }
 
-        .coin-amount { font-size: 1.5rem; color: var(--vip); display: block; margin-bottom: 10px; }
-
-        .buy-now {
-            background: var(--tiktok-pink);
+        .buy-btn {
+            background: #fe2c55;
             color: white;
-            padding: 10px 20px;
-            border-radius: 8px;
-            text-decoration: none;
-            display: block;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
             margin-top: 10px;
         }
 
-        /* FORMULAIRE INSCRIPTION */
-        .reg-box {
-            background: var(--card);
-            padding: 40px;
-            border-radius: 20px;
+        /* FORMULAIRE */
+        .form-box {
+            border: 2px solid #00ff00;
+            width: 70%;
+            margin: 20px auto;
+            padding: 20px;
+            background: rgba(0,0,0,0.85);
+            border-radius: 15px;
         }
 
-        .field { margin-bottom: 20px; }
-        .field label { display: block; margin-bottom: 10px; }
-        .field input, .field select {
-            width: 100%;
+        select, input {
+            background: #000;
+            border: 1px solid #00ff00;
+            color: #00ff00;
+            padding: 12px;
+            width: 90%;
+            margin-bottom: 12px;
+            outline: none;
+        }
+
+        /* RADIO */
+        .radio-box {
+            border: 2px solid #00ff00;
+            width: 60%;
+            margin: 20px auto;
             padding: 15px;
             border-radius: 10px;
-            background: #000;
-            border: 1px solid #333;
-            color: white;
-            box-sizing: border-box;
+            background: rgba(0,0,0,0.5);
         }
 
-        .check-row {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 10px;
-            font-size: 0.9rem;
-            align-items: center;
-        }
-
-        footer {
-            text-align: center;
-            padding: 50px;
-            opacity: 0.5;
-            font-size: 0.9rem;
-        }
+        footer { margin-top: 50px; padding-bottom: 30px; }
     </style>
 </head>
 <body>
 
-<header>
-    <div class="quebec-certif">⚜️ CERTIFIÉ QUÉBEC ⚜️</div>
-    <h1>ANONYMOUS SOS FR</h1>
-    <nav>
-        <a href="#login" class="btn btn-blue">Connexion</a>
-        <a href="#register" class="btn btn-blue">Inscription</a>
-        <a href="#shop" class="btn btn-vip">💎 BOUTIQUE PIÈCES</a>
-        <a href="#admin" class="btn btn-admin">Admin Panel</a>
-    </nav>
-</header>
+    <div class="quebec-header">⚜️ QUÉBEC ORIGINAL CERTIFIÉ</div>
 
-<div class="container">
-    
-    <div style="text-align:center; margin-bottom: 50px;">
-        <h2>Bienvenue sur le réseau <span class="id-colored">anonymous sos fr</span></h2>
-        <p>Le présent est très important pour nous.</p>
+    <div style="margin-top: 30px;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Anonymous_emblem.svg" width="80" alt="Logo Anonymous">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/22/Earth_Western_Hemisphere_transparent_background.png" width="60" alt="Globe">
     </div>
 
-    <div id="shop" class="shop-section">
-        <h2 style="text-align:center;">💰 Recharge de Pièces</h2>
-        <div class="price-grid">
-            <div class="price-card"><span class="coin-amount">100 🪙</span> 1.00 € <a href="#" class="buy-now">Acheter</a></div>
-            <div class="price-card"><span class="coin-amount">220 🪙</span> 2.00 € <a href="#" class="buy-now">Acheter</a></div>
-            <div class="price-card"><span class="coin-amount">1,200 🪙</span> 10.00 € <a href="#" class="buy-now">Acheter</a></div>
-            <div class="price-card"><span class="coin-amount">14,500 🪙</span> 100.00 € <a href="#" class="buy-now">Acheter</a></div>
-            <div class="price-card"><span class="coin-amount">45,000 🪙</span> 300.00 € <a href="#" class="buy-now">Acheter</a></div>
-        </div>
-        <div style="margin-top: 30px; background: rgba(255,204,0,0.1); padding: 15px; border-radius: 10px; text-align: center;">
-            <p><strong>Note:</strong> Seuls les VIP peuvent publier des annonces. Chaque annonce est vérifiée par les admins.</p>
-        </div>
+    <h1>ANONYMOUS SOS FR <span class="verified-badge"></span></h1>
+
+    <div class="nav-container">
+        <a href="#" class="btn">Accueil</a>
+        <a href="#connexion" class="btn">Connexion</a>
+        <a href="#inscription" class="btn">Inscription</a>
+        <a href="#vip" class="btn btn-vip">VIP / LICENCES</a>
     </div>
 
-    <div id="register" class="reg-box">
-        <h2>Créer un compte</h2>
+    <div class="radio-box">
+        <h3 style="margin-top:0;">Radio en Direct : Skyrock</h3>
+        <audio controls style="filter: invert(1); width: 100%;">
+            <source src="https://icecast.skyrock.net/s/natio_mp3_128k" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <div id="vip" class="shop-box">
+        <h2 style="color:#ffcc00;">💎 BOUTIQUE DE PIÈCES</h2>
+        <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 15px;">
+            <div class="price-card">
+                <span style="color:#ffcc00; font-weight:bold;">100 🪙</span><br>1.00€<br>
+                <button class="buy-btn">ACHETER</button>
+            </div>
+            <div class="price-card">
+                <span style="color:#ffcc00; font-weight:bold;">1,200 🪙</span><br>10.00€<br>
+                <button class="buy-btn">ACHETER</button>
+            </div>
+            <div class="price-card">
+                <span style="color:#ffcc00; font-weight:bold;">45,000 🪙</span><br>300.00€<br>
+                <button class="buy-btn">ACHETER</button>
+            </div>
+        </div>
+        <p style="font-size: 0.8em; margin-top:15px; color: #00d2ff;">Payable par : SMS+, Internet+, PayPal, Carte Bancaire</p>
+    </div>
+
+    <div id="inscription" class="form-box">
+        <h2>📝 CRÉER UN COMPTE</h2>
         <form>
-            <div class="field">
-                <label>Pseudo (ID permanent)</label>
-                <input type="text" placeholder="Ton pseudo ici..." required>
+            <input type="text" placeholder="Pseudo choisi" required>
+            <select required>
+                <option value="">-- VOTRE GENRE --</option>
+                <option value="H">HOMME</option>
+                <option value="F">FEMME</option>
+            </select>
+            <div style="text-align:left; width:90%; margin:auto; font-size:0.85em;">
+                <input type="checkbox" style="width:auto;" required> J'accepte les conditions d'utilisation.<br>
+                <input type="checkbox" style="width:auto;" required> Je confirme l'acceptation du règlement.
             </div>
-            <div class="field">
-                <label>Genre</label>
-                <select required>
-                    <option value="">-- Choisir --</option>
-                    <option value="H">Homme</option>
-                    <option value="F">Femme</option>
-                </select>
-            </div>
-            <div class="check-row">
-                <input type="checkbox" required>
-                <span>J'accepte les conditions d'utilisation (clic 1)</span>
-            </div>
-            <div class="check-row">
-                <input type="checkbox" required>
-                <span>Je confirme avoir lu le règlement (clic 2)</span>
-            </div>
-            <button type="submit" class="btn btn-blue" style="width:100%; background: var(--secondary); margin-top: 20px;">VALIDER L'INSCRIPTION</button>
+            <button type="submit" class="btn" style="width:95%; margin-top:15px; cursor:pointer;">VALIDER MON INSCRIPTION</button>
         </form>
     </div>
 
-</div>
-
-<footer>
-    anonymous sos fr. &copy; 2026<br>
-    Identifiants certifiés Québec.
-</footer>
+    <footer>
+        <p>Email: despreschez@gmail.com</p>
+        <p>Tel: +32456894335</p>
+        <a href="https://wa.me/32456894335" style="background:#25d366; color:white; padding:12px 25px; text-decoration:none; border-radius:50px; font-weight:bold; display:inline-block; margin-top:10px;">SOS WHATSAPP</a>
+        <p style="font-size: 0.7em; margin-top:30px; opacity: 0.6;">anonymous sos fr. 2026 - Le présent est très important pour moi.</p>
+    </footer>
 
 </body>
 </html>
