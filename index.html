@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -20,105 +20,86 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
+   …
+[15:53, 19/01/2026] Anonymous sos fr: <style>
+    body { font-family: sans-serif; background: #1a1a1a; color: white; }
+    .id-colore { color: #ff00ff; font-weight: bold; } /* Identifiants colorés permanents */
+    .coin-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; padding: 20px; }
+    .coin-card { border: 2px solid #444; padding: 15px; text-align: center; border-radius: 10px; }
+    .special-offer { border: 3px solid #ffd700; background: rgba(255, 215, 0, 0.1); }
+    .coin-logo { width: 50px; height: 50px; margin-bottom: 10px; }
+    .btn-buy { background: #25D366; color: white; border: none; padding: 10px; cursor: pointer; width: 100%; }
+    .hidden { display: none; }
+</style>
 
-        header {
-            margin-bottom: 30px;
-        }
+<div id="auth-section">
+    <h3>Inscription / Connexion</h3>
+    <input type="text" id="user-id" class="id-colore" placeholder="Votre ID choisi">
+    <input type="password" id="password" placeholder="Mot de passe">
+    
+    <div style="margin: 10px 0;">
+        <input type="checkbox" id="accept-terms">
+        <label for="accept-terms">Si vous acceptez les conditions, vous acceptez toutes les conditions du service.</label>
+    </div>
 
-        .logo-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-        }
+    <div style="margin: 10px 0;">
+        <input type="checkbox" id="save-pc">
+        <label for="save-pc">Voulez-vous enregistrer toutes les données sur votre PC ?</label>
+    </div>
 
-        .logo-container img {
-            width: 80px;
-        }
+    <button onclick="validerInscription()">Se connecter / S'inscrire</button>
+</div>
 
-        .earth-icon {
-            font-size: 50px;
-        }
-
-        nav {
-            margin-bottom: 20px;
-        }
-
-        .btn {
-            background: transparent;
-            border: 2px solid #00FF00;
-            color: #00FF00;
-            padding: 10px 20px;
-            margin: 5px;
-            cursor: pointer;
-            text-decoration: none;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        .btn:hover {
-            background: #00FF00;
-            color: #000;
-        }
-
-        .radio-section {
-            margin: 20px;
-            padding: 20px;
-            border: 1px solid #00FF00;
-            border-radius: 10px;
-        }
-
-        .contact-section {
-            position: fixed;
-            bottom: 20px;
-            width: 100%;
-        }
-
-        .sos-whatsapp {
-            background: #25D366;
-            color: white;
-            padding: 15px 30px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            display: inline-block;
-            margin-top: 10px;
-        }
-    </style>
-</head>
-<body>
-    <div class="overlay">
-        <header>
-            <div class="logo-container">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Anonymous_emblem.svg" alt="Anonymous">
-                <span class="earth-icon">🌍</span>
-            </div>
-            <h1>ANONYMOUS SOS FR</h1>
-        </header>
-
-        <nav>
-            <a href="#" class="btn">Accueil</a>
-            <a href="#" class="btn">Connexion</a>
-            <a href="#" class="btn">Inscription</a>
-            <a href="#" class="btn">VIP / Licences</a>
-        </nav>
-
-        <div class="radio-section">
-            <h2>Radio en Direct : Skyrock</h2>
-            <audio controls autoplay>
-                <source src="https://icecast.skyrock.net/s/natio_mp3_128k" type="audio/mpeg">
-                Votre navigateur ne supporte pas le lecteur audio.
-            </audio>
+<div id="shop-section" class="hidden">
+    <h2>Boutique de Pièces - Anonymous sos fr</h2>
+    <p><em>Note : Pour tous les achats, contactez uniquement sur WhatsApp. Achats réservés uniquement à Anonymous.</em></p>
+    
+    <div class="coin-grid">
+        <div class="coin-card">
+            <img src="logo_coin.png" class="coin-logo">
+            <p>7 800 pièces</p>
+            <button class="btn-buy" onclick="contactWhatsApp('Pack 100€')">100 €</button>
         </div>
-
-        <div class="contact-section">
-            <p>Email: despreschez@gmail.com</p>
-            <p>Tel: +32456894335</p>
-            <a href="https://wa.me/+32456894335" class="sos-whatsapp">SOS WHATSAPP</a>
+        <div class="coin-card">
+            <img src="logo_coin.png" class="coin-logo">
+            <p>11 700 pièces</p>
+            <button class="btn-buy" onclick="contactWhatsApp('Pack 150€')">150 €</button>
+        </div>
+        <div class="coin-card">
+            <img src="logo_coin.png" class="coin-logo">
+            <p>15 600 pièces</p>
+            <button class="btn-buy" onclick="contactWhatsApp('Pack 200€')">200 €</button>
+        </div>
+        
+        <div class="coin-card special-offer">
+            <img src="logo_coin_special.png" class="coin-logo">
+            <p><strong>55 000 pièces</strong></p>
+            <p><small>(Inclus 200€ de pièces offertes - Valeur 700€)</small></p>
+            <button class="btn-buy" onclick="contactWhatsApp('Offre Spéciale 600€')">600 €</button>
         </div>
     </div>
-</body>
-</html>
+</div>
+
+<script>
+    function validerInscription() {
+        const id = document.getElementById('user-id').value;
+        const accept = document.getElementById('accept-terms').checked;
+        
+        if (!id) { alert("Veuillez entrer votre ID."); return; }
+        
+        if (!accept) {
+            alert("Vous devez cocher la case pour accepter les conditions, sinon cela ne se valide pas.");
+            return;
+        }
+
+        alert("Connexion réussie ! Vos données sont enregistrées sur ce PC.");
+        document.getElementById('auth-section').classList.add('hidden');
+        document.getElementById('shop-section').classList.remove('hidden');
+    }
+
+    function contactWhatsApp(pack) {
+        const message = encodeURIComponent("Bonjour Anonymous, je souhaite acheter le " + pack);
+        // Lien vers votre WhatsApp
+        window.open("https://wa.me/+32456894335?text=" + message, "_blank");
+    }
+</script>
