@@ -6,7 +6,6 @@
     <style>
         body { background-color: #000; color: white; font-family: 'Courier New', Courier, monospace; margin: 0; overflow-x: hidden; }
         
-        /* BARRE DE MODÉRATION (CACHÉE) */
         .mod-tool-bar {
             display: none; 
             background: #ff0000; padding: 10px; text-align: center; 
@@ -17,7 +16,6 @@
             font-weight: bold; border-radius: 5px; background: white; color: black;
         }
 
-        /* HEADER */
         .brand-center { text-align: center; padding: 40px 0; }
         .brand-name {
             font-size: 3em; font-weight: bold; color: #00ffcc;
@@ -25,11 +23,9 @@
         }
         .verified-badge { color: #1DA1F2; }
 
-        /* NAVIGATION */
         nav { background: rgba(0, 0, 0, 0.9); padding: 15px; text-align: center; border-bottom: 2px solid #00ff00; }
         nav a { color: #00ff00; margin: 0 15px; text-decoration: none; font-weight: bold; cursor: pointer; text-transform: uppercase; }
 
-        /* BOXES */
         .container { display: flex; justify-content: center; padding: 20px; flex-direction: column; align-items: center; }
         .box {
             background: rgba(20, 20, 20, 0.95); padding: 30px; border-radius: 15px;
@@ -39,7 +35,6 @@
 
         .title-pink { color: #ff00ff; text-align: center; margin-bottom: 20px; text-transform: uppercase; }
 
-        /* BOUTIQUE */
         .shop-table { width: 100%; border-collapse: collapse; }
         .shop-table td { padding: 10px; border-bottom: 1px solid #333; }
         .coins { color: gold; font-weight: bold; }
@@ -48,7 +43,6 @@
         input, textarea { width: 100%; padding: 12px; margin: 10px 0; background: #111; border: 1px solid #444; color: #00ff00; border-radius: 5px; box-sizing: border-box; }
         button.action-btn { width: 100%; padding: 12px; background: #00ffcc; color: black; border: none; font-weight: bold; cursor: pointer; border-radius: 5px; }
 
-        /* SOS FIXE */
         .sos-btn { position: fixed; bottom: 20px; right: 20px; background: red; color: white; padding: 15px 25px; border-radius: 50px; font-weight: bold; cursor: pointer; border: 2px solid white; z-index: 1000; }
         .radio-box { position: fixed; bottom: 20px; left: 20px; z-index: 1000; }
     </style>
@@ -93,6 +87,9 @@
 
     <div id="annonces" class="box" style="display:none;">
         <h2 class="title-pink">📢 Annonces VIP</h2>
+        <p style="color: #ff00ff; text-align: center; font-weight: bold; border: 1px dashed #ff00ff; padding: 5px;">⚠️ INSCRIPTION OBLIGATOIRE POUR POSTER</p>
+        <input type="text" placeholder="Votre Pseudo / ID">
+        <input type="password" placeholder="Mot de passe">
         <textarea id="msg-vip" placeholder="Écrivez votre annonce ici..."></textarea>
         <p style="font-size: 0.8em; color: gray; text-align: center;">* Sera vérifiée par les admins avant publication.</p>
         <button class="action-btn" onclick="alert('Annonce envoyée pour validation.')">ENVOYER POUR VALIDATION</button>
@@ -120,7 +117,6 @@
         document.getElementById(id).style.display = 'block';
     }
 
-    // --- SYSTÈME SÉCURITÉ LOULOU12 ---
     let typed = "";
     window.addEventListener("keydown", function(e) {
         typed += e.key;
