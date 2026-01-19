@@ -3,184 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANONYMOUS SOS FR</title>
+    <title>anonymous sos fr</title>
     <style>
         body {
             background-color: #000;
-            background-image: radial-gradient(circle at 50% 35%, rgba(255, 170, 0, 0.2) 0%, transparent 50%), 
-                              url('https://i.postimg.cc/520yvM7N/stars.gif'); /* Halo central + étoiles */
-            color: #00ff00;
-            font-family: 'Courier New', monospace;
+            background-image: url('https://i.postimg.cc/520yvM7N/stars.gif'); /* Fond étoilé */
+            background-size: cover;
+            color: #00ff00; /* Vert néon de la photo */
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             text-align: center;
         }
 
-        /* Logos et Halo */
-        .header-logos {
-            margin-top: 50px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
+        /* Halo de lumière central comme sur la photo */
+        .glow {
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 200, 0, 0.15) 0%, transparent 70%);
+            z-index: 0;
         }
 
-        .header-logos img {
-            width: 80px;
-            filter: drop-shadow(0 0 15px rgba(255,255,255,0.5));
-        }
+        .content { position: relative; z-index: 1; padding-top: 80px; }
 
-        /* Titre EXACTEMENT comme sur la photo */
+        .logos { margin-bottom: 30px; }
+        .logos img { width: 80px; margin: 0 10px; vertical-align: middle; }
+
         h1 {
-            font-size: 2.8em;
-            letter-spacing: 3px;
-            margin: 30px 0;
+            font-size: 2.2rem;
+            letter-spacing: 4px;
+            margin-bottom: 40px;
+            font-weight: normal;
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
         }
 
-        /* VRAI BADGE TIKTOK */
-        .verified-badge {
-            width: 28px;
-            height: 28px;
+        /* LE VRAI BADGE TIKTOK */
+        .tiktok-badge {
+            width: 22px;
+            height: 22px;
             background-color: #20d5ec;
             border-radius: 50%;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            margin-left: 15px;
+            margin-left: 12px;
             box-shadow: 0 0 10px #20d5ec;
         }
-        .verified-badge::after {
+        .tiktok-badge::after {
             content: '✔';
             color: white;
-            font-size: 16px;
+            font-size: 14px;
+            font-weight: bold;
         }
 
-        /* NAVIGATION TYPE PHOTO (Boutons rectangulaires fins) */
-        .nav-bar {
+        /* NAVIGATION IDENTIQUE A LA PHOTO */
+        .nav-container {
             display: flex;
             justify-content: center;
             gap: 15px;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
         }
 
-        .nav-btn {
-            border: 1px solid #00ff00;
+        .nav-box {
+            border: 2px solid #00ff00;
+            padding: 8px 25px;
             color: #00ff00;
             text-decoration: none;
-            padding: 10px 25px;
-            font-size: 1.1em;
-            transition: 0.3s;
+            font-size: 1.1rem;
+            min-width: 120px;
         }
 
-        .nav-btn:hover {
-            background: rgba(0, 255, 0, 0.1);
-            box-shadow: 0 0 10px #00ff00;
-        }
-
-        /* SECTION RADIO (Cadre arrondi vert comme sur la photo) */
-        .radio-section {
+        /* CADRE RADIO ARRONDI */
+        .radio-container {
             border: 1px solid #00ff00;
-            border-radius: 25px;
-            width: 500px;
-            margin: 0 auto 50px auto;
-            padding: 40px 20px;
-            background: rgba(0, 0, 0, 0.4);
+            border-radius: 20px;
+            width: 450px;
+            margin: 0 auto 60px auto;
+            padding: 30px;
         }
 
-        .radio-section h2 {
-            font-size: 1.8em;
+        .radio-container h2 {
+            font-size: 1.5rem;
+            font-weight: normal;
             margin-bottom: 25px;
         }
 
-        audio {
-            filter: invert(1) hue-rotate(100deg) brightness(1.5);
-            width: 80%;
-        }
+        audio { width: 90%; height: 40px; }
 
-        /* BOUTIQUE ET FORMULAIRE (Même style de cadre) */
-        .box-container {
-            border: 1px solid #00ff00;
-            border-radius: 20px;
-            width: 80%;
-            max-width: 800px;
-            margin: 30px auto;
-            padding: 25px;
-            background: rgba(0,0,0,0.6);
-        }
-
-        .price-row {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 20px;
-        }
-
-        .buy-btn {
-            background: #fe2c55;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        /* CONTACTS BAS DE PAGE */
-        .contact-info {
-            margin-top: 50px;
-            font-size: 1.1em;
+        /* INFOS BAS DE PAGE */
+        .footer-info {
+            font-size: 1rem;
+            margin-top: 80px;
+            line-height: 2;
         }
 
         .whatsapp-btn {
-            background: #25d366;
-            color: white;
-            padding: 15px 40px;
+            background-color: #3dfc7e; /* Vert WhatsApp photo */
+            color: #000;
+            padding: 12px 40px;
             border-radius: 50px;
             text-decoration: none;
+            font-weight: bold;
             display: inline-block;
             margin-top: 20px;
-            font-weight: bold;
         }
 
     </style>
 </head>
 <body>
 
-    <div class="header-logos">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Anonymous_emblem.svg" alt="Logo">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/2/22/Earth_Western_Hemisphere_transparent_background.png" alt="Globe">
-    </div>
+    <div class="glow"></div>
 
-    <h1>ANONYMOUS SOS FR <div class="verified-badge"></div></h1>
-
-    <div class="nav-bar">
-        <a href="#" class="nav-btn">Accueil</a>
-        <a href="#" class="nav-btn">Connexion</a>
-        <a href="#" class="nav-btn">Inscription</a>
-        <a href="#" class="nav-btn" style="border-color: #ffcc00; color: #ffcc00;">VIP / Licences</a>
-    </div>
-
-    <div class="radio-section">
-        <h2>Radio en Direct : Skyrock</h2>
-        <audio controls>
-            <source src="https://icecast.skyrock.net/s/natio_mp3_128k" type="audio/mpeg">
-        </audio>
-    </div>
-
-    <div class="box-container">
-        <h3 style="color: #ffcc00;">💎 BOUTIQUE DE PIÈCES</h3>
-        <div class="price-row">
-            <div>100 🪙<br>1.00€<br><button class="buy-btn">ACHETER</button></div>
-            <div>1,200 🪙<br>10.00€<br><button class="buy-btn">ACHETER</button></div>
-            <div>45,000 🪙<br>300.00€<br><button class="buy-btn">ACHETER</button></div>
+    <div class="content">
+        <div class="logos">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Anonymous_emblem.svg" alt="Anonymous">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/22/Earth_Western_Hemisphere_transparent_background.png" alt="World">
         </div>
-    </div>
 
-    <div class="contact-info">
-        <p>Email: despreschez@gmail.com</p>
-        <p>Tel: +32456894335</p>
-        <a href="#" class="whatsapp-btn">SOS WHATSAPP</a>
+        <h1>ANONYMOUS SOS FR <div class="tiktok-badge"></div></h1>
+
+        <div class="nav-container">
+            <a href="#" class="nav-box">Accueil</a>
+            <a href="#" class="nav-box">Connexion</a>
+            <a href="#" class="nav-box">Inscription</a>
+            <a href="#" class="nav-box">VIP / Licences</a>
+        </div>
+
+        <div class="radio-container">
+            <h2>Radio en Direct : Skyrock</h2>
+            <audio controls>
+                <source src="https://icecast.skyrock.net/s/natio_mp3_128k" type="audio/mpeg">
+            </audio>
+        </div>
+
+        <div class="footer-info">
+            <p>Email: despreschez@gmail.com</p>
+            <p>Tel: +32456894335</p>
+            <a href="#" class="whatsapp-btn">SOS WHATSAPP</a>
+        </div>
     </div>
 
 </body>
