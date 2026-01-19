@@ -3,189 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>anonymous sos fr - Officiel</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>Anonymous SOS FR - Accueil Officiel</title>
     <style>
-        :root {
-            --gold: #ffd700;
-            --dark-bg: #0a0a0a;
-            --card-bg: #161616;
-            --whatsapp: #25d366;
-            --vip-purple: #9b59b6;
+        body { background-color: #000; color: #fff; font-family: sans-serif; margin: 0; text-align: center; }
+        
+        /* Menu Accueil */
+        .navbar { background: #1a1a1a; padding: 15px; border-bottom: 2px solid #ffd700; font-weight: bold; }
+        
+        /* Header */
+        header { padding: 30px 10px; }
+        h1 { color: #ffd700; margin: 0; font-size: 2.2em; text-transform: uppercase; }
+
+        /* Contenu */
+        .main-box { max-width: 600px; margin: 20px auto; padding: 20px; border: 1px solid #333; border-radius: 15px; background: #0d0d0d; }
+        
+        /* Boutons de Jeu */
+        .btn-play { 
+            background: #ffd700; color: #000; border: none; padding: 20px; 
+            width: 80%; font-size: 1.2em; font-weight: bold; border-radius: 10px; 
+            cursor: pointer; margin: 10px 0; box-shadow: 0 4px 10px rgba(255,215,0,0.3);
         }
 
-        body {
-            background-color: var(--dark-bg);
-            color: #ffffff;
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 0;
-            text-align: center;
+        /* Texte Gains */
+        .info-gains { color: #00ff00; margin: 20px 0; font-size: 1.1em; }
+
+        /* Section SOS / WhatsApp */
+        .sos-footer { background: #1a1a1a; padding: 20px; margin-top: 30px; border-radius: 10px; }
+        .sos-number { color: #ff4444; font-weight: bold; font-size: 1.3em; margin: 10px 0; }
+        .btn-whatsapp { 
+            background: #25d366; color: white; padding: 10px 20px; 
+            text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;
         }
 
-        /* Header Professionnel */
-        header {
-            background: linear-gradient(to bottom, #1a1a1a, #000);
-            padding: 40px 20px;
-            border-bottom: 2px solid var(--gold);
-            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.2);
-        }
-
-        h1 {
-            font-family: 'Orbitron', sans-serif;
-            color: var(--gold);
-            font-size: 2.5em;
-            letter-spacing: 5px;
-            margin: 0;
-            text-transform: uppercase;
-        }
-
-        .tagline { color: #888; margin-top: 10px; font-weight: 300; }
-
-        /* Conteneur Principal */
-        .container {
-            max-width: 1000px;
-            margin: auto;
-            padding: 20px;
-        }
-
-        /* Section Accueil / Infos */
-        .hero-section {
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 30px;
-            margin: 20px 0;
-            border: 1px solid #333;
-        }
-
-        .highlight-box {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
-        }
-
-        .stat-card {
-            background: #222;
-            padding: 20px;
-            border-radius: 15px;
-            border-bottom: 3px solid var(--gold);
-        }
-
-        .stat-card h3 { color: var(--gold); margin: 0 0 10px 0; }
-
-        /* Boutons d'Action */
-        .btn-gold {
-            background: var(--gold);
-            color: #000;
-            padding: 20px 40px;
-            font-size: 1.5em;
-            font-weight: bold;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: 0.3s;
-            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.2);
-            text-transform: uppercase;
-            margin: 10px;
-        }
-
-        .btn-gold:hover { transform: scale(1.05); box-shadow: 0 15px 30px rgba(255, 215, 0, 0.4); }
-
-        /* Section Contact / SOS */
-        .contact-footer {
-            margin-top: 50px;
-            padding: 30px;
-            background: #111;
-            border-radius: 20px;
-        }
-
-        .whatsapp-link {
-            display: inline-flex;
-            align-items: center;
-            background: var(--whatsapp);
-            color: white;
-            padding: 12px 25px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: bold;
-            margin-top: 15px;
-        }
-
-        .sos-number {
-            font-size: 1.8em;
-            color: #ff4444;
-            font-family: 'Orbitron', sans-serif;
-            margin: 15px 0;
-        }
-
-        /* Classement & IDs Colorés */
+        /* Classement Identifiants Verts */
         .user-id { color: #00ff00 !important; font-weight: bold; }
-
+        .ranking { text-align: left; padding: 10px; border-top: 1px solid #333; margin-top: 20px; }
     </style>
 </head>
 <body>
 
+    <div class="navbar">🏠 ACCUEIL - ANONYMOUS SOS FR</div>
+
     <header>
         <h1>ANONYMOUS SOS FR</h1>
-        <p class="tagline">La plateforme de récompense n°1</p>
+        <p>Plateforme de récompenses</p>
     </header>
 
-    <div class="container">
+    <div class="main-box">
+        <p>📺 Gagnez des vidéos | 🏆 Classement</p>
+        <p class="info-gains">🎁 Gagnez des cadeaux ou 50 € tous les mois !</p>
         
-        <div class="hero-section">
-            <h2 style="color: var(--gold);">BIENVENUE SUR L'ACCUEIL</h2>
-            <p>Ici, chaque action vous rapproche des 50 € mensuels.</p>
-            
-            <div class="highlight-box">
-                <div class="stat-card">
-                    <h3>Vidéos</h3>
-                    <p>Gagnez des points en regardant du contenu exclusif.</p>
-                </div>
-                <div class="stat-card">
-                    <h3>Cadeaux</h3>
-                    <p>Plus de 500 € de lots distribués chaque mois.</p>
-                </div>
-                <div class="stat-card">
-                    <h3>Classement</h3>
-                    <p>Soyez dans le TOP pour multiplier vos gains.</p>
-                </div>
-            </div>
+        <button class="btn-play" onclick="goPub()">GAGNER DE L'ARGENT</button>
+        <button class="btn-play" onclick="goPub()">GAGNER DE L'ARGENT</button>
 
-            <button class="btn-gold" onclick="startWork()">GAGNER DE L'ARGENT MAINTENANT</button>
+        <div class="ranking">
+            <h4>🏆 CLASSEMENT</h4>
+            <p>1. <span class="user-id">ADMIN_SOS</span> - Licence VIP</p>
+            <p>2. <span class="user-id">JOUEUR_01</span> - Licence Standard</p>
         </div>
+    </div>
 
-        <div class="hero-section" style="text-align: left;">
-            <h3>🏆 TOP PARTICIPANTS</h3>
-            <p>1. <span class="user-id">Anonymous_Boss</span> - Licence VIP OR</p>
-            <p>2. <span class="user-id">User_992</span> - Licence Standard</p>
-        </div>
-
-        <div class="contact-footer">
-            <h3>BESOIN D'AIDE ? CONTACTEZ LE SOS</h3>
-            <p>Une question sur vos paiements ou votre licence ?</p>
-            <div class="sos-number">SOS :+32456894335</div> <a href="https://wa.me/33600000000" class="whatsapp-link"> 💬 Contactez-nous sur WhatsApp
-            </a>
-        </div>
-
+    <div class="main-box sos-footer">
+        <h3>BESOIN D'AIDE ?</h3>
+        <div class="sos-number">SOS : +33 6 00 00 00 00</div>
+        <a href="https://wa.me/33600000000" class="btn-whatsapp">Contact WhatsApp</a>
     </div>
 
     <script>
-        // Redirection vers la publicité
-        function startWork() {
+        // Redirection
+        function goPub() {
             window.location.href = "publicite.html";
         }
 
         // Système Radio NRJ
-        const radio = new Audio("https://audio.nrj.fr/nrj/live/mp3/128");
-        
-        function activateSystem() {
-            radio.play().catch(e => console.log("Audio en attente..."));
-            console.log("Système Anonymous activé.");
-        }
-
-        // Active tout au premier clic (indispensable pour les navigateurs)
-        window.addEventListener('click', activateSystem, { once: true });
+        const player = new Audio("https://audio.nrj.fr/nrj/live/mp3/128");
+        window.addEventListener('click', () => {
+            player.play();
+            console.log("Radio activée");
+        }, { once: true });
     </script>
 
 </body>
+</html>
