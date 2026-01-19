@@ -3,248 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anonymous SOS FR | Officiel</title>
+    <title>anonymous sos fr</title>
     <style>
-        :root {
-            --tiktok-cyan: #20D5EC;
-            --tiktok-pink: #ff0050;
-            --vip-gold: #facf5a;
-            --bg-dark: #121212;
-        }
-
         body {
-            background-color: #87CEEB; /* Garde ton bleu ciel en fond principal */
-            background: linear-gradient(180deg, #87CEEB 0%, #5fb0d4 100%);
-            margin: 0;
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        /* BARRE DE NAVIGATION PRO */
-        .nav-bar {
-            width: 100%;
-            padding: 15px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
-            position: fixed;
-            top: 0;
-            z-index: 1000;
-            box-sizing: border-box;
-        }
-
-        .nav-buttons { display: flex; gap: 15px; }
-
-        .btn {
-            padding: 10px 20px;
-            border-radius: 4px;
-            border: none;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .btn-login { background: white; color: black; }
-        .btn-register { background: var(--tiktok-pink); color: white; }
-        .btn-vip { 
-            background: linear-gradient(45deg, gold, #ffcc00); 
-            color: black; 
-            box-shadow: 0 0 15px rgba(250, 207, 90, 0.4);
-        }
-
-        /* SECTION CENTRALE */
-        .hero {
-            margin-top: 120px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0b0b0b;
+            color: #ffffff;
             text-align: center;
-            width: 90%;
-            max-width: 600px;
-        }
-
-        .profile-container {
-            position: relative;
-            width: 180px;
-            height: 180px;
-            margin: 0 auto 20px;
-        }
-
-        .profile-pic {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            border: 4px solid white;
-            object-fit: cover;
-            background: black;
-        }
-
-        .verified-badge {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            width: 35px;
-            height: 35px;
-            background: var(--tiktok-cyan);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 3px solid white;
-            font-size: 20px;
-        }
-
-        /* RADIO STYLISE NRJ */
-        .radio-card {
-            background: rgba(0, 0, 0, 0.6);
             padding: 20px;
-            border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.1);
-            margin: 30px 0;
         }
-
-        .radio-btn {
-            background: var(--tiktok-cyan);
-            color: black;
-            border: none;
-            padding: 15px 40px;
-            border-radius: 50px;
-            font-size: 1.1rem;
+        .header-box {
+            border: 2px solid #ffd700;
+            padding: 20px;
+            border-radius: 15px;
+            background: rgba(255, 215, 0, 0.05);
+            margin-bottom: 20px;
+        }
+        h1 { color: #ffd700; text-transform: uppercase; letter-spacing: 2px; }
+        
+        .btn-main {
+            background-color: #ffd700;
+            color: #000;
+            padding: 20px 50px;
+            font-size: 22px;
             font-weight: bold;
-            cursor: pointer;
-        }
-
-        /* FORMULAIRES GLASSMORPHISM */
-        .glass-panel {
-            display: none;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(15px);
-            padding: 30px;
-            border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.2);
-            margin-top: 20px;
-        }
-
-        input, select, textarea {
-            width: 100%;
-            padding: 12px;
-            margin: 8px 0;
-            border-radius: 8px;
-            border: 1px solid rgba(255,255,255,0.3);
-            background: rgba(0,0,0,0.3);
-            color: white;
-            box-sizing: border-box;
-        }
-
-        .price-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 10px;
-            margin: 20px 0;
-        }
-
-        .price-card {
-            background: rgba(255,255,255,0.1);
-            padding: 10px;
+            border: none;
             border-radius: 10px;
-            border: 1px solid var(--vip-gold);
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+            margin: 10px;
+        }
+        .btn-vip {
+            background-color: #9b59b6;
+            color: white;
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 10px;
         }
 
-        footer { margin: 50px; font-weight: bold; letter-spacing: 2px; }
+        .section {
+            background: #1a1a1a;
+            margin: 20px auto;
+            padding: 20px;
+            max-width: 600px;
+            border-radius: 10px;
+            border-left: 5px solid #ffd700;
+        }
+
+        /* Identifiants colorés en permanence */
+        .user-id { color: #00ff00; font-weight: bold; }
+        .vip-status { color: #9b59b6; font-weight: bold; }
+
+        .admin-panel {
+            margin-top: 50px;
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            font-size: 0.9em;
+            color: #666;
+        }
     </style>
 </head>
 <body>
 
-    <nav class="nav-bar">
-        <div style="font-weight: bold; font-size: 1.2rem;">SOS FR</div>
-        <div class="nav-buttons">
-            <button class="btn btn-login" onclick="toggle('login')">Connexion</button>
-            <button class="btn btn-register" onclick="toggle('reg')">Inscription</button>
-            <button class="btn btn-vip" onclick="toggle('vip')">💎 VIP</button>
-        </div>
-    </nav>
-
-    <div class="hero">
-        <div class="profile-container">
-            <img src="https://via.placeholder.com/180" class="profile-pic" alt="Anonymous Logo">
-            <div class="verified-badge">✓</div>
-        </div>
-        <h1 style="text-shadow: 2px 2px 10px rgba(0,0,0,0.5);">ANONYMOUS SOS FR</h1>
-
-        <div class="radio-card">
-            <p style="margin-top:0;">DIRECT RADIO NRJ</p>
-            <button class="radio-btn" id="rBtn" onclick="playRadio()">▶ LANCER LE FLUX</button>
-            <audio id="player" src="https://scdn.nrjaudio.fm/adwz7n/nrj/fr/62111/mp3_128.mp3"></audio>
-        </div>
-
-        <div id="login" class="glass-panel">
-            <h3>Connexion sécurisée</h3>
-            <input type="text" placeholder="Identifiant (ID)">
-            <input type="password" placeholder="Mot de passe">
-            <button class="btn btn-login" style="width:100%">Se connecter</button>
-        </div>
-
-        <div id="vip" class="glass-panel">
-            <h3 style="color: var(--vip-gold);">Boutique & Annonces VIP</h3>
-            <div class="price-grid">
-                <div class="price-card">500 pcs<br><b>5 €</b></div>
-                <div class="price-card">1200 pcs<br><b>10 €</b></div>
-                <div class="price-card">3000 pcs<br><b>25 €</b></div>
-            </div>
-            <hr style="opacity:0.2">
-            <h4>Poster une annonce officielle</h4>
-            <p style="font-size: 0.8rem; color: #ccc;">(Soumise à validation des modérateurs)</p>
-            <textarea placeholder="Votre message..."></textarea>
-            <button class="btn btn-vip" style="width:100%">Envoyer l'annonce</button>
-        </div>
-
-        <div id="reg" class="glass-panel">
-            <h3>Rejoindre Anonymous</h3>
-            <input type="text" placeholder="ID choisi">
-            <input type="email" placeholder="Email (caché)">
-            <select>
-                <option>Genre : Homme</option>
-                <option>Genre : Femme</option>
-            </select>
-            <label style="font-size: 0.8rem;">
-                <input type="checkbox" style="width:auto;"> J'accepte les consignes de sécurité
-            </label>
-            <button class="btn btn-register" style="width:100%; margin-top:10px;">Créer mon compte</button>
-        </div>
+    <div class="header-box">
+        <h1>anonymous sos fr</h1>
+        <p>🎥 Gagner des vidéos | 🏆 Classement | 🎁 Cadeaux ou 50 € / mois</p>
     </div>
 
-    <footer>anonymous sos fr</footer>
+    <div>
+        <button class="btn-main" onclick="startWork()">GAGNER DE L'ARGENT</button>
+        <button class="btn-main" onclick="startWork()">GAGNER DE L'ARGENT</button>
+    </div>
+
+    <div class="section">
+        <h3>🌟 ZONE VIP & LICENCES</h3>
+        <p>Statut actuel : <span class="vip-status">Vérification en cours...</span></p>
+        <button class="btn-vip" onclick="window.location.href='vip.html'">ACCÈS VIP</button>
+    </div>
+
+    <div class="section">
+        <h3>🏆 CLASSEMENT ACTUEL</h3>
+        <p><span class="user-id">ID_001 (Anonymous)</span> : 2500 pts - <span class="vip-status">LICENCE OR</span></p>
+        <p><span class="user-id">ID_002 (User)</span> : 1200 pts - <span class="highlight">LICENCE BASE</span></p>
+    </div>
+
+    <div class="admin-panel">
+        <p>Panel Admin : [Désactiver Utilisateur] | [Régler Licence]</p>
+    </div>
 
     <script>
-        function toggle(id) {
-            const panels = ['login', 'vip', 'reg'];
-            panels.forEach(p => {
-                document.getElementById(p).style.display = (p === id && document.getElementById(p).style.display !== 'block') ? 'block' : 'none';
-            });
+        // Redirection vers la publicité
+        function startWork() {
+            window.location.href = "publicite.html";
         }
 
+        // --- RADIO NRJ EN CONTINU ---
+        const radioAudio = new Audio("https://audio.nrj.fr/nrj/live/mp3/128");
+        radioAudio.loop = true;
+        
         function playRadio() {
-            const p = document.getElementById('player');
-            const b = document.getElementById('rBtn');
-            if (p.paused) {
-                p.play();
-                b.innerHTML = "⏸ PAUSE";
-                b.style.background = "#ff0050";
-                b.style.color = "white";
-            } else {
-                p.pause();
-                b.innerHTML = "▶ LANCER LE FLUX";
-                b.style.background = "#20D5EC";
-                b.style.color = "black";
-            }
+            radioAudio.play().then(() => {
+                console.log("Radio activée");
+            }).catch(e => console.log("En attente d'interaction pour le son."));
         }
+
+        // Active la radio au premier clic
+        window.addEventListener('click', playRadio, { once: true });
     </script>
-<div class="tiktok-pub-section">
-    <h2>Gagne de l'argent en t'amusant !</h2>
-    <p>Regarde des vidéos illimitées, participe au classement et gagne des cadeaux ou 50 € tous les mois !</p>
-    <a href="publicite.html" class="btn-primary">Jouer et gagner</a>
-</div></body>
+
+</body>
 </html>
