@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boutique Elite - Anonymous SOS FR</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'ProximaNova', sans-serif;
+            background: linear-gradient(135deg, #000428 0%, #004e92 100%);
+            color: white;
+            min-height: 100vh;
+            padding-bottom: 80px;
+        }
+
+        .shop-container { max-width: 600px; margin: 0 auto; padding: 20px; }
+
+        /* Animation plein écran pour les cadeaux > 2000 */
+        #special-effect-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 9999;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .giant-icon { font-size: 150px; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.2); } 100% { transform: scale(1); } }
+
+        .coin-balance { font-size: 24px; font-weight: bold; color: #f1c40f; text-align: center; margin-bottom: 20px; }
+
+        /* Grille des cadeaux */
+        .gift-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+
+        .gift-card {
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+        }
+
+        /* Style spécifique pour les cadeaux Anonymous (Elite) */
+        .elite-gift { border: 2px solid #fe2c55; background: rgba(254, 44, 85, 0.1); }
+
+        .gift-icon { font-size: 40px; margin-bottom: 10px; display: block; }
+        .gift-name { font-size: 14px; font-weight: bold; }
+        .gift-price { font-size: 13px; color: #f1c40f; margin-top: 5px; }
+
+        .nav-bar { position: fixed; bottom: 0; left: 0; right: 0; background: black; padding: 15px; display: flex; justify-content: space-around; z-index: 100; }
+        .nav-bar a { color: white; text-decoration: none; font-size: 24px; }
+    </style>
+</head>
+<body>
+
+<div id="special-effect-overlay">
+    <div class="giant-icon" id="effect-icon">🎭</div>
+    <h1 id="effect-title" style="color: #fe2c55; font-size: 40px;">ALERTE DONATION ELITE</h1>
+    <p id="effect-msg" style="font-size: 20px;">L'opération est financée !</p>
+    <div id="timer" style="font-size: 14px; color: #aaa; margin-top: 20px;">Disparaît dans 30s...</div>
+</div>
+
+<div class="shop-container">
+    <h1 style="text-align: center;">Boutique Anonymous</h1>
+    <div class="coin-balance">🪙 <span id="balanceAmount">5000</span> Pièces</div>
+
+    <h3 style="color: #fe2c55;">🏴‍☠️ COLLECTION ANONYMOUS (EXCLUSIF)</h3>
+    <div class="gift-grid">
+        <div class="gift-card elite-gift" onclick="buyGift('Masque Gold', 2500, '🎭')">
+            <span class="gift-icon">🎭</span>
+            <span class="gift-name">Masque Gold</span>
+            <span class="gift-price">🪙 2500</span>
+        </div>
+        <div class="gift-card elite-gift" onclick="buyGift('Serveur Hack', 5000, '💻')">
+            <span class="gift-icon">💻</span>
+            <span class="gift-name">Serveur Hack</span>
+            <span class="gift-price">🪙 5000</span>
+        </div>
+        <div class="gift-card elite-gift" onclick="buyGift('Satellite SOS', 10000, '🛰️')">
+            <span class="gift-icon">🛰️</span>
+            <span class="gift-name">Satellite SOS</span>
+            <span class="gift-price">🪙 10000</span>
+        </div>
+    </div>
+
+    <h3 style="margin-top: 30px;">Cadeaux Classiques</h3>
+    <div class="gift-grid">
+        <div class="gift-card" onclick="buyGift('Rose', 1, '🌹')">
+            <span class="gift-icon">🌹</span>
+            <span class="gift-name">Rose</span>
+            <span class="gift-price">🪙 1</span>
+        </div>
+        <div class="gift-card" onclick="buyGift('Cœur', 10, '💖')">
+            <span class="gift-icon">💖</span>
+            <span class="gift-name">Cœur</span>
+            <span class="gift-price">🪙 10</span>
+        </div>
+    </div>
+</div>
+
+<div class="nav-bar">
+    <a href="index.html">🏠</a>
+    <a href="recherche.html">🔍</a>
+    <a href="live.html" style="font-size: 32px; color: #fe2c55;">+</a>
+    <a href="boutique.html" style="color: #f1c40f;">💰</a>
+    <a href="profil.html">👤</a>
+</div>
+
+<script>
+    function buyGift(name, price, icon) {
+        let balance = parseInt(document.getElementById('balanceAmount').innerText);
+        
+        if (balance >= price) {
+            balance -= price;
+            document.getElementById('balanceAmount').innerText = balance;
+
+            // Si le cadeau dépasse 2000 pièces
+            if (price >= 2000) {
+                triggerLegendaryEffect(name, icon);
+            } else {
+                alert("Vous avez envoyé : " + name);
+            }
+        } else {
+            alert("Solde insuffisant ! Allez travailler pour le mouvement.");
+        }
+    }
+
+    function triggerLegendaryEffect(name, icon) {
+        const overlay = document.getElementById('special-effect-overlay');
+        const timerText = document.getElementById('timer');
+        document.getElementById('effect-icon').innerText = icon;
+        document.getElementById('effect-title').innerText = "DON ELITE : " + name.toUpperCase();
+        
+        overlay.style.display = 'flex';
+        
+        let timeLeft = 30;
+        const countdown = setInterval(() => {
+            timeLeft--;
+            timerText.innerText = "Disparaît dans " + timeLeft + "s...";
+            if (timeLeft <= 0) {
+                clearInterval(countdown);
+                overlay.style.display = 'none';
+            }
+        }, 1000);
+    }
+</script>
+
+</body>
+</html>
