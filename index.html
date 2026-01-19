@@ -25,26 +25,27 @@
             box-shadow: 0 0 15px #ff0000;
         }
 
-        /* TITRE CENTRAL AVEC BADGE CERTIFIÉ */
+        /* TITRE CENTRAL AVEC BADGE BLEU CERTIFIÉ */
         .brand-center {
             text-align: center;
-            padding: 40px 0;
+            padding: 30px 0;
         }
 
         .brand-name {
             font-size: 3em;
             font-weight: bold;
-            color: #00ffcc; /* Une belle couleur lumineuse */
+            color: #00ffcc;
             text-shadow: 0 0 20px #00ffcc;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 15px;
+            gap: 10px;
         }
 
         .verified-badge {
-            color: #1DA1F2; /* Bleu certifié TikTok/Twitter */
-            font-size: 0.8em;
+            color: #1DA1F2; /* Bleu certifié officiel */
+            display: flex;
+            align-items: center;
         }
 
         nav {
@@ -54,10 +55,9 @@
             border-bottom: 2px solid #00ff00;
         }
 
-        nav a { color: #00ff00; margin: 0 15px; text-decoration: none; font-weight: bold; cursor: pointer; }
-        .gmail-link { color: #ea4335 !important; }
-
-        .main-container { display: flex; justify-content: center; padding: 20px; }
+        nav a { color: #00ff00; margin: 0 15px; text-decoration: none; font-weight: bold; cursor: pointer; text-transform: uppercase; }
+        
+        .main-container { display: flex; justify-content: center; padding: 20px; min-height: 50vh; }
         
         .box {
             background: rgba(0, 0, 0, 0.85);
@@ -65,40 +65,36 @@
             border-radius: 15px;
             border: 1px solid #00ff00;
             width: 100%;
-            max-width: 550px;
+            max-width: 450px;
             box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
         }
 
-        /* BOUTIQUE DE PIÈCES */
-        .coin-grid { width: 100%; margin-top: 15px; border-collapse: collapse; }
-        .coin-grid td { padding: 12px; border-bottom: 1px solid #333; }
-        .coin-amount { color: gold; font-weight: bold; }
-        .coin-price { color: #00ff00; text-align: right; font-weight: bold; }
+        /* COULEUR DES IDENTIFIANTS */
+        .user-id-title { color: #ff00ff; text-align: center; margin-bottom: 20px; font-weight: bold; }
 
-        input, select { width: 100%; padding: 10px; margin: 8px 0; background: rgba(255,255,255,0.1); border: 1px solid #444; color: white; border-radius: 5px; }
-        button { width: 100%; padding: 12px; background: #00ffcc; color: black; border: none; font-weight: bold; cursor: pointer; border-radius: 5px; margin-top: 10px; }
-
-        .vip-note { font-size: 0.85em; color: #ffcc00; text-align: center; margin-top: 15px; padding: 10px; border: 1px solid #ffcc00; }
+        input, select { width: 100%; padding: 12px; margin: 10px 0; background: rgba(255,255,255,0.1); border: 1px solid #444; color: white; border-radius: 5px; box-sizing: border-box; }
+        
+        button { width: 100%; padding: 12px; background: #00ffcc; color: black; border: none; font-weight: bold; cursor: pointer; border-radius: 5px; margin-top: 10px; font-size: 1.1em; }
 
         .radio-fixed { position: fixed; bottom: 20px; left: 20px; z-index: 9999; border: 1px solid #00ff00; }
     </style>
 </head>
 <body>
 
-<div class="sos-header">🚨 NUMÉRO SOS : +32456894335 🚨</div>
+<div class="sos-header">🚨 NUMÉRO SOS :+32456894335 🚨</div>
 
 <nav>
-    <a onclick="show('accueil')">Accueil</a>
-    <a onclick="show('boutique')">Pièces & Annonces</a>
+    <a onclick="show('connexion')">Connexion</a>
     <a onclick="show('inscription')">Inscription</a>
-    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=contact.anonymous.sos.fr@gmail.com" target="_blank" class="gmail-link">Gmail Support</a>
+    <a onclick="show('boutique')">Boutique</a>
+    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=contact.anonymous.sos.fr@gmail.com" target="_blank" style="color: #ea4335;">despreschez@gmail.com</a>
 </nav>
 
 <div class="brand-center">
     <div class="brand-name">
         anonymous sos fr
         <span class="verified-badge">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+            <svg width="35" height="35" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M23 12l-2.44-2.79.34-3.69-3.61-.82-1.89-3.2L12 2.96 8.6 1.5 6.71 4.7l-3.61.81.34 3.7L1 12l2.44 2.79-.34 3.69 3.61.82 1.89 3.2L12 21.04l3.4 1.46 1.89-3.2 3.61-.82-.34-3.69L23 12zm-12.91 4.72l-3.8-3.81 1.48-1.48 2.32 2.33 5.85-5.87 1.48 1.48-7.33 7.35z"/>
             </svg>
         </span>
@@ -107,33 +103,29 @@
 
 <div class="main-container">
     
-    <div id="boutique" class="box" style="display:none;">
-        <h2 style="text-align:center; color: gold;">🪙 BOUTIQUE DE PIÈCES</h2>
-        <table class="coin-grid">
-            <tr><td class="coin-amount">🪙 35 Pièces</td><td class="coin-price">1.00€</td></tr>
-            <tr><td class="coin-amount">🪙 70 Pièces</td><td class="coin-price">1.50€</td></tr>
-            <tr><td class="coin-amount">🪙 150 Pièces</td><td class="coin-price">2.00€</td></tr>
-            <tr><td class="coin-amount">🪙 750 Pièces</td><td class="coin-price">10.00€</td></tr>
-            <tr><td class="coin-amount">🪙 4000 Pièces</td><td class="coin-price">50.00€</td></tr>
-            <tr><td class="coin-amount">🪙 25000 Pièces</td><td class="coin-price">300.00€</td></tr>
-        </table>
-        <div class="vip-note">
-            <strong>📢 ANNONCES VIP :</strong> Vérification manuelle par les Admins.<br>
-            (Seulement pour les membres certifiés)
-        </div>
-        <button>RECHARGER MON SOLDE</button>
+    <div id="connexion" class="box">
+        <h2 class="user-id-title">Connexion</h2>
+        <input type="text" placeholder="Identifiant (ID)">
+        <input type="password" placeholder="Mot de passe">
+        <button onclick="alert('Vérification des identifiants...')">SE CONNECTER</button>
     </div>
 
-    <div id="inscription" class="box">
-        <h2 style="text-align:center; color:#ff00ff;">Inscription</h2>
-        <input type="text" id="reg-id" placeholder="Nom / ID">
+    <div id="inscription" class="box" style="display:none;">
+        <h2 class="user-id-title">Inscription</h2>
+        <input type="text" placeholder="Choisir un ID">
         <input type="email" placeholder="Gmail personnel">
         <input type="password" placeholder="Mot de passe">
         <select><option>Homme</option><option>Femme</option></select>
         <div style="display:flex; gap:10px;">
             <input type="number" placeholder="Jour"><input type="number" placeholder="Mois"><input type="number" placeholder="Année">
         </div>
-        <button onclick="validerInscription()">CRÉER MON COMPTE</button>
+        <button onclick="alert('Compte créé ! Connectez-vous.'); show('connexion');">S'INSCRIRE</button>
+    </div>
+
+    <div id="boutique" class="box" style="display:none;">
+        <h2 style="text-align:center; color: gold;">🪙 PIÈCES & ANNONCES</h2>
+        <p style="text-align:center;">35 pièces : 1.00€<br>25000 pièces : 300.00€</p>
+        <button>ACCÉDER À LA BOUTIQUE</button>
     </div>
 
 </div>
@@ -144,15 +136,12 @@
 
 <script>
     function show(id) {
+        document.getElementById('connexion').style.display = 'none';
         document.getElementById('inscription').style.display = 'none';
         document.getElementById('boutique').style.display = 'none';
         document.getElementById(id).style.display = 'block';
     }
-
-    function validerInscription() {
-        const id = document.getElementById('reg-id').value;
-        if(id) { alert("Compte créé pour " + id + ". Bienvenue !"); }
-    }
 </script>
+
 </body>
 </html>
