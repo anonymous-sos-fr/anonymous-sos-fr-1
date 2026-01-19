@@ -3,84 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anonymous SOS FR - Accueil Officiel</title>
+    <title>Anonymous SOS FR - Official</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        body { background-color: #000; color: #fff; font-family: sans-serif; margin: 0; text-align: center; }
-        
-        /* Menu Accueil */
-        .navbar { background: #1a1a1a; padding: 15px; border-bottom: 2px solid #ffd700; font-weight: bold; }
-        
-        /* Header */
-        header { padding: 30px 10px; }
-        h1 { color: #ffd700; margin: 0; font-size: 2.2em; text-transform: uppercase; }
-
-        /* Contenu */
-        .main-box { max-width: 600px; margin: 20px auto; padding: 20px; border: 1px solid #333; border-radius: 15px; background: #0d0d0d; }
-        
-        /* Boutons de Jeu */
-        .btn-play { 
-            background: #ffd700; color: #000; border: none; padding: 20px; 
-            width: 80%; font-size: 1.2em; font-weight: bold; border-radius: 10px; 
-            cursor: pointer; margin: 10px 0; box-shadow: 0 4px 10px rgba(255,215,0,0.3);
+        * { box-sizing: border-box; }
+        body { 
+            margin: 0; 
+            padding: 0; 
+            background: radial-gradient(circle at top, #1a1a1a 0%, #000 100%); 
+            color: #fff; 
+            font-family: 'Poppins', sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
-        /* Texte Gains */
-        .info-gains { color: #00ff00; margin: 20px 0; font-size: 1.1em; }
+        /* Logo Style TikTok */
+        .brand-header {
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .brand-name {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            background: linear-gradient(to right, #fff 20%, #ffd700 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 10px 20px rgba(255, 215, 0, 0.2);
+        }
 
-        /* Section SOS / WhatsApp */
-        .sos-footer { background: #1a1a1a; padding: 20px; margin-top: 30px; border-radius: 10px; }
-        .sos-number { color: #ff4444; font-weight: bold; font-size: 1.3em; margin: 10px 0; }
-        .btn-whatsapp { 
-            background: #25d366; color: white; padding: 10px 20px; 
-            text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;
+        /* Container central type App Mobile */
+        .content {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .promo-text {
+            color: #00ff00;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        /* BOUTONS MASSIFS */
+        .big-btn {
+            width: 100%;
+            max-width: 350px;
+            background: #ffd700;
+            color: #000;
+            border: none;
+            padding: 25px;
+            border-radius: 20px;
+            font-size: 1.4rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+        }
+        .big-btn:active { transform: scale(0.95); }
+
+        /* Section SOS / Contact Mobile */
+        .sos-container {
+            background: rgba(255, 255, 255, 0.05);
+            width: 100%;
+            max-width: 350px;
+            padding: 20px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            text-align: center;
+            margin-bottom: 80px;
+        }
+        .sos-label { color: #ff4444; font-weight: 800; font-size: 1.2rem; }
+        .wa-btn {
+            display: block;
+            background: #25d366;
+            color: white;
+            text-decoration: none;
+            padding: 12px;
+            border-radius: 12px;
+            margin-top: 10px;
+            font-weight: 600;
         }
 
         /* Classement Identifiants Verts */
+        .rank-list { width: 100%; max-width: 350px; margin-bottom: 20px; }
         .user-id { color: #00ff00 !important; font-weight: bold; }
-        .ranking { text-align: left; padding: 10px; border-top: 1px solid #333; margin-top: 20px; }
+
+        /* Navigation Basse (Style TikTok) */
+        .nav-bar {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: #000;
+            border-top: 1px solid #333;
+            display: flex;
+            justify-content: space-around;
+            padding: 15px 0;
+        }
+        .nav-item { color: #888; text-decoration: none; font-size: 0.8rem; }
+        .nav-active { color: #fff; font-weight: bold; }
+
     </style>
 </head>
 <body>
 
-    <div class="navbar">🏠 ACCUEIL - ANONYMOUS SOS FR</div>
+    <div class="brand-header">
+        <div class="brand-name">ANONYMOUS</div>
+        <div style="color: #888; font-size: 0.9rem;">SOS FR OFFICIEL</div>
+    </div>
 
-    <header>
-        <h1>ANONYMOUS SOS FR</h1>
-        <p>Plateforme de récompenses</p>
-    </header>
+    <div class="content">
+        <div class="promo-text">🔥 50€ À GAGNER CE MOIS !</div>
 
-    <div class="main-box">
-        <p>📺 Gagnez des vidéos | 🏆 Classement</p>
-        <p class="info-gains">🎁 Gagnez des cadeaux ou 50 € tous les mois !</p>
-        
-        <button class="btn-play" onclick="goPub()">GAGNER DE L'ARGENT</button>
-        <button class="btn-play" onclick="goPub()">GAGNER DE L'ARGENT</button>
+        <button class="big-btn" onclick="start()">JOUER & GAGNER</button>
+        <button class="big-btn" onclick="start()" style="background: #fff;">MES RÉCOMPENSES</button>
 
-        <div class="ranking">
-            <h4>🏆 CLASSEMENT</h4>
-            <p>1. <span class="user-id">ADMIN_SOS</span> - Licence VIP</p>
-            <p>2. <span class="user-id">JOUEUR_01</span> - Licence Standard</p>
+        <div class="rank-list">
+            <div style="font-size: 0.8rem; color: #555; margin-bottom: 5px;">TOP GAGNANTS :</div>
+            <div>🏆 <span class="user-id">Anonymous_Boss</span></div>
+            <div>🥈 <span class="user-id">User_Vip88</span></div>
+        </div>
+
+        <div class="sos-container">
+            <div class="sos-label">BESOIN D'AIDE ?</div>
+            <div style="margin: 5px 0;">SOS:+32456894335</div>
+            <a href="https://wa.me/+32456894335" class="wa-btn">CONTACT WHATSAPP</a>
         </div>
     </div>
 
-    <div class="main-box sos-footer">
-        <h3>BESOIN D'AIDE ?</h3>
-        <div class="sos-number">SOS : +33 6 00 00 00 00</div>
-        <a href="https://wa.me/33600000000" class="btn-whatsapp">Contact WhatsApp</a>
-    </div>
+    <nav class="nav-bar">
+        <a href="#" class="nav-item nav-active">ACCUEIL</a>
+        <a href="#" class="nav-item">VIDÉOS</a>
+        <a href="#" class="nav-item">PROFIL</a>
+    </nav>
 
     <script>
-        // Redirection
-        function goPub() {
-            window.location.href = "publicite.html";
+        const audio = new Audio("https://audio.nrj.fr/nrj/live/mp3/128");
+        function start() {
+            audio.play();
+            setTimeout(() => {
+                window.location.href = "publicite.html";
+            }, 500);
         }
-
-        // Système Radio NRJ
-        const player = new Audio("https://audio.nrj.fr/nrj/live/mp3/128");
-        window.addEventListener('click', () => {
-            player.play();
-            console.log("Radio activée");
-        }, { once: true });
+        window.addEventListener('click', () => audio.play(), {once: true});
     </script>
 
 </body>
