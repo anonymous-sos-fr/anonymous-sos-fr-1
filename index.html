@@ -4,155 +4,170 @@
     <meta charset="UTF-8">
     <title>anonymous sos fr</title>
     <style>
+        /* DESIGN GLOBAL */
         body {
-            background-color: #87CEEB; /* Bleu ciel identique à ta photo */
+            background-color: #87CEEB !important; /* BLEU CIEL */
             margin: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-height: 100vh;
+            color: black;
         }
 
-        /* BARRE DU HAUT FIXÉE */
-        .navbar {
+        /* BARRE DE NAVIGATION EN HAUT */
+        .header {
             width: 100%;
             background: #2c3e50;
-            padding: 15px 0;
+            padding: 15px;
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
-        .navbar button {
-            background: transparent;
-            border: 2px solid white;
-            color: white;
+        .header button {
+            background: white;
+            border: 2px solid #000;
             padding: 10px 20px;
             cursor: pointer;
             font-weight: bold;
-            text-transform: uppercase;
+            border-radius: 5px;
         }
+
+        .vip-btn { background: #FFD700 !important; }
 
         /* LOGO ET TITRE */
-        .main-container {
-            text-align: center;
-            margin-top: 50px;
-        }
+        .content { text-align: center; margin-top: 40px; }
 
-        .logo-wrapper {
+        .logo-container {
             position: relative;
             display: inline-block;
+            margin-bottom: 20px;
         }
 
-        .main-logo {
-            width: 250px; 
+        .logo-img {
+            width: 280px; /* Taille masque + terre */
             border-radius: 50%;
+            border: 5px solid white;
         }
 
-        .verified-badge {
+        /* LE VRAI BADGE BLEU */
+        .badge {
             position: absolute;
-            bottom: 10px;
-            right: 10px;
+            bottom: 15px;
+            right: 15px;
+            width: 40px;
+            height: 40px;
             background: #20D5EC;
-            color: white;
+            border: 3px solid white;
             border-radius: 50%;
-            width: 35px;
-            height: 35px;
+            color: white;
+            font-size: 25px;
+            font-weight: bold;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 3px solid white;
-            font-weight: bold;
         }
 
-        /* RADIO NRJ AU CENTRE */
-        .radio-section {
-            margin: 30px 0;
+        /* RADIO NRJ */
+        .radio-player {
+            background: white;
             padding: 20px;
-            border: 3px solid white;
             border-radius: 50px;
-            background: rgba(0,0,0,0.1);
+            border: 4px solid black;
+            margin: 20px 0;
         }
 
         #playBtn {
             background: #000;
             color: #20D5EC;
-            border: none;
             padding: 15px 40px;
+            border: none;
             border-radius: 30px;
-            font-size: 1.2rem;
+            font-size: 18px;
             cursor: pointer;
-            font-weight: bold;
         }
 
-        /* SECTIONS CACHÉES PAR DÉFAUT */
-        .page-section { display: none; background: white; padding: 20px; border-radius: 10px; margin-top: 20px; color: black; width: 80%; max-width: 500px; }
+        /* SECTIONS CACHÉES (S'AFFICHENT AU CLIC) */
+        .section {
+            display: none;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            width: 350px;
+            margin-top: 20px;
+            border: 2px solid black;
+        }
 
-        footer { margin-top: auto; padding: 20px; font-weight: bold; }
+        footer { margin-top: 50px; font-weight: bold; font-size: 20px; }
     </style>
 </head>
 <body>
 
-    <nav class="navbar">
-        <button onclick="showSection('login-sec')">Connexion</button>
-        <button onclick="showSection('reg-sec')">Inscription</button>
-        <button onclick="showSection('vip-sec')" style="border-color: gold; color: gold;">Abonnement VIP</button>
-    </nav>
+    <div class="header">
+        <button onclick="ouvrir('connexion')">CONNEXION</button>
+        <button onclick="ouvrir('inscription')">INSCRIPTION</button>
+        <button class="vip-btn" onclick="ouvrir('vip')">ABONNEMENT VIP</button>
+    </div>
 
-    <div class="main-container">
-        <div class="logo-wrapper">
-            <img src="https://via.placeholder.com/250x250/000/fff?text=MASQUE+TERRE" class="main-logo">
-            <div class="verified-badge">✓</div>
+    <div class="content">
+        <div class="logo-container">
+            <img src="https://via.placeholder.com/280x280/000/fff?text=MASQUE+TERRE" class="logo-img">
+            <div class="badge">✓</div>
         </div>
+
         <h1>ANONYMOUS SOS FR</h1>
 
-        <div class="radio-section">
-            <button id="playBtn" onclick="toggleRadio()">📻 ACTIVER LA RADIO NRJ</button>
-            <audio id="radioPlayer" src="https://scdn.nrjaudio.fm/adwz7n/nrj/fr/62111/mp3_128.mp3"></audio>
+        <div class="radio-player">
+            <button id="playBtn" onclick="gererRadio()">▶ ACTIVER LA RADIO NRJ</button>
+            <audio id="monAudio" src="https://scdn.nrjaudio.fm/adwz7n/nrj/fr/62111/mp3_128.mp3"></audio>
         </div>
 
-        <div id="login-sec" class="page-section">
+        <div id="connexion" class="section">
             <h3>Connexion</h3>
-            <input type="text" placeholder="Votre ID (uniquement)">
-            <input type="password" placeholder="Mot de passe">
-            <button onclick="alert('Connecté avec ID !')">Valider</button>
+            <input type="text" placeholder="Ton ID (uniquement)" style="width:100%; padding:10px; margin:5px 0;">
+            <input type="password" placeholder="Mot de passe" style="width:100%; padding:10px; margin:5px 0;">
+            <button style="width:100%; padding:10px; background:black; color:white;">VALIDER</button>
         </div>
 
-        <div id="vip-sec" class="page-section">
-            <h2 style="color: gold;">Espace VIP</h2>
-            <p>Prix : 10 € | 20 € | 50 €</p>
+        <div id="vip" class="section">
+            <h2 style="color: #d4af37;">MODE VIP</h2>
+            <p><strong>Prix : 10 € | 20 € | 50 €</strong></p>
             <hr>
-            <h3>Déposer une annonce VIP</h3>
-            <p style="font-size: 12px; color: red;">⚠️ Validation par les modos nécessaire.</p>
-            <textarea id="adText" style="width: 100%; height: 60px;"></textarea>
-            <button onclick="alert('Annonce envoyée aux modérateurs !')">Envoyer pour validation</button>
+            <h4>Déposer une annonce</h4>
+            <textarea placeholder="Ton annonce ici..." style="width:100%; height:80px;"></textarea>
+            <p style="font-size:11px; color:red;">L'annonce doit être vérifiée par les modos avant d'être visible.</p>
+            <button style="width:100%; padding:10px; background:gold; font-weight:bold;">ENVOYER AU MODO</button>
         </div>
     </div>
 
     <footer>anonymous sos fr</footer>
 
     <script>
-        // Fonction Radio NRJ
-        function toggleRadio() {
-            var player = document.getElementById('radioPlayer');
-            var btn = document.getElementById('playBtn');
-            if (player.paused) {
-                player.play();
-                btn.innerText = "⏸ COUPER LA RADIO";
+        // Fonction pour afficher les sections
+        function ouvrir(id) {
+            document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
+            document.getElementById(id).style.display = 'block';
+        }
+
+        // Fonction Radio
+        function gererRadio() {
+            var audio = document.getElementById("monAudio");
+            var btn = document.getElementById("playBtn");
+            if (audio.paused) {
+                audio.play();
+                btn.innerHTML = "⏸ ARRÊTER LA RADIO";
                 btn.style.color = "red";
             } else {
-                player.pause();
-                btn.innerText = "📻 ACTIVER LA RADIO NRJ";
+                audio.pause();
+                btn.innerHTML = "▶ ACTIVER LA RADIO NRJ";
                 btn.style.color = "#20D5EC";
             }
         }
-
-        // Fonction pour changer de page
-        function showSection(id) {
-            document.querySelectorAll('.page-section').forEach(s => s.style.display = 'none');
-            document.getElementById(id).style.display = 'block';
-        }
     </script>
+
 </body>
 </html>
