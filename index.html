@@ -2,43 +2,199 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Anonymous SOS FR</title>
-    <link rel="stylesheet" href="style.css">
+    <title>anonymous sos fr</title>
+    <style>
+        /* CONFIGURATION DU FOND BLEU CLAIR */
+        body {
+            background-color: #87CEEB !important; /* Le bleu ciel exact */
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #000;
+        }
+
+        /* BARRE DE NAVIGATION EN HAUT */
+        .top-bar {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 15px 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            position: fixed;
+            top: 0;
+            z-index: 999;
+        }
+
+        .top-bar button {
+            padding: 10px 25px;
+            font-weight: bold;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        .btn-auth { background: #fff; color: #000; }
+        .btn-vip { background: #FFD700; color: #000; } /* Bouton VIP Or */
+
+        /* CONTENU CENTRAL (IMAGE + BADGE) */
+        .center-content {
+            margin-top: 150px;
+            text-align: center;
+        }
+
+        .image-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .main-img {
+            width: 400px; /* Taille imposante pour le masque et la terre */
+            filter: drop-shadow(0 0 20px rgba(0,0,0,0.2));
+        }
+
+        /* LE VRAI BADGE BLEU TIKTOK SFR */
+        .verified-badge {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            width: 45px;
+            height: 45px;
+            background: #20D5EC; /* Bleu TikTok */
+            border: 4px solid #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .verified-badge::after {
+            content: "✓";
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        /* RADIO CENTRÉE ET FONCTIONNELLE */
+        .radio-box {
+            margin: 40px auto;
+            background: #000;
+            padding: 20px;
+            border-radius: 50px;
+            border: 3px solid #fff;
+            width: 300px;
+        }
+
+        .radio-box button {
+            background: #2ecc71;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        /* FORMULAIRE CONNEXION / INSCRIPTION */
+        .form-container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            width: 350px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .form-container input, .form-container select {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .id-only { font-weight: bold; color: #d35400; text-align: center; display: block; }
+
+        /* PRIX EN EUROS (SANS P) */
+        .price-list {
+            font-weight: bold;
+            font-size: 20px;
+            color: #27ae60;
+        }
+
+        footer {
+            margin: 50px 0;
+            font-weight: bold;
+            font-size: 24px;
+        }
+    </style>
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="nav-links">
-            <button onclick="openModal('login')">CONNEXION</button>
-            <button onclick="openModal('register')">INSCRIPTION</button>
-            <button class="vip-btn" onclick="openModal('vip')">ABONNEMENT VIP</button>
-        </div>
-    </nav>
-
-    <div class="main-container">
-        <div class="logo-wrapper">
-            <img src="URL_DE_TON_IMAGE_MASQUE_TERRE" alt="Logo" class="main-logo">
-            <span class="verified-badge">✔</span>
-        </div>
-        
-        <h1 class="site-title">ANONYMOUS SOS FR</h1>
-
-        <div class="radio-section">
-            <audio id="radioPlayer" src="URL_DE_TON_FLUX_RADIO"></audio>
-            <button id="playBtn" onclick="toggleRadio()">📻 ACTIVER LA RADIO</button>
-        </div>
+    <div class="top-bar">
+        <button class="btn-auth" onclick="alert('Lien Inscription')">Inscription</button>
+        <button class="btn-auth" onclick="alert('Lien Connexion')">Connexion</button>
+        <button class="btn-vip" onclick="alert('Section VIP - Prix en Euros')">Abonnement VIP uniquement</button>
     </div>
 
-    <div class="ads-container">
-        <h3>Déposer une annonce</h3>
-        <p class="warning">⚠️ Votre annonce sera visible uniquement après validation par un modérateur.</p>
-        <textarea placeholder="Votre annonce ici..."></textarea>
-        <button class="submit-ad">Envoyer pour validation</button>
+    <div class="center-content">
+        <div class="image-container">
+            <img src="https://via.placeholder.com/400x400.png?text=MASQUE+ET+TERRE" alt="Logo" class="main-img">
+            <div class="verified-badge"></div>
+        </div>
+
+        <div class="radio-box">
+            <button onclick="toggleRadio()" id="btnRadio">▶ ALLUMER LA RADIO</button>
+            <audio id="audioPlayer" src="URL_DE_TON_FLUX_RADIO"></audio>
+        </div>
+
+        <div class="form-container">
+            <span class="id-only">NOM D'UTILISATEUR (ID) UNIQUEMENT</span>
+            <input type="text" placeholder="Ton ID">
+            <input type="password" placeholder="Mot de passe">
+            
+            <select>
+                <option value="">Sélectionner le genre</option>
+                <option value="homme">Homme</option>
+                <option value="femme">Femme</option>
+            </select>
+
+            <label style="font-size: 12px;">
+                <input type="checkbox" required> J'accepte les consignes et la validation modo
+            </label>
+
+            <button style="background: #000; color: #fff; width: 100%; padding: 10px; margin-top: 10px; border-radius: 5px; cursor: pointer;">SE CONNECTER</button>
+        </div>
+
+        <div class="price-list">
+            <p>Pièces : 10 € | 20 € | 50 €</p>
+        </div>
+
+        <footer>anonymous sos fr</footer>
     </div>
 
-    <footer>
-        anonymous sos fr
-    </footer>
+    <script>
+        function toggleRadio() {
+            var audio = document.getElementById("audioPlayer");
+            var btn = document.getElementById("btnRadio");
+            if (audio.paused) {
+                audio.play();
+                btn.innerHTML = "⏸ COUPER LA RADIO";
+                btn.style.background = "#e74c3c";
+            } else {
+                audio.pause();
+                btn.innerHTML = "▶ ALLUMER LA RADIO";
+                btn.style.background = "#2ecc71";
+            }
+        }
+    </script>
 
 </body>
 </html>
