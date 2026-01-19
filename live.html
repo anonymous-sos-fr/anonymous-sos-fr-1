@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LIVE - Anonymous SOS FR</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'ProximaNova', sans-serif;
+            background: #000; /* Fond noir pour le live */
+            color: white;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* En-tête du Live */
+        .live-header {
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0,0,0,0.5);
+            position: absolute;
+            top: 0; width: 100%; z-index: 10;
+        }
+
+        .live-badge {
+            background: #fe2c55;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 12px;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink { 50% { opacity: 0.5; } }
+
+        /* Zone des 30 Participants (Grille) */
+        .participants-grid {
+            flex-grow: 1;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr); /* 5 colonnes */
+            grid-template-rows: repeat(6, 1fr);    /* 6 lignes = 30 places */
+            gap: 2px;
+            padding: 60px 5px 100px 5px;
+            background: #111;
+        }
+
+        .guest-slot {
+            background: #222;
+            border: 1px solid #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            position: relative;
+        }
+
+        .guest-slot img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-bottom: 2px;
+        }
+
+        /* Slot spécial pour l'Hôte (Toi) */
+        .host-slot {
+            background: linear-gradient(45deg, #004e92, #fe2c55);
+            grid-column: span 2;
+            grid-row: span 2;
+            font-size: 14px;
+        }
+
+        /* Chat en direct (Overlay) */
+        .live-chat {
+            position: absolute;
+            bottom: 80px;
+            left: 10px;
+            width: 70%;
+            height: 150px;
+            overflow-y: hidden;
+            mask-image: linear-gradient(transparent, black 20%);
+        }
+
+        .chat-msg {
+            font-size: 13px;
+            margin-bottom: 5px;
+            text-shadow: 1px 1px 2px black;
+        }
+
+        .chat-msg b { color: #20D5EC; }
+
+        /* Barre de navigation */
+        .nav-bar {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            background: black; padding: 15px;
+            display: flex; justify-content: space-around;
+            z-index: 100;
+        }
+        .nav-bar a { color: white; text-decoration: none; font-size: 24px; }
+    </style>
+</head>
+<body>
+
+<div class="live-header">
+    <div style="display: flex; align-items: center; gap: 10px;">
+        <div class="live-badge">LIVE</div>
+        <span style="font-size: 14px;">12.4k spectateurs 👁️</span>
+    </div>
+    <button style="background: rgba(255,255,255,0.2); border: none; color: white; padding: 5px 10px; border-radius: 5px;">Quitter</button>
+</div>
+
+<div class="participants-grid">
+    <div class="guest-slot host-slot">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Anonymous_emblem.svg" style="width: 50px; height: 50px;">
+        <b>HÔTE</b>
+    </div>
+
+    <script>
+        for(let i=1; i<=28; i++) {
+            document.write(`
+                <div class="guest-slot">
+                    <div style="width: 25px; height: 25px; background: #444; border-radius: 50%;"></div>
+                    <span>Vide</span>
+                </div>
+            `);
+        }
+    </script>
+</div>
+
+<div class="live-chat">
+    <div class="chat-msg"><b>User_88:</b> Force à vous ! ✊</div>
+    <div class="chat-msg"><b>Anon_Dev:</b> Le système est incroyable.</div>
+    <div class="chat-msg"><b>Justice:</b> On monte quand ?</div>
+</div>
+
+<div class="nav-bar">
+    <a href="index.html">🏠</a>
+    <a href="recherche.html">🔍</a>
+    <a href="live.html" style="color: #fe2c55;">🔴</a>
+    <a href="messagerie.html">📩</a>
+    <a href="profil.html">👤</a>
+</div>
+
+</body>
+</html>
