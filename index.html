@@ -1,117 +1,111 @@
-<style>
-    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0a0a0a; color: white; margin: 0; }
-    .navbar { background: #111; padding: 15px; display: flex; gap: 20px; border-bottom: 2px solid #333; }
-    .id-colore { color: #00ebff; font-weight: bold; text-shadow: 0 0 5px #00ebff; }
-    
-    /* Pages */
-    .page { padding: 20px; display: none; }
-    .active { display: block; }
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Anonymous sos fr</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #0a0a0a; color: white; margin: 0; }
+        .navbar { background: #111; padding: 15px; display: flex; gap: 20px; border-bottom: 2px solid #333; align-items: center; position: sticky; top: 0; z-index: 1000; }
+        .id-colore { color: #00ebff; font-weight: bold; text-shadow: 0 0 5px #00ebff; }
+        
+        .page { padding: 20px; display: none; }
+        .active { display: block; }
 
-    /* Boutique VIP */
-    .vip-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
-    .vip-card { background: #1a1a1a; border: 1px solid #444; border-radius: 12px; padding: 20px; text-align: center; transition: 0.3s; }
-    .vip-card:hover { border-color: #00ebff; }
-    .price-tag { font-size: 24px; color: #25D366; font-weight: bold; }
-    .special { border: 2px solid #ffd700; background: linear-gradient(145deg, #1a1a1a, #2a2200); }
+        /* Grilles et Cartes */
+        .content-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 20px; }
+        .card { background: #1a1a1a; border: 1px solid #333; border-radius: 12px; padding: 15px; }
+        
+        /* Boutique VIP */
+        .vip-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
+        .vip-card { background: #1a1a1a; border: 1px solid #444; border-radius: 12px; padding: 20px; text-align: center; }
+        .price-tag { font-size: 24px; color: #25D366; font-weight: bold; }
+        .special { border: 2px solid #ffd700; background: linear-gradient(145deg, #1a1a1a, #2a2200); }
 
-    /* Formulaires */
-    .auth-box { max-width: 400px; margin: 50px auto; background: #1a1a1a; padding: 30px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
-    input[type="text"], input[type="password"] { width: 100%; padding: 12px; margin: 10px 0; background: #222; border: 1px solid #444; color: white; border-radius: 5px; }
-    .btn-pro { width: 100%; padding: 12px; background: #00ebff; color: black; border: none; font-weight: bold; cursor: pointer; border-radius: 5px; }
-</style>
+        /* Boutons */
+        .btn-pro { width: 100%; padding: 12px; background: #00ebff; color: black; border: none; font-weight: bold; cursor: pointer; border-radius: 5px; margin-top: 10px; }
+        .btn-wa { background: #25D366; color: white; }
+    </style>
+</head>
+<body>
 
 <div class="navbar">
-    <span style="font-weight: bold; color: #00ebff;">ANONYMOUS SOS FR</span>
-    <button onclick="showPage('accueil')" style="background:none; border:none; color:white; cursor:pointer;">Accueil (Radio)</button>
+    <span class="id-colore" style="font-size: 20px;">ANONYMOUS SOS FR</span>
+    <button onclick="showPage('accueil')" style="background:none; border:none; color:white; cursor:pointer;">🏠 Accueil & Divertissement</button>
     <button onclick="showPage('boutique')" style="background:none; border:none; color:#ffd700; cursor:pointer; font-weight:bold;">✨ BOUTIQUE VIP</button>
-    <button onclick="showPage('connexion')" id="btn-login" style="margin-left:auto; background:none; border:none; color:white; cursor:pointer;">Connexion / Inscription</button>
+    <button onclick="showPage('inscription')" id="nav-auth" style="margin-left:auto; background:none; border:none; color:white; cursor:pointer;">Connexion / Inscription</button>
 </div>
 
 <div id="accueil" class="page active">
-    <h2>Bienvenue sur l'accueil</h2>
-    <div id="radio-container" style="background: #222; padding: 20px; border-radius: 10px;">
-        <p>📻 Radio en direct...</p>
-        <div style="width: 100%; height: 60px; background: #333; border-radius: 5px; display: flex; align-items: center; justify-content: center;">
-            [ LECTEUR RADIO ]
+    <h2 class="id-colore">Tableau de bord - Divertissement</h2>
+    
+    <div class="content-grid">
+        <div class="card">
+            <h3>📻 Radios en Direct</h3>
+            <p><strong>NRJ :</strong></p>
+            <iframe src="https://www.nrj.fr/webradios/nrj" width="100%" height="80" frameborder="0"></iframe>
+            <p style="margin-top:10px;"><strong>Skyrock :</strong></p>
+            <iframe src="https://www.skyrock.fm/player/" width="100%" height="80" frameborder="0"></iframe>
+        </div>
+
+        <div class="card">
+            <h3>⚽ Actualités Sportives</h3>
+            <iframe src="https://www.lequipe.fr/" width="100%" height="300" style="border-radius:8px; border:none;"></iframe>
+        </div>
+
+        <div class="card">
+            <h3>🎵 Ma Musique Spotify</h3>
+            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M?utm_source=generator&theme=0" width="100%" height="300" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         </div>
     </div>
 </div>
 
-<div id="connexion" class="page">
-    <div class="auth-box">
-        <h2 id="auth-title">Inscription</h2>
-        <input type="text" id="user-id" class="id-colore" placeholder="Choisissez votre ID (ex: AnonymousUser)">
-        <input type="password" id="password" placeholder="Mot de passe">
+<div id="inscription" class="page">
+    <div style="max-width:400px; margin:auto; background:#1a1a1a; padding:30px; border-radius:15px; border:1px solid #333;">
+        <h2 style="text-align:center;">Rejoindre Anonymous sos fr</h2>
+        <input type="text" id="reg-id" class="id-colore" placeholder="Identifiant" style="width:100%; padding:10px; margin-bottom:10px; background:#222; border:1px solid #444; color:white;">
+        <input type="password" id="reg-pass" placeholder="Mot de passe" style="width:100%; padding:10px; margin-bottom:10px; background:#222; border:1px solid #444; color:white;">
         
-        <div style="font-size: 13px; margin: 15px 0; color: #bbb;">
-            <input type="checkbox" id="accept-terms"> 
-            <label for="accept-terms">Si vous cochez cette case, vous acceptez toutes les conditions du service Anonymous sos fr.</label>
+        <div style="font-size:12px; color:#bbb; margin-bottom:10px;">
+            <input type="checkbox" id="terms"> Si vous cochez, vous acceptez toutes les conditions du service.
         </div>
-
-        <div style="font-size: 13px; margin: 10px 0; color: #bbb;">
-            <input type="checkbox" id="save-pc"> 
-            <label for="save-pc">Voulez-vous enregistrer toutes les données sur votre PC ?</label>
+        <div style="font-size:12px; color:#bbb; margin-bottom:20px;">
+            <input type="checkbox" id="save-pc"> Enregistrer les données sur mon PC.
         </div>
-
-        <button class="btn-pro" onclick="validerInscription()">VALIDER</button>
-        <p style="text-align: center; font-size: 12px; cursor: pointer;" onclick="toggleAuth()">Déjà un compte ? Se connecter</p>
+        
+        <button class="btn-pro" onclick="handleRegister()">VALIDER</button>
     </div>
 </div>
 
 <div id="boutique" class="page">
-    <h2 style="text-align: center; color: #ffd700;">💎 BOUTIQUE VIP PIÈCES</h2>
-    <p style="text-align: center; color: #25D366; font-weight: bold;">
-        ⚠️ Uniquement sur WhatsApp auprès d'Anonymous
-    </p>
-
+    <h2 style="text-align: center; color: #ffd700;">💎 BOUTIQUE PIÈCES</h2>
     <div class="vip-grid">
-        <div class="vip-card">
-            <div style="font-size: 40px;">🪙</div>
-            <h3>Pack Standard</h3>
-            <p>7 800 Pièces</p>
-            <div class="price-tag">100 €</div>
-            <button class="btn-pro" style="background:#25D366; margin-top:10px;" onclick="goWhatsApp('100€ - 7800 pièces')">Acheter via WhatsApp</button>
-        </div>
-
-        <div class="vip-card">
-            <div style="font-size: 40px;">🪙🪙</div>
-            <h3>Pack Bronze</h3>
-            <p>11 700 Pièces</p>
-            <div class="price-tag">150 €</div>
-            <button class="btn-pro" style="background:#25D366; margin-top:10px;" onclick="goWhatsApp('150€ - 11700 pièces')">Acheter via WhatsApp</button>
-        </div>
-
-        <div class="vip-card special">
-            <div style="font-size: 45px;">🔥</div>
-            <h3 style="color:#ffd700;">OFFRE MÉGA PRO</h3>
-            <p><strong>55 000 Pièces</strong></p>
-            <p><small>(Valeur 700€ : 200€ OFFERTS)</small></p>
-            <div class="price-tag">600 €</div>
-            <button class="btn-pro" style="background:#ffd700; color: black; margin-top:10px;" onclick="goWhatsApp('OFFRE 600€ - 55000 pièces')">PROFITER DE L'OFFRE</button>
-        </div>
+        <div class="vip-card"><h3>7 800 Pièces</h3><div class="price-tag">100 €</div><button class="btn-pro btn-wa" onclick="buy('100€')">WhatsApp</button></div>
+        <div class="vip-card"><h3>11 700 Pièces</h3><div class="price-tag">150 €</div><button class="btn-pro btn-wa" onclick="buy('150€')">WhatsApp</button></div>
+        <div class="vip-card"><h3>15 600 Pièces</h3><div class="price-tag">200 €</div><button class="btn-pro btn-wa" onclick="buy('200€')">WhatsApp</button></div>
+        <div class="vip-card"><h3>40 000 Pièces</h3><div class="price-tag">500 €</div><button class="btn-pro btn-wa" onclick="buy('500€')">WhatsApp</button></div>
+        <div class="vip-card special"><h3>🔥 55 000 Pièces</h3><p>Bonus 200€ inclus</p><div class="price-tag">600 €</div><button class="btn-pro" style="background:#ffd700; color:black;" onclick="buy('600€ SPECIAL')">PROFITER</button></div>
     </div>
 </div>
 
 <script>
-    function showPage(pageId) {
+    function showPage(id) {
         document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-        document.getElementById(pageId).classList.add('active');
+        document.getElementById(id).classList.add('active');
     }
 
-    function validerInscription() {
-        const id = document.getElementById('user-id').value;
-        const accept = document.getElementById('accept-terms').checked;
-        if (!id) { alert("Entrez un ID !"); return; }
-        if (!accept) { alert("Vous devez accepter les conditions pour continuer !"); return; }
-        
-        alert("Félicitations " + id + " ! Données enregistrées sur votre PC.");
+    function handleRegister() {
+        const id = document.getElementById('reg-id').value;
+        const terms = document.getElementById('terms').checked;
+        if(!id || !terms) { alert("ID manquant ou conditions non acceptées."); return; }
+        alert("Inscription validée pour " + id);
+        document.getElementById('nav-auth').innerText = "Profil: " + id;
         showPage('accueil');
-        document.getElementById('btn-login').innerText = "Profil: " + id;
-        document.getElementById('btn-login').classList.add('id-colore');
     }
 
-    function goWhatsApp(offre) {
-        const msg = encodeURIComponent("Bonjour Anonymous, je souhaite acheter l'offre : " + offre);
-        window.open("https://wa.me/+32456894335?text=" + msg, "_blank");
+    function buy(pack) {
+        window.open("https://wa.me/+32456894335?text=" + encodeURIComponent("Bonjour Anonymous, je veux le pack " + pack), "_blank");
     }
 </script>
+
+</body>
+</html>
