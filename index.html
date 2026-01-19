@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anonymous SOS FR - Officiel</title>
     <style>
-        /* Style global inspiré de l'esthétique TikTok */
         body {
             margin: 0;
             padding: 0;
-            font-family: 'ProximaNova', sans-serif, Arial;
-            background-color: #00b4ff; /* Le bleu que tu voulais */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #004e92; /* Bleu profond */
+            background: linear-gradient(to bottom, #000428, #004e92); /* Dégradé style nuit/TikTok */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -19,144 +19,133 @@
         }
 
         .container {
-            background: white;
-            color: black;
-            padding: 30px;
-            border-radius: 12px;
-            width: 100%;
-            max-width: 400px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            background: rgba(255, 255, 255, 0.95);
+            color: #333;
+            padding: 25px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 380px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
             text-align: center;
+            position: relative;
         }
 
-        /* En-tête avec pseudo et badge bleu */
-        .profile-header {
-            margin-bottom: 20px;
+        /* Masque au milieu de la scène */
+        .mask-container {
+            margin-bottom: 15px;
+        }
+        .mask-icon {
+            width: 80px;
+            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.2));
         }
 
         .username {
-            font-size: 24px;
-            font-weight: bold;
+            font-size: 22px;
+            font-weight: 800;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 5px;
+            gap: 6px;
+            color: #000;
         }
 
         .badge-blue {
-            background-color: #20D5EC;
-            color: white;
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            font-size: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            color: #1DA1F2; /* Bleu certification */
+            font-size: 20px;
         }
 
-        .subtitle {
-            font-size: 14px;
-            color: #666;
+        .footer-text {
+            font-size: 13px;
+            color: #555;
             margin-top: 5px;
+            font-weight: bold;
         }
 
-        /* Formulaire d'inscription */
+        /* Formulaire */
         form {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 12px;
+            margin-top: 20px;
         }
 
         input, select {
-            padding: 12px;
+            padding: 10px;
             border: 1px solid #ddd;
-            border-radius: 5px;
-            background-color: #f8f8f8;
+            border-radius: 8px;
+            font-size: 14px;
         }
 
-        .birthdate-group {
+        .birth-row {
             display: flex;
             gap: 5px;
         }
-
-        .birthdate-group select {
-            flex: 1;
-        }
+        .birth-row select { flex: 1; }
 
         button {
-            background-color: #fe2c55; /* Rouge TikTok pour le bouton */
+            background-color: #fe2c55;
             color: white;
             border: none;
             padding: 12px;
             font-weight: bold;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        button:hover {
-            background-color: #e0264b;
-        }
-
-        /* Radio Skyrock */
-        .radio-player {
-            margin-top: 25px;
-            padding-top: 20px;
-            border-top: 1px solid #eee;
-        }
-
-        iframe {
             border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover { transform: scale(1.02); }
+
+        /* Radio corrigée */
+        .radio-box {
+            margin-top: 20px;
+            background: #f1f1f1;
+            padding: 10px;
+            border-radius: 10px;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <div class="profile-header">
-        <div class="username">
-            Anonymous SOS FR 
-            <span class="badge-blue" title="Certifié">✔</span>
-        </div>
-        <div class="subtitle">Le site officiel des Anonymous</div>
+    <div class="mask-container">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Anonymous_emblem.svg" alt="Masque Anonymous" class="mask-icon">
     </div>
 
-    <form id="registerForm">
-        <input type="text" placeholder="Pseudo" required>
+    <div class="username">
+        Anonymous SOS FR <span class="badge-blue">✔</span>
+    </div>
+    <div class="footer-text">Le site officiel des Anonymous</div>
+
+    <form>
+        <input type="text" placeholder="Pseudo (affiché sur le site)" required>
         <input type="email" placeholder="Adresse mail" required>
         <input type="password" placeholder="Mot de passe" required>
         
-        <div class="birthdate-group">
-            <select required>
-                <option value="">Jour</option>
+        <div class="birth-row">
+            <select required><option value="">Jour</option>
                 <script>for(let i=1;i<=31;i++) document.write(<option>${i}</option>)</script>
             </select>
-            <select required>
-                <option value="">Mois</option>
-                <option>Janvier</option><option>Février</option><option>Mars</option>
-                <option>Avril</option><option>Mai</option><option>Juin</option>
-                <option>Juillet</option><option>Août</option><option>Septembre</option>
-                <option>Octobre</option><option>Novembre</option><option>Décembre</option>
+            <select required><option value="">Mois</option>
+                <option>Janv</option><option>Févr</option><option>Mars</option><option>Avril</option>
+                <option>Mai</option><option>Juin</option><option>Juil</option><option>Août</option>
+                <option>Sept</option><option>Oct</option><option>Nov</option><option>Déc</option>
             </select>
-            <select required>
-                <option value="">Année</option>
-                <script>for(let i=2024;i>=1950;i--) document.write(<option>${i}</option>)</script>
+            <select required><option value="">Année</option>
+                <script>for(let i=2026;i>=1950;i--) document.write(<option>${i}</option>)</script>
             </select>
         </div>
 
         <select required>
             <option value="">Genre</option>
-            <option value="homme">Homme</option>
-            <option value="femme">Femme</option>
+            <option>Homme</option>
+            <option>Femme</option>
         </select>
 
         <button type="submit">S'inscrire</button>
     </form>
 
-    <div class="radio-player">
-        <p style="font-size: 12px; color: #666; margin-bottom: 10px;">En direct : Skyrock</p>
-        <audio controls style="width: 100%;">
+    <div class="radio-box">
+        <p style="margin: 0 0 5px 0; font-size: 12px; font-weight: bold;">📻 RADIO SKYROCK EN DIRECT</p>
+        <audio id="radioPlayer" controls style="width: 100%;">
             <source src="https://icecast.skyrock.net/s/natio_mp3_128k" type="audio/mpeg">
             Votre navigateur ne supporte pas la radio.
         </audio>
@@ -164,4 +153,3 @@
 </div>
 
 </body>
-</html>
