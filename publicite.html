@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Center - Anonymous SOS FR</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #000428 0%, #004e92 100%);
+            color: white;
+            min-height: 100vh;
+            padding-bottom: 80px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Business */
+        .business-header {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .earnings-box {
+            font-size: 28px;
+            font-weight: bold;
+            color: #2ecc71; /* Vert argent */
+            margin: 10px 0;
+        }
+
+        /* Zone Vidéo */
+        .video-work-zone {
+            background: black;
+            width: 100%;
+            aspect-ratio: 16/9;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+
+        .play-btn {
+            background: #fe2c55;
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Classement Top 50 */
+        .leaderboard {
+            margin-top: 30px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 15px;
+            padding: 20px;
+        }
+
+        .leaderboard h3 {
+            text-align: center;
+            border-bottom: 1px solid #444;
+            padding-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th { text-align: left; color: #aaa; font-size: 12px; }
+        td { padding: 10px 5px; border-bottom: 1px solid #222; }
+
+        .rank { font-weight: bold; color: #fe2c55; width: 40px; }
+        .user-cell { display: flex; align-items: center; gap: 8px; }
+        .badge-mini { color: #1DA1F2; font-size: 12px; }
+
+        /* Nav Bar */
+        .nav-bar {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            background: black; padding: 15px;
+            display: flex; justify-content: space-around;
+            z-index: 100;
+        }
+        .nav-bar a { color: white; text-decoration: none; font-size: 24px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="business-header">
+        <div style="font-size: 14px; text-transform: uppercase;">Centre de Mission Officiel</div>
+        <div class="earnings-box" id="userBalance">0.00 €</div>
+        <div style="font-size: 12px; color: #ccc;">Regardez des vidéos pour financer le mouvement</div>
+    </div>
+
+    <div class="video-work-zone">
+        <button class="play-btn" onclick="startWork()">▶ DÉMARRER LA MISSION</button>
+    </div>
+
+    <div class="leaderboard">
+        <h3>🏆 TOP 50 - CLASSEMENT DES TRAVAILLEURS</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>RANG</th>
+                    <th>UTILISATEUR</th>
+                    <th>MISSIONS</th>
+                    <th>GAINS</th>
+                </tr>
+            </thead>
+            <tbody id="leaderboardBody">
+                <tr>
+                    <td class="rank">1</td>
+                    <td class="user-cell">Anonymous SOS FR <span class="badge-mini">✔</span></td>
+                    <td>999+</td>
+                    <td style="color: #2ecc71;">740.50 €</td>
+                </tr>
+                <script>
+                    const names = ["Shadow_Op", "CyberGhost", "Justice_fr", "Anon_Alpha", "FreedomHunter"];
+                    for(let i=2; i<=15; i++) {
+                        let name = names[Math.floor(Math.random()*names.length)] + "_" + i;
+                        document.write(`
+                            <tr>
+                                <td class="rank">${i}</td>
+                                <td>${name}</td>
+                                <td>${150 - i}</td>
+                                <td style="color: #2ecc71;">${(100 / i).toFixed(2)} €</td>
+                            </tr>
+                        `);
+                    }
+                </script>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="nav-bar">
+    <a href="index.html">🏠</a>
+    <a href="recherche.html">🔍</a>
+    <a href="publicite.html" title="Publicité" style="font-size: 32px; color: #2ecc71;">$</a>
+    <a href="#">📩</a>
+    <a href="profil.html">👤</a>
+</div>
+
+<script>
+    let balance = 0.00;
+    function startWork() {
+        alert("Mission démarrée. Ne fermez pas la fenêtre pour valider vos gains.");
+        // Ici on pourra intégrer les vrais scripts de pub plus tard
+    }
+</script>
+
+</body>
+</html>
