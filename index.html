@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -8,142 +8,115 @@
         :root {
             --certif-blue: #1DA1F2;
             --admin-red: #ff4757;
-            --wa-green: #25D366;
+            --user-cyan: #00ffcc;
             --coin-gold: #ffd700;
             --bg-black: #0d0d0d;
         }
 
-        body { font-family: Arial, sans-serif; background-color: var(--bg-black); color: white; margin: 0; padding: 15px; }
+        body { font-family: Arial, sans-serif; background-color: var(--bg-black); color: white; margin: 0; padding: 15px; padding-bottom: 120px; }
 
-        /* --- BADGE BLEU (L'UNIQUE) --- */
-        .badge-bleu {
-            display: inline-flex; align-items: center; justify-content: center;
-            width: 16px; height: 16px; background-color: var(--certif-blue);
-            color: white; border-…
-Anonymous sos fr: <!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>anonymous sos fr</title>
-    <style>
-        :root {
-            --certif-blue: #1DA1F2;
-            --admin-red: #ff4757;
-            --wa-green: #25D366;
-            --coin-gold: #ffd700;
-            --bg-black: #0d0d0d;
+        /* --- LE VRAI BADGE CERTIFIÉ --- */
+        .vrai-badge {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/e4/Twitter_Verified_Badge.svg');
+            background-size: contain;
+            background-repeat: no-repeat;
+            vertical-align: middle;
+            margin-left: 5px;
         }
 
-        body { font-family: Arial, sans-serif; background-color: var(--bg-black); color: white; margin: 0; padding: 15px; }
-
-        /* --- BADGE BLEU (L'UNIQUE) --- */
-        .badge-bleu {
-            display: inline-flex; align-items: center; justify-content: center;
-            width: 16px; height: 16px; background-color: var(--certif-blue);
-            color: white; border-radius: 50%; font-size: 10px; margin-left: 5px;
-            vertical-align: middle; border: 1px solid white;
-        }
-
-        /* --- IDENTIFIANTS (SEUL L'ID EST VISIBLE) --- */
-        .id-visible { color: #00ffcc !important; font-weight: bold; }
-        .admin-name { color: var(--admin-red) !important; font-weight: bold; }
-
-        /* --- BOUTONS WHATSAPP --- */
-        .wa-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 15px 0; }
-        .btn-wa { 
-            background: var(--wa-green); color: white; text-decoration: none; 
-            padding: 15px; border-radius: 10px; text-align: center; font-weight: bold;
-        }
-        .btn-sos { background: var(--admin-red); }
-
-        /* --- NAVIGATION --- */
-        .nav-top { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; }
-        .btn { padding: 12px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; text-transform: uppercase; }
+        /* --- BOUTONS EN HAUT (4 BOUTONS MAINTENANT) --- */
+        .header-btns { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 20px; }
+        .btn-top { padding: 12px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; text-transform: uppercase; font-size: 0.75em; }
         .btn-blue { background: var(--certif-blue); color: white; }
         .btn-grey { background: #333; color: white; }
+        .btn-tool { background: #444; color: var(--admin-red); border: 1px solid var(--admin-red); }
 
-        /* --- BOUTIQUE DE PIÈCES (TES PIÈCES) --- */
-        .pieces-list { background: #1a1a1a; padding: 15px; border-radius: 12px; border: 2px solid var(--coin-gold); }
-        .pack { display: flex; justify-content: space-between; padding: 12px; border-bottom: 1px solid #333; }
-        .pack-name { color: var(--coin-gold); font-weight: bold; }
+        /* --- IDENTIFIANTS COLORÉS --- */
+        .id-admin { color: var(--admin-red) !important; font-weight: bold; }
+        .id-user { color: var(--user-cyan) !important; font-weight: bold; }
+
+        /* --- MODE TOOL (PANNEAU PC) --- */
+        .tool-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.9em; }
+        .tool-table th { color: var(--admin-red); text-align: left; padding: 8px; border-bottom: 1px solid #333; }
+        .tool-table td { padding: 10px 8px; border-bottom: 1px solid #222; }
 
         .section { background: #161616; padding: 20px; border-radius: 12px; border: 1px solid #333; margin-top: 15px; }
-        input, select { width: 100%; padding: 12px; margin: 8px 0; background: #252525; border: 1px solid #444; color: white; border-radius: 6px; box-sizing: border-box; }
+        
+        /* --- BARRE FIXE EN BAS (RADIO + SOS) --- */
+        .bottom-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #111; border-top: 2px solid #333; padding: 15px 10px; z-index: 1000; }
+        .bottom-layout { display: flex; align-items: center; justify-content: space-between; max-width: 500px; margin: 0 auto; }
+        .btn-sos-bottom { background: var(--admin-red); color: white; padding: 10px 15px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+
+        input, select, textarea { width: 100%; padding: 12px; margin: 8px 0; background: #222; border: 1px solid #444; color: white; border-radius: 6px; box-sizing: border-box; }
     </style>
 </head>
 <body>
 
-    <header>
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-            <h1 style="margin:0; font-size: 1.3em;">anonymous sos fr <span class="badge-bleu">✓</span></h1>
-            <div class="admin-name">Anonymous sos fr <span class="badge-bleu">✓</span></div>
-        </div>
-        
-        <div style="background:#222; padding:8px; border-radius:50px; display:flex; align-items:center; margin-top:15px; border: 1px solid #444;">
-            <span style="color:#f60000; font-weight:bold; margin: 0 15px; font-size: 0.8em;">SKYROCK</span>
-            <audio controls style="height:25px;"><source src="https://icecast.skyrock.net/s/natio_aac_64k" type="audio/mpeg"></audio>
-        </div>
+    <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <h1 style="font-size: 1.2em;">anonymous sos fr <span class="vrai-badge"></span></h1>
+        <div class="id-admin" style="font-size: 0.9em;">Admin <span class="vrai-badge"></span></div>
     </header>
 
-    <div class="wa-actions">
-        <a href="https://wa.me/" class="btn-wa">SERVICE CLIENT</a>
-        <a href="https://wa.me/" class="btn-wa btn-sos">SOS DIRECT</a>
-    </div>
-
-    <div class="nav-top">
-        <button class="btn btn-grey" onclick="show('inscription')">S'INSCRIRE</button>
-        <button class="btn btn-blue" onclick="show('boutique')">PIÈCES SOS</button>
+    <div class="header-btns">
+        <button class="btn-top btn-grey" onclick="show('inscription')">Inscription</button>
+        <button class="btn-top btn-blue" onclick="show('boutique')">Boutique</button>
+        <button class="btn-top btn-grey" onclick="show('annonces')">Annonces</button>
+        <button class="btn-top btn-tool" onclick="show('mode-tool')">MODE TOOL</button>
     </div>
 
     <div id="boutique" class="section">
-        <h2 style="color:var(--coin-gold);">💰 BOUTIQUE PIÈCES</h2>
-        <div class="pieces-list">
-            <div class="pack"><span class="pack-name">10 PIÈCES</span><span>2 €</span></div>
-            <div class="pack"><span class="pack-name">35 PIÈCES</span><span>5 €</span></div>
-            <div class="pack"><span class="pack-name">100 PIÈCES</span><span>10 €</span></div>
-            <div class="pack"><span class="pack-name">300 PIÈCES</span><span>25 €</span></div>
-            lass="coins">10 Pièces</td><td class="price">0.50€</td></tr>
-            <tr><td class="coins">35 Pièces</td><td class="price">1.00€</td></tr>
-            <tr><td class="coins">70 Pièces</td><td class="price">1.80€</td></tr>
-            <tr><td class="coins">150 Pièces</td><td class="price">3.50€</td></tr>
-            <tr><td class="coins">500 Pièces</td><td class="price">10.00€</td></tr>
-            <tr><td class="coins">1500 Pièces</td><td class="price">25.00€</td></tr>
-            <tr><td class="coins">7000 Pièces</td><td class="price">100.00€</td></tr>
-            <tr><td class="coins">30000 Pièces</td><td class="price">400.00€</td></tr>
+        <h2 style="color:var(--coin-gold);">💰 PIÈCES SOS</h2>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <div style="background:#222; padding:10px; border-radius:8px; text-align:center;">
+                <span style="color:var(--coin-gold); font-weight:bold;">10 Pièces</span><br>0.99€
+            </div>
+            <div style="background:#222; padding:10px; border-radius:8px; text-align:center;">
+                <span style="color:var(--coin-gold); font-weight:bold;">4500 Pièces</span><br>400€
+            </div>
         </div>
     </div>
 
     <div id="inscription" class="section" style="display:none;">
         <h2>INSCRIPTION</h2>
-        <input type="text" placeholder="ID (Pseudo visible par tous)">
-        <input type="email" placeholder="Adresse Mail (Privée)">
+        <input type="text" placeholder="ID (Pseudo)">
+        <input type="email" placeholder="Adresse Mail">
         <input type="password" placeholder="Mot de Passe">
+        <div style="display: flex; gap: 5px;">
+            <select><option>Jour</option></select><select><option>Mois</option></select><select><option>Année</option></select>
+        </div>
         <select><option>Homme</option><option>Femme</option></select>
-        <input type="date">
-        <button class="btn btn-blue" style="width:100%; margin-top:10px;">VALIDER</button>
+        <div style="margin: 10px 0;"><input type="checkbox"> Confirmer les conditions</div>
+        <button class="btn-top btn-blue" style="width:100%;">VALIDER</button>
     </div>
 
-    <div id="mode-tool" class="section" style="display:none; border: 2px solid var(--admin-red);">
-        <h2 class="admin-name">PANNEAU TOOL PC</h2>
-        <p style="font-size: 0.8em; color: #888;">Note : Seul l'ID est utilisé pour identifier les membres.</p>
-        <table width="100%">
-            <tr style="color:var(--admin-red); font-size: 0.8em; text-align: left;">
-                <th>ID MEMBRE</th><th>PIÈCES</th><th>ACTION</th>
-            </tr>
+    <div id="mode-tool" class="section" style="display:none;">
+        <h2 class="id-admin">PANNEAU TOOL PC</h2>
+        <table class="tool-table">
+            <tr><th>UTILISATEUR</th><th>LICENCE</th><th>ACTION</th></tr>
             <tr>
-                <td style="padding:10px 0;"><span class="id-visible">Ami_SOS_99</span> <span class="badge-bleu">✓</span></td>
-                <td>300</td>
-                <td><button onclick="alert('Accès coupé')" style="background:orange; border:none; padding:5px; border-radius:4px;">DÉSACTIVER</button></td>
+                <td><span class="id-user">Membre_01</span> <span class="vrai-badge"></span></td>
+                <td>Premium</td>
+                <td><button onclick="alert('Désactivé')" style="background:orange; border:none; border-radius:4px; padding:5px; font-weight:bold;">OFF</button></td>
             </tr>
         </table>
     </div>
 
-    <button class="btn btn-grey" style="width:100%; margin-top:20px; font-size: 0.7em;" onclick="show('mode-tool')">OUVRIR MODE TOOL</button>
+    <div class="bottom-bar">
+        <div class="bottom-layout">
+            <div style="display: flex; align-items: center;">
+                <span style="color:#f60000; font-weight:bold; font-size: 0.6em; margin-right: 5px;">SKYROCK</span>
+                <audio controls style="height:25px; width: 130px;"><source src="https://icecast.skyrock.net/s/natio_aac_64k" type="audio/mpeg"></audio>
+            </div>
+            <a href="https://wa.me/" class="btn-sos-bottom">🚨 SOS DIRECT</a>
+        </div>
+    </div>
 
     <script>
         function show(id) {
-            ['boutique', 'inscription', 'mode-tool'].forEach(s => {
+            ['boutique', 'inscription', 'annonces', 'mode-tool'].forEach(s => {
                 const el = document.getElementById(s);
                 if(el) el.style.display = (s === id) ? 'block' : 'none';
             });
