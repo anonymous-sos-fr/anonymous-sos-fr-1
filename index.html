@@ -4,109 +4,80 @@
     <meta charset="UTF-8">
     <title>anonymous sos fr</title>
     <style>
-        body {
-            background-color: #000;
-            color: white;
-            font-family: 'Courier New', Courier, monospace;
-            margin: 0;
-            overflow-x: hidden;
+        body { background-color: #000; color: white; font-family: 'Courier New', Courier, monospace; margin: 0; overflow-x: hidden; }
+        
+        /* BARRE DE MODÉRATION (VISIBLE QUE POUR TOI SUR PC) */
+        .mod-tool-bar {
+            background: #ff0000; padding: 10px; text-align: center; 
+            position: sticky; top: 0; z-index: 9999; border-bottom: 2px solid white;
+        }
+        .mod-tool-bar button {
+            width: auto; padding: 5px 10px; margin: 5px; cursor: pointer;
+            font-weight: bold; border-radius: 5px; background: white; color: black;
         }
 
-        /* TITRE CENTRAL & BADGE */
+        /* HEADER */
         .brand-center { text-align: center; padding: 40px 0; }
         .brand-name {
             font-size: 3em; font-weight: bold; color: #00ffcc;
-            text-shadow: 0 0 20px #00ffcc;
-            display: flex; align-items: center; justify-content: center; gap: 10px;
+            text-shadow: 0 0 20px #00ffcc; display: flex; align-items: center; justify-content: center; gap: 10px;
         }
         .verified-badge { color: #1DA1F2; }
 
         /* NAVIGATION */
-        nav {
-            background: rgba(0, 0, 0, 0.9); padding: 15px;
-            text-align: center; border-bottom: 2px solid #00ff00;
-        }
+        nav { background: rgba(0, 0, 0, 0.9); padding: 15px; text-align: center; border-bottom: 2px solid #00ff00; }
         nav a { color: #00ff00; margin: 0 15px; text-decoration: none; font-weight: bold; cursor: pointer; text-transform: uppercase; }
 
-        /* CONTENEURS */
-        .main-container { display: flex; justify-content: center; padding: 20px; min-height: 60vh; }
+        /* BOXES */
+        .container { display: flex; justify-content: center; padding: 20px; flex-direction: column; align-items: center; }
         .box {
             background: rgba(20, 20, 20, 0.95); padding: 30px; border-radius: 15px;
             border: 1px solid #00ff00; width: 100%; max-width: 500px;
-            box-shadow: 0 0 25px rgba(0, 255, 0, 0.2);
+            box-shadow: 0 0 25px rgba(0, 255, 0, 0.2); margin-bottom: 20px;
         }
 
         .title-pink { color: #ff00ff; text-align: center; margin-bottom: 20px; text-transform: uppercase; }
 
-        /* BOUTIQUE TABLE */
-        .shop-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        /* BOUTIQUE */
+        .shop-table { width: 100%; border-collapse: collapse; }
         .shop-table td { padding: 10px; border-bottom: 1px solid #333; }
         .coins { color: gold; font-weight: bold; }
         .price { color: #00ffcc; text-align: right; }
 
-        /* FORMULAIRES */
-        input, select { 
-            width: 100%; padding: 12px; margin: 10px 0; 
-            background: #111; border: 1px solid #444; color: #00ff00; border-radius: 5px; box-sizing: border-box; 
-        }
-        button { 
-            width: 100%; padding: 12px; background: #00ffcc; color: black; 
-            border: none; font-weight: bold; cursor: pointer; border-radius: 5px; 
-        }
+        input, textarea { width: 100%; padding: 12px; margin: 10px 0; background: #111; border: 1px solid #444; color: #00ff00; border-radius: 5px; box-sizing: border-box; }
+        button.action-btn { width: 100%; padding: 12px; background: #00ffcc; color: black; border: none; font-weight: bold; cursor: pointer; border-radius: 5px; }
 
-        /* ANNONCES VIP */
-        .annonces-box { border: 1px dashed #ff00ff; padding: 15px; margin-top: 15px; background: rgba(255, 0, 255, 0.05); }
-
-        /* SERVICE CLIENT FIXE */
-        .btn-client-fixe {
-            position: fixed; bottom: 20px; right: 20px; background: #ff0000;
-            color: white; padding: 15px 25px; border-radius: 50px; cursor: pointer;
-            font-weight: bold; border: 2px solid white; z-index: 1000;
-        }
-        #infos-panel {
-            display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            background: #000; border: 2px solid #ff0000; padding: 25px; width: 320px; z-index: 10001; text-align: center;
-        }
-
-        .radio-box { position: fixed; bottom: 20px; left: 20px; }
+        /* SOS FIXE */
+        .sos-btn { position: fixed; bottom: 20px; right: 20px; background: red; color: white; padding: 15px 25px; border-radius: 50px; font-weight: bold; cursor: pointer; border: 2px solid white; z-index: 1000; }
+        .radio-box { position: fixed; bottom: 20px; left: 20px; z-index: 1000; }
     </style>
 </head>
 <body>
 
+<div class="mod-tool-bar">
+    <strong style="color: white;">🛠️ MOD TOOL :</strong>
+    <button onclick="modAction('annonce_ok')">VALIDER ANNONCE</button>
+    <button onclick="modAction('licence')">DONNER PIÈCES / LICENCE</button>
+    <button onclick="modAction('badge')">METTRE BADGE BLEU</button>
+    <button onclick="modAction('ban')" style="background:black; color:white;">BANNIR</button>
+</div>
+
 <nav>
-    <a onclick="show('connexion')">Connexion</a>
-    <a onclick="show('inscription')">Inscription</a>
-    <a onclick="show('boutique')">Pièces</a>
-    <a onclick="show('annonces')">Annonces</a>
+    <a onclick="showSection('boutique')">Boutique</a>
+    <a onclick="showSection('annonces')">Annonces VIP</a>
+    <a onclick="showSection('connexion')">Connexion</a>
 </nav>
 
 <div class="brand-center">
     <div class="brand-name">
         anonymous sos fr
-        <span class="verified-badge">
-            <svg width="35" height="35" viewBox="0 0 24 24" fill="currentColor"><path d="M23 12l-2.44-2.79.34-3.69-3.61-.82-1.89-3.2L12 2.96 8.6 1.5 6.71 4.7l-3.61.81.34 3.7L1 12l2.44 2.79-.34 3.69 3.61.82 1.89 3.2L12 21.04l3.4 1.46 1.89-3.2 3.61-.82-.34-3.69L23 12zm-12.91 4.72l-3.8-3.81 1.48-1.48 2.32 2.33 5.85-5.87 1.48 1.48-7.33 7.35z"/></svg>
-        </span>
+        <span class="verified-badge">✔️</span>
     </div>
 </div>
 
-<div class="main-container">
-    <div id="connexion" class="box">
-        <h2 class="title-pink">Connexion</h2>
-        <input type="text" id="login-id" placeholder="Identifiant (ID)">
-        <input type="password" id="login-pass" placeholder="Mot de passe">
-        <button onclick="login()">SE CONNECTER</button>
-    </div>
-
-    <div id="inscription" class="box" style="display:none;">
-        <h2 class="title-pink">Inscription</h2>
-        <input type="text" id="reg-id" placeholder="Choisir un ID">
-        <input type="password" id="reg-pass" placeholder="Mot de passe">
-        <input type="email" placeholder="Gmail personnel">
-        <button onclick="register()">VALIDER L'INSCRIPTION</button>
-    </div>
-
-    <div id="boutique" class="box" style="display:none;">
-        <h2 class="title-pink" style="color: gold;">🪙 Boutique de Pièces</h2>
+<div class="container">
+    <div id="boutique" class="box">
+        <h2 class="title-pink" style="color: gold;">🪙 Boutique Pièces</h2>
         <table class="shop-table">
             <tr><td class="coins">10 Pièces</td><td class="price">0.50€</td></tr>
             <tr><td class="coins">35 Pièces</td><td class="price">1.00€</td></tr>
@@ -117,72 +88,50 @@
             <tr><td class="coins">7000 Pièces</td><td class="price">100.00€</td></tr>
             <tr><td class="coins">30000 Pièces</td><td class="price">400.00€</td></tr>
         </table>
-        <button onclick="toggleInfos()">RECHARGER VIA SERVICE CLIENT</button>
+        <p style="text-align:center; font-size:0.8em; margin-top:10px;">Contactez le service client pour payer.</p>
     </div>
 
     <div id="annonces" class="box" style="display:none;">
         <h2 class="title-pink">📢 Annonces VIP</h2>
-        <p style="font-size: 0.9em; text-align: center;">Les annonces sont visibles par tous les membres.</p>
-        <div class="annonces-box">
-            <p><em>Aucune annonce active pour le moment.</em></p>
-        </div>
-        <hr style="border: 0.5px solid #333; margin: 20px 0;">
-        <h3 style="font-size: 1em; color: #00ffcc;">PUBLIER UNE ANNONCE</h3>
-        <textarea style="width:100%; background:#111; color:white; border:1px solid #444; height:80px; padding:10px; margin-bottom:10px;" placeholder="Écrivez votre annonce ici..."></textarea>
-        <p style="font-size: 0.75em; color: #aaa;">⚠️ Toute annonce sera vérifiée par les admins avant d'être publiée.</p>
-        <button onclick="alert('Annonce envoyée aux administrateurs pour validation.')">ENVOYER POUR VALIDATION</button>
+        <textarea id="msg-vip" placeholder="Votre annonce ici..."></textarea>
+        <p style="font-size: 0.7em; color: #aaa;">⚠️ Toute annonce sera vérifiée par les admins avant d'être publiée.</p>
+        <button class="action-btn" onclick="alert('Annonce envoyée pour validation.')">PUBLIER L'ANNONCE</button>
+    </div>
+
+    <div id="connexion" class="box" style="display:none;">
+        <h2 class="title-pink">Connexion</h2>
+        <input type="text" placeholder="Identifiant">
+        <input type="password" placeholder="Mot de passe">
+        <button class="action-btn">ENTRER</button>
     </div>
 </div>
-
-<div id="infos-panel">
-    <h2 style="color:red;">SERVICE CLIENT</h2>
-    <p>🚨 SOS : +32456894335</p>
-    <p>💬 Aide : Contactez-nous via WhatsApp</p>
-    <p>📧 <a href="https://mail.google.com/mail/?view=cm&fs=1&to=despreschez@gmail.com" target="_blank" style="color:white;">Gmail Support</a></p>
-    <button onclick="toggleInfos()" style="background:#444; color:white;">RETOUR</button>
-</div>
-
-<div class="btn-client-fixe" onclick="toggleInfos()">SERVICE CLIENT & SOS</div>
 
 <div class="radio-box">
     <iframe src="https://www.skyrock.fm/radio/player" width="200" height="80" frameborder="0"></iframe>
 </div>
 
-<script>
-    let db_id = ""; let db_pass = "";
+<div class="sos-btn" onclick="alert('🚨 SERVICE CLIENT\nSOS: 01 53 00 00 00\nWhatsApp: Actif\nEmail: contact.anonymous.sos.fr@gmail.com')">SERVICE CLIENT & SOS</div>
 
-    function show(id) {
-        document.getElementById('connexion').style.display = 'none';
-        document.getElementById('inscription').style.display = 'none';
+<script>
+    function showSection(id) {
         document.getElementById('boutique').style.display = 'none';
         document.getElementById('annonces').style.display = 'none';
+        document.getElementById('connexion').style.display = 'none';
         document.getElementById(id).style.display = 'block';
     }
 
-    function toggleInfos() {
-        let p = document.getElementById('infos-panel');
-        p.style.display = (p.style.display === 'block') ? 'none' : 'block';
-    }
-
-    function register() {
-        db_id = document.getElementById('reg-id').value;
-        db_pass = document.getElementById('reg-pass').value;
-        if(db_id && db_pass) {
-            alert("Compte créé avec succès ! Connectez-vous maintenant.");
-            show('connexion');
-        } else { alert("Veuillez remplir les champs."); }
-    }
-
-    function login() {
-        let u = document.getElementById('login-id').value;
-        let p = document.getElementById('login-pass').value;
-        if(u === db_id && p === db_pass && u !== "") {
-            alert("Connexion réussie ! Bienvenue " + u);
-        } else {
-            alert("Accès refusé. Vérifiez vos identifiants.");
+    function modAction(type) {
+        let target = prompt("Entrez l'ID de l'utilisateur :");
+        if (target) {
+            if(type === 'ban') alert("⛔ ID [" + target + "] BANNIE.");
+            if(type === 'licence') {
+                let m = prompt("Type de licence ou nombre de pièces :");
+                alert("✅ Mise à jour pour " + target + " : " + m);
+            }
+            if(type === 'badge') alert("🔵 Badge Certifié ajouté à " + target);
+            if(type === 'annonce_ok') alert("📢 Annonce de " + target + " validée !");
         }
     }
 </script>
-
 </body>
 </html>
