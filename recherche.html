@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recherche - Anonymous SOS FR</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'ProximaNova', sans-serif;
+            background: linear-gradient(to bottom, #000428, #004e92);
+            color: white;
+            min-height: 100vh;
+            padding-bottom: 80px;
+        }
+
+        .search-container {
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Barre de recherche */
+        .search-bar-wrapper {
+            position: sticky;
+            top: 0;
+            background: #000428;
+            padding: 10px 0;
+            z-index: 10;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 40px 12px 15px;
+            border-radius: 25px;
+            border: none;
+            background: #2c2c2c;
+            color: white;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        /* Suggestions de comptes */
+        .section-title {
+            font-size: 14px;
+            color: #ccc;
+            margin: 20px 0 10px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .user-card {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 12px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            text-decoration: none;
+            color: white;
+        }
+
+        .user-thumb {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+            background: #333;
+        }
+
+        .user-details b {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .badge-blue { color: #1DA1F2; font-size: 14px; }
+
+        /* Tendances */
+        .hashtag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .hashtag-item {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        /* Nav Bar */
+        .nav-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: black;
+            padding: 15px;
+            display: flex;
+            justify-content: space-around;
+        }
+        
+        .nav-bar a { color: white; text-decoration: none; font-size: 24px; }
+    </style>
+</head>
+<body>
+
+<div class="search-container">
+    <div class="search-bar-wrapper">
+        <input type="text" class="search-input" placeholder="Rechercher des Anonymous...">
+    </div>
+
+    <div class="section-title">Comptes suggérés</div>
+    
+    <a href="profil.html" class="user-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Anonymous_emblem.svg" class="user-thumb">
+        <div class="user-details">
+            <b>Anonymous SOS FR <span class="badge-blue">✔</span></b>
+            <span style="font-size: 12px; color: #aaa;">@anonymous_sos_fr</span>
+        </div>
+    </a>
+
+    <div class="section-title">Tendances #</div>
+    <div class="hashtag-list">
+        <div class="hashtag-item">#OpFrance</div>
+        <div class="hashtag-item">#Anonymous</div>
+        <div class="hashtag-item">#CyberSecurity</div>
+        <div class="hashtag-item">#Liberté</div>
+    </div>
+</div>
+
+<div class="nav-bar">
+    <a href="index.html">🏠</a>
+    <a href="recherche.html">🔍</a>
+    <a href="profil.html" style="font-size: 32px; color: #fe2c55;">+</a>
+    <a href="#">📩</a>
+    <a href="profil.html">👤</a>
+</div>
+
+</body>
+</html>
