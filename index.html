@@ -2,14 +2,15 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>ANONYMOUS SOS FR - PROTECTION ACTIVE</title>
+    <title>ANONYMOUS SOS FR - MODDZ TOOL</title>
     <style>
         body { background: #000; color: #00FF41; font-family: 'Courier New', monospace; margin: 0; text-align: center; }
         header { border-bottom: 2px solid #00FF41; padding: 20px; background: #000; position: sticky; top: 0; z-index: 100; }
         .sos { color: red; } .fr { color: white; }
         .badge { background: #1DA1F2; color: white; border-radius: 50%; padding: 2px 7px; font-size: 12px; vertical-align: middle; }
         
-        #user-display { color: yellow; font-weight: bold; margin-bottom: 10px; display: none; }
+        /* ZONE ID CONNECTÉ */
+        #top-bar { background: #111; padding: 10px; border-bottom: 1px solid #333; display: none; color: yellow; font-weight: bold; }
         
         nav { margin-top: 15px; }
         nav button { background: #000; border: 1px solid #00FF41; color: #00FF41; padding: 10px 15px; cursor: pointer; font-weight: bold; margin: 5px; }
@@ -18,7 +19,7 @@
         .section { display: none; padding: 20px; max-width: 800px; margin: auto; }
         .active { display: block; }
 
-        .btn-sos { display: block; background: #25D366; color: white; padding: 15px; text-decoration: none; border-radius: 5px; margin: 20px auto; width: fit-content; font-weight: bold; box-shadow: 0 0 15px #25D366; }
+        .btn-sos { display: block; background: #25D366; color: white; padding: 15px; text-decoration: none; border-radius: 5px; margin: 20px auto; width: fit-content; font-weight: bold; }
         
         table { width: 100%; border-collapse: collapse; background: #080808; margin-top: 20px; }
         th { background: #00FF41; color: #000; padding: 10px; }
@@ -26,64 +27,55 @@
         .coins { color: #FFD700; font-weight: bold; }
         .buy { background: #00FF41; border: none; padding: 5px 10px; cursor: pointer; font-weight: bold; }
 
-        input, select, textarea { width: 100%; padding: 12px; margin: 10px 0; background: #000; border: 1px solid #00FF41; color: #00FF41; box-sizing: border-box; }
+        input, textarea { width: 100%; padding: 12px; margin: 10px 0; background: #000; border: 1px solid #00FF41; color: #00FF41; box-sizing: border-box; }
         footer { margin-top: 50px; padding: 20px; color: #333; font-size: 10px; border-top: 1px solid #111; }
     </style>
 </head>
 <body>
 
+<div id="top-bar">ID CONNECTÉ : <span id="display-id"></span></div>
+
 <header>
-    <div id="user-display">Bienvenue, <span id="id-name"></span></div>
     <h1>ANONYMOUS <span class="sos">SOS</span> <span class="fr">FR</span> <span class="badge">✓</span></h1>
     <nav>
-        <button onclick="ouvrir('boutique')">BOUTIQUE</button>
-        <button onclick="ouvrir('inscription')">INSCRIPTION</button>
-        <button onclick="ouvrir('connexion')">CONNEXION</button>
-        <button onclick="ouvrir('annonces')">ANNONCES</button>
+        <button onclick="changeSection('boutique')">BOUTIQUE</button>
+        <button onclick="changeSection('inscription')">INSCRIPTION</button>
+        <button onclick="changeSection('connexion')">CONNEXION</button>
+        <button onclick="changeSection('annonces')">ANNONCES</button>
     </nav>
 </header>
 
-<div class="widget" style="padding: 20px;">
+<div style="padding: 20px;">
     <p>📻 RADIO SKYROCK LIVE</p>
-    <audio id="radioPlayer" controls style="width: 100%; max-width: 400px; filter: invert(1);"><source src="https://icecast.skyrock.net/s/natio_mp3_128k"></audio>
-    <a href="https://wa.me/32456894335" target="_blank" class="btn-sos">🆘 SOS DIRECT WHATSAPP</a>
+    <audio controls style="width: 100%; max-width: 400px; filter: invert(1);"><source src="https://icecast.skyrock.net/s/natio_mp3_128k"></audio>
+    <a href="https://wa.me/32456894335" class="btn-sos">🆘 SOS DIRECT WHATSAPP</a>
 </div>
 
 <div id="boutique" class="section active">
     <h2>💎 BOUTIQUE (80 PACKS)</h2>
-    <table>
-        <thead>
-            <tr><th>PACK</th><th>PIÈCES</th><th>PRIX</th><th>ACTION</th></tr>
-        </thead>
-        <tbody id="shop-data"></tbody>
+    <table id="coin-table">
+        <thead><tr><th>PACK</th><th>PIÈCES</th><th>PRIX</th><th>ACHAT</th></tr></thead>
+        <tbody></tbody>
     </table>
 </div>
 
-<div id="inscription" class="section">
-    <h2>📝 REJOINDRE LE RÉSEAU</h2>
-    <form onsubmit="alert('Données protégées. Envoi sécurisé à despreschez@gmail.com'); return false;">
-        <input type="text" placeholder="ID (Identifiant)" required>
-        <input type="email" placeholder="Adresse Mail" required>
-        <input type="date" required>
-        <select><option>Homme</option><option>Femme</option></select>
-        <p><input type="checkbox" required> J'ai plus de 18 ans.</p>
-        <button type="submit" class="buy" style="width:100%; padding:15px;">S'INSCRIRE</button>
-    </form>
+<div id="connexion" class="section">
+    <h2>🔑 CONNEXION MOD TOOL</h2>
+    <input type="text" id="id-input" placeholder="Entrez votre ID">
+    <input type="password" id="pass-input" placeholder="Mot de passe">
+    <button class="buy" style="width:100%; padding:15px;" onclick="validerConnexion()">SE CONNECTER</button>
 </div>
 
-<div id="connexion" class="section">
-    <h2>🔑 ACCÈS COMPTE</h2>
-    <form onsubmit="checkLogin(event)">
-        <input type="text" id="user_id" placeholder="ID" required>
-        <input type="password" id="pass_val" placeholder="Mot de passe" required>
-        <button type="submit" class="buy" style="width:100%; padding:15px;">SE CONNECTER</button>
-    </form>
+<div id="inscription" class="section">
+    <h2>📝 INSCRIPTION</h2>
+    <input type="text" placeholder="ID">
+    <input type="email" placeholder="Email (despreschez@gmail.com)">
+    <button class="buy" style="width:100%; padding:15px;">VALIDER</button>
 </div>
 
 <div id="annonces" class="section">
     <h2>📢 ANNONCES VIP</h2>
-    <p>Contact admin : despreschez@gmail.com</p>
-    <textarea placeholder="Votre annonce sera vérifiée par l'admin..."></textarea>
+    <textarea placeholder="Votre annonce..."></textarea>
     <button class="buy" style="width:100%; padding:15px;">ENVOYER</button>
 </div>
 
@@ -92,35 +84,35 @@
 </footer>
 
 <script>
-    function ouvrir(id) {
-        var sections = document.getElementsByClassName('section');
-        for (var i = 0; i < sections.length; i++) {
-            sections[i].style.display = 'none';
-        }
+    // Navigation
+    function changeSection(id) {
+        let sections = document.getElementsByClassName('section');
+        for (let s of sections) s.style.display = 'none';
         document.getElementById(id).style.display = 'block';
     }
 
-    function checkLogin(e) {
-        e.preventDefault();
-        const identifiant = document.getElementById('user_id').value;
-        const motdepasse = document.getElementById('pass_val').value;
+    // Connexion
+    function validerConnexion() {
+        let user = document.getElementById('id-input').value;
+        let mdp = document.getElementById('pass-input').value;
         
-        if(motdepasse === "Loulou12") {
-            document.getElementById('user-display').style.display = 'block';
-            document.getElementById('id-name').innerText = identifiant;
-            alert("Accès Mod Tool Loulou12 Activé pour " + identifiant);
-            ouvrir('boutique');
+        if (mdp === "Loulou12") {
+            document.getElementById('top-bar').style.display = 'block';
+            document.getElementById('display-id').innerText = user;
+            alert("Bienvenue " + user + " ! Accès Mod Tool validé.");
+            changeSection('boutique');
         } else {
             alert("Mot de passe incorrect.");
         }
     }
 
-    const table = document.getElementById('shop-data');
-    const prixFixes = [1, 2, 3, 4, 5, 6, 10, 15, 20, 25, 30, 40, 55, 70, 80, 100, 150, 200, 250, 300, 350, 400];
+    // Remplissage 80 lignes
+    const tbody = document.querySelector('#coin-table tbody');
+    const pFixes = [1, 2, 3, 4, 5, 6, 10, 15, 20, 25, 30, 40, 55, 70, 80, 100, 150, 200, 250, 300, 350, 400];
     for (let i = 1; i <= 80; i++) {
-        let p = (i <= prixFixes.length) ? prixFixes[i-1] : 400 + (i * 5);
-        let c = Math.floor(p * 66);
-        table.innerHTML += "<tr><td>#" + i + "</td><td class='coins'>" + c.toLocaleString() + " 🪙</td><td>" + p.toFixed(2) + " €</td><td><button class='buy'>ACHETER</button></td></tr>";
+        let price = (i <= pFixes.length) ? pFixes[i-1] : 400 + (i * 5);
+        let coins = Math.floor(price * 66);
+        tbody.innerHTML += <tr><td>#${i}</td><td class="coins">${coins.toLocaleString()} 🪙</td><td>${price.toFixed(2)} €</td><td><button class="buy">ACHETER</button></td></tr>;
     }
 </script>
 </body>
