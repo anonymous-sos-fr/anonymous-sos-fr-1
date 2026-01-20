@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forum - anonymous sos fr.</title>
+    <style>
+        /* Style Full Screen type TikTok */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-color: #000;
+            color: #fff;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory; /* L'effet aimanté de TikTok */
+        }
+
+        /* Chaque "Post" prend tout l'écran */
+        .post {
+            height: 100vh;
+            width: 100%;
+            scroll-snap-align: start;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            border-bottom: 1px solid #222;
+        }
+
+        /* Bouton pour rejoindre la PAGE PRINCIPALE */
+        .btn-main {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 12px 24px;
+            background-color: #fff;
+            color: #000;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            z-index: 9999;
+            box-shadow: 0 4px 15px rgba(255,255,255,0.2);
+        }
+
+        .user-tag {
+            color: #fe2c55; /* Rouge TikTok */
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .content-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            width: 80%;
+            max-width: 400px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <a href="main.html" class="btn-main">Retour Page Principale</a>
+
+    <section class="post">
+        <div class="user-tag">@Anonymous_sos_fr</div>
+        <div class="content-box">
+            <h3>Bienvenue sur le flux</h3>
+            <p>Ici, c'est comme TikTok. Swipe vers le bas !</p>
+        </div>
+    </section>
+
+    <section class="post">
+        <div class="user-tag">@System_148</div>
+        <div class="content-box">
+            <h3>Modification 148</h3>
+            <p>Le contenu s'affiche ici en plein écran.</p>
+        </div>
+    </section>
+
+</body>
+</html>
