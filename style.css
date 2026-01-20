@@ -1,140 +1,70 @@
-/* --- BASE DU SITE --- */
+/* Design global Anonymous SOS FR */
+:root {
+    --bg-dark: #0a0a0a;
+    --accent-red: #ff0000;
+    --text-white: #ffffff;
+    --gray-panel: #1a1a1a;
+}
+
 body {
-    background-color: #87CEEB; /* Bleu ciel clair demandé */
-    margin: 0;
-    padding: 0;
+    background-color: var(--bg-dark);
+    color: var(--text-white);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
+    margin: 0;
 }
 
-/* --- NAVIGATION EN HAUT --- */
-.navbar {
-    width: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    padding: 15px 0;
+/* Header */
+.live-header {
     display: flex;
-    justify-content: center;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+    justify-content: space-between;
+    padding: 15px;
+    background: rgba(0,0,0,0.6);
 }
 
-.nav-links button {
-    background: transparent;
-    border: 2px solid white;
-    color: white;
-    padding: 10px 20px;
-    margin: 0 10px;
+.live-badge {
+    background: var(--accent-red);
+    padding: 2px 10px;
+    border-radius: 5px;
     font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.nav-links button:hover {
-    background: white;
-    color: black;
-}
-
-/* --- LOGO CENTRAL AVEC BADGE BLEU --- */
-.main-container {
-    text-align: center;
-    margin-top: 50px;
-}
-
-.logo-wrapper {
-    position: relative;
     display: inline-block;
 }
 
-.main-logo {
-    width: 350px; /* Taille du masque + terre */
-    filter: drop-shadow(0 0 15px rgba(0,0,0,0.3));
+/* Grille des 30 invités */
+.guests-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+    padding: 10px;
+    background: var(--gray-panel);
+    border-radius: 15px;
 }
 
-/* Badge Bleu Style TikTok */
-.verified-badge {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    background-color: #20D5EC; /* Le bleu TikTok */
-    color: white;
+.guest-slot {
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
-    width: 25px;
-    height: 25px;
+    background: #333;
+    border: 1px dashed #666;
     display: flex;
-    align-items: center;
     justify-content: center;
-    font-size: 14px;
-    border: 2px solid white;
-    font-weight: bold;
-}
-
-/* --- RADIO CENTRÉE --- */
-.radio-section {
-    margin: 40px 0;
-    background: rgba(255, 255, 255, 0.2);
-    padding: 20px;
-    border-radius: 50px;
-    border: 2px solid white;
-}
-
-#playBtn {
-    background: #000;
-    color: #00f2ea; /* Couleur néon */
-    border: none;
-    padding: 15px 40px;
-    border-radius: 30px;
-    font-size: 1.2rem;
-    font-weight: bold;
+    align-items: center;
     cursor: pointer;
 }
 
-/* --- ABONNEMENT VIP ET PRIX (€) --- */
-.vip-section {
-    background: white;
-    color: black;
-    padding: 20px;
-    border-radius: 15px;
-    width: 80%;
-    max-width: 500px;
-    text-align: center;
-    margin-bottom: 50px;
-}
-
-.price-tag {
-    font-size: 24px;
+/* Boutons */
+.btn-gift {
+    background: var(--accent-red);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
     font-weight: bold;
-    color: #2ecc71;
 }
 
-/* --- FORMULAIRE (ID, GENRE, CONSIGNES) --- */
-.form-group {
-    margin-bottom: 15px;
-    text-align: left;
-}
-
-input, select {
-    width: 100%;
+.btn-translate {
+    background: #333;
+    color: white;
+    border: 1px solid #555;
     padding: 10px;
-    margin-top: 5px;
+    border-radius: 10px;
 }
-
-.terms-check {
-    font-size: 0.9rem;
-    margin: 10px 0;
-}
-
-/* Pied de page */
-footer {
-    margin-top: auto;
-    padding: 20px;
-    font-weight: bold;
-    text-transform: uppercase;
-}<div class="tiktok-pub-section">
-    <h2>Gagne de l'argent en t'amusant !</h2>
-    <p>Regarde des vidéos illimitées, participe au classement et gagne des cadeaux ou 50 € tous les mois !</p>
-    <a href="publicite.html" class="btn-primary">Jouer et gagner</a>
-</div>
