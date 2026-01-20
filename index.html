@@ -2,134 +2,148 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>anonymous sos fr - Système Complet</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anonymous SOS FR - Officiel</title>
     <style>
-        body { font-family: 'Arial', sans-serif; background-color: #050505; color: white; margin: 0; padding: 0; text-align: center; }
-        .navbar { background: #111; padding: 15px; display: flex; justify-content: center; gap: 20px; border-bottom: 2px solid #ff0000; position: sticky; top: 0; z-index: 1000; }
-        .btn { padding: 10px 20px; text-decoration: none; color: white; font-weight: bold; border: 1px solid #444; border-radius: 5px; cursor: pointer; background: #222; transition: 0.3s; }
-        .btn:hover { background: #ff0000; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #0b0b0b; color: #ffffff; margin: 0; text-align: center; }
         
-        .section { display: none; padding: 40px; margin: 20px; border-radius: 10px; background: #111; border: 1px solid #333; }
-        input, select { padding: 10px; margin: 5px; border-radius: 5px; border: 1px solid #444; background: #000; color: white; width: 250px; }
+        /* BARRE DE NAVIGATION */
+        .navbar { background: #151515; padding: 15px; display: flex; justify-content: center; gap: 15px; border-bottom: 2px solid #ff0000; position: sticky; top: 0; z-index: 1000; flex-wrap: wrap; }
+        .btn { padding: 12px 20px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; background: #252525; color: white; text-transform: uppercase; font-size: 13px; }
+        .btn:hover { background: #ff0000; transform: scale(1.05); }
+        .btn-admin { background: #4a148c; }
+        .btn-sos { background: #25d366; color: white; display: flex; align-items: center; gap: 8px; }
+
+        /* BADGE CERTIFIE */
+        .badge-certifie { width: 18px; vertical-align: middle; margin-left: 5px; }
+
+        /* SECTIONS */
+        .section { display: none; padding: 50px 20px; animation: fadeIn 0.5s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         
         /* BOUTIQUE */
-        #boutique { background: #1a1a1a; border: 2px solid #ffd700; display: none; margin: 20px auto; width: 80%; padding: 20px; border-radius: 10px; }
-        .coin-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; }
-        .coin-card { background: #222; padding: 15px; border: 1px solid #ff0000; border-radius: 8px; }
-        .price { color: #ffd700; font-weight: bold; display: block; }
+        #boutique-modal { display: none; background: rgba(0,0,0,0.9); position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 2000; padding-top: 100px; }
+        .boutique-content { background: #1a1a1a; width: 80%; max-width: 600px; margin: auto; padding: 30px; border: 2px solid #ffd700; border-radius: 15px; }
+        .grid-boutique { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
+        .item-boutique { background: #222; padding: 15px; border-radius: 10px; border: 1px solid #444; }
+        .prix { color: #ffd700; font-weight: bold; }
 
-        /* ESPACE MEMBRE (PAGE 2) */
-        .video-feed { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 30px; }
-        .video-card { background: #222; border: 1px solid #444; height: 350px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-direction: column; }
+        /* FORMULAIRES */
+        input, select { padding: 12px; margin: 10px 0; width: 100%; max-width: 300px; border-radius: 5px; border: 1px solid #333; background: #000; color: white; }
+        .btn-submit { background: #ff0000; width: 100%; max-width: 325px; padding: 12px; margin-top: 10px; }
+
+        /* PAGE 2 - PROFIL */
+        .feed { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 20px; }
+        .post-card { background: #181818; border-radius: 12px; padding: 15px; border: 1px solid #333; }
+        .upload-zone { background: #222; padding: 30px; border: 2px dashed #444; border-radius: 15px; margin-bottom: 30px; }
     </style>
 </head>
 <body>
 
     <div class="navbar">
-        <button class="btn" onclick="showSection('accueil')">ACCUEIL</button>
-        <button class="btn" onclick="toggleBoutique()">BOUTIQUE</button>
-        <button class="btn" onclick="showSection('inscription')">INSCRIPTION</button>
-        <button class="btn" onclick="showSection('connexion')">CONNEXION</button>
-        <button class="btn" style="background:#4a148c;" onclick="adminAccess()">ADMIN</button>
+        <button class="btn" onclick="openBoutique()">BOUTIQUE</button>
+        <button class="btn" onclick="showPage('inscription')">INSCRIPTION</button>
+        <button class="btn" onclick="showPage('connexion')">CONNEXION</button>
+        <button class="btn btn-admin" onclick="accesAdmin()">ADMIN</button>
+        <a href="https://wa.me/32456894335" class="btn btn-sos" target="_blank">🆘 SOS WHATSAPP</a>
     </div>
 
-    <div id="boutique">
-        <h2>💎 PIÈCES ANONYMOUS SOS FR</h2>
-        <div class="coin-grid">
-            <div class="coin-card">70 Pièces <span class="price">0,95€</span></div>
-            <div class="coin-card">350 Pièces <span class="price">4,50€</span></div>
-            <div class="coin-card">1400 Pièces <span class="price">17,50€</span></div>
-            <div class="coin-card">7000 Pièces <span class="price">85,00€</span></div>
+    <div id="boutique-modal">
+        <div class="boutique-content">
+            <h2>💎 BOUTIQUE OFFICIELLE</h2>
+            <div class="grid-boutique">
+                <div class="item-boutique">70 Pièces <br><span class="prix">0,95€</span></div>
+                <div class="item-boutique">350 Pièces <br><span class="prix">4,50€</span></div>
+                <div class="item-boutique">1400 Pièces <br><span class="prix">17,50€</span></div>
+                <div class="item-boutique">7000 Pièces <br><span class="prix">85,00€</span></div>
+                <div class="item-boutique" style="grid-column: span 2; border-color: #ff0000;">🎁 CAISSE MYSTÈRE <br><span class="prix">Sur demande Admin</span></div>
+            </div>
+            <br>
+            <button class="btn" onclick="closeBoutique()">FERMER</button>
         </div>
-        <p>Support : +32 456 89 43 35 | despreschez@gmail.com</p>
     </div>
 
-    <div id="accueil" class="section" style="display:block;">
-        <h1>🔥 ANONYMOUS SOS FR</h1>
-        <p>Le présent est très important.</p>
-        <div style="margin: 20px auto; width: fit-content; background: #222; padding: 15px; border-radius: 50px;">
-            <span>📻 RADIO SKYROCK : </span>
+    <div id="accueil" class="section" style="display: block;">
+        <h1>🔥 ANONYMOUS SOS FR <img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Twitter_Verified_Badge.svg" class="badge-certifie" alt="Certifié"></h1>
+        <p><i>"Le présent est très important pour moi."</i></p>
+        <br>
+        <div style="background: #1a1a1a; padding: 20px; border-radius: 50px; display: inline-block;">
+            <p style="margin: 0 0 10px 0;">📻 EN DIRECT : RADIO SKYROCK</p>
             <audio controls><source src="https://icecast.skyrock.net/s/natio_mp3_128k" type="audio/mpeg"></audio>
         </div>
     </div>
 
     <div id="inscription" class="section">
-        <h2>CRÉER UN COMPTE</h2>
-        <input type="text" placeholder="Choisir un ID" id="reg-id"><br>
-        <input type="email" placeholder="Adresse Email (Privée)" id="reg-email"><br>
-        <input type="password" placeholder="Mot de passe" id="reg-pass"><br>
+        <h2>INSCRIPTION</h2>
+        <input type="text" id="reg-id" placeholder="Votre ID (ex: Anonymous77)"><br>
+        <input type="email" id="reg-email" placeholder="Adresse Email"><br>
+        <input type="password" id="reg-pass" placeholder="Mot de passe"><br>
         <p>Date de naissance :</p>
-        <select id="jour"></select><select id="mois"></select><select id="annee"></select><br>
-        <input type="checkbox" id="majeur"> <label>Je suis majeur (18+)</label><br><br>
-        <button class="btn" style="background:green;" onclick="alert('Compte créé ! Connectez-vous.')">S'INSCRIRE</button>
+        <select id="j"></select> <select id="m"></select> <select id="a"></select><br>
+        <button class="btn btn-submit" onclick="showPage('page2')">S'INSCRIRE ET SE CONNECTER</button>
     </div>
 
     <div id="connexion" class="section">
         <h2>CONNEXION</h2>
-        <p>Entrez votre ID et mot de passe pour accéder à votre espace.</p>
-        <input type="text" placeholder="Votre ID" id="login-id"><br>
-        <input type="password" placeholder="Mot de passe" id="login-pass"><br><br>
-        <button class="btn" style="background:green;" onclick="login()">SE CONNECTER</button>
+        <input type="text" id="login-id" placeholder="ID"><br>
+        <input type="password" id="login-pass" placeholder="Mot de passe"><br>
+        <button class="btn btn-submit" onclick="validerConnexion()">SE CONNECTER</button>
     </div>
 
-    <div id="page-membre" class="section">
-        <h1 id="user-welcome">Bienvenue sur ton profil</h1>
-        <hr border="1" color="#ff0000">
-        
-        <h3>🎥 PUBLIER UNE VIDÉO PUBLIQUE</h3>
-        <p>Tout le monde pourra voir votre vidéo sur le fil d'actualité.</p>
-        <input type="file" accept="video/*"><br><br>
-        <button class="btn" style="background: #2e7d32;" onclick="uploadVideo()">PUBLIER SUR MON PROFIL</button>
+    <div id="page2" class="section">
+        <h1 id="pseudo-title">Mon Profil</h1>
+        <div class="upload-zone">
+            <h3>PARTAGER DU CONTENU</h3>
+            <p>Ajoutez vos vidéos ou photos pour la communauté.</p>
+            <input type="file" accept="video/,image/" id="file-input"><br>
+            <button class="btn" style="background: green;" onclick="publier()">PUBLIER SUR LE FIL</button>
+        </div>
 
-        <h2>🎞️ FIL D'ACTUALITÉ (VIDÉOS DES MEMBRES)</h2>
-        <div class="video-feed">
-            <div class="video-card">Vidéo de @Membre1</div>
-            <div class="video-card">Vidéo de @Membre2</div>
-            <div class="video-card">Vidéo de @Membre3</div>
+        <h3>📽️ FIL D'ACTUALITÉ PUBLIQUE</h3>
+        <div class="feed" id="video-feed">
+            <div class="post-card">Dernière vidéo de la communauté...</div>
         </div>
     </div>
 
     <script>
-        // Remplissage dates
-        const j=document.getElementById('jour'), m=document.getElementById('mois'), a=document.getElementById('annee');
+        // Initialisation dates
+        const j=document.getElementById('j'), m=document.getElementById('m'), a=document.getElementById('a');
         for(let i=1;i<=31;i++) j.innerHTML += <option>${i}</option>;
-        const moisNom = ["Janv","Févr","Mars","Avr","Mai","Juin","Juil","Août","Sept","Oct","Nov","Déc"];
-        moisNom.forEach((mo, i) => m.innerHTML += <option value="${i+1}">${mo}</option>);
+        const mois = ["Jan","Fév","Mar","Avr","Mai","Jui","Juil","Aoû","Sep","Oct","Nov","Déc"];
+        mois.forEach((mn, i) => m.innerHTML += <option value="${i+1}">${mn}</option>);
         for(let i=2010;i>=1950;i--) a.innerHTML += <option>${i}</option>;
 
-        function showSection(id) {
+        // FONCTIONS NAVIGATION
+        function showPage(pageId) {
             document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
-            document.getElementById(id).style.display = 'block';
+            document.getElementById(pageId).style.display = 'block';
+            window.scrollTo(0,0);
         }
 
-        function toggleBoutique() {
-            const b = document.getElementById('boutique');
-            b.style.display = (b.style.display === 'block') ? 'none' : 'block';
-        }
+        function openBoutique() { document.getElementById('boutique-modal').style.display = 'block'; }
+        function closeBoutique() { document.getElementById('boutique-modal').style.display = 'none'; }
 
-        function login() {
+        function validerConnexion() {
             const id = document.getElementById('login-id').value;
-            if(id !== "") {
-                document.getElementById('user-welcome').innerText = "Bienvenue, " + id;
-                showSection('page-membre');
-            } else {
-                alert("Veuillez entrer votre ID.");
-            }
+            const pass = document.getElementById('login-pass').value;
+            if(id && pass) {
+                document.getElementById('pseudo-title').innerText = "Profil de " + id;
+                showPage('page2');
+            } else { alert("Remplis l'ID et le MDP !"); }
         }
 
-        function uploadVideo() {
-            // Ici, on pourrait ajouter un mot de passe spécifique si tu veux limiter
-            alert("Ta vidéo est en cours de traitement pour être vue par tous les membres !");
-        }
-
-        function adminAccess() {
-            let p = prompt("Mot de passe Administrateur :");
+        function accesAdmin() {
+            const p = prompt("Mot de passe ADMIN requis :");
             if(p === "Loulou12") {
-                alert("Accès équipe autorisé.");
-                // Redirection vers ton lien admin
-            } else {
-                alert("Accès refusé.");
-            }
+                alert("Accès autorisé. Bienvenue Anonymous SOS FR.");
+            } else { alert("Accès refusé."); }
+        }
+
+        function publier() {
+            const file = document.getElementById('file-input').value;
+            if(file) {
+                alert("En attente de validation par un admin avant publication...");
+            } else { alert("Choisis un fichier !"); }
         }
     </script>
 </body>
