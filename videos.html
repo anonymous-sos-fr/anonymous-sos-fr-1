@@ -102,7 +102,40 @@
             video.src = url;
             video.load();
             video.play();
-            document.getElementById('view-count').innerText = "1"; // Simule une première vue
+            document.getElementById('view-count').innerText = "1"; // <div class="video-upload-section" style="background: #1a1a1a; padding: 20px; border-radius: 10px; border: 1px solid #333; margin-top: 20px;">
+    <h3 style="color: #fff; margin-bottom: 15px;">Partager une vidéo</h3>
+    
+    <form id="uploadVideoForm">
+        <div style="margin-bottom: 15px;">
+            <label style="color: #ccc; display: block; margin-bottom: 5px;">Lien de la vidéo (YouTube, MP4, etc.)</label>
+            <input type="text" id="videoUrl" placeholder="https://..." style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #444; background: #000; color: #fff;">
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <label style="color: #ccc; display: block; margin-bottom: 5px;">Ou choisir un fichier local</label>
+            <input type="file" id="videoFile" accept="video/*" style="color: #fff;">
+        </div>
+
+        <button type="submit" style="background: #ff0000; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold;">
+            Publier sur mon profil
+        </button>
+    </form>
+</div>
+
+<script>
+document.getElementById('uploadVideoForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const url = document.getElementById('videoUrl').value;
+    const file = document.getElementById('videoFile').files[0];
+    
+    if(url || file) {
+        alert("Vidéo envoyée avec succès sur anonymous sos fr !");
+        // Ici on ajoutera plus tard la logique pour afficher la vidéo réellement
+    } else {
+        alert("Veuillez entrer un lien ou choisir un fichier.");
+    }
+});
+</script>
         } else {
             alert("Veuillez coller un lien valide !");
         }
