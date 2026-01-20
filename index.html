@@ -2,12 +2,14 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>ANONYMOUS SOS FR - OFFICIAL</title>
+    <title>ANONYMOUS SOS FR - PROTECTION ACTIVE</title>
     <style>
         body { background: #000; color: #00FF41; font-family: 'Courier New', monospace; margin: 0; text-align: center; }
         header { border-bottom: 2px solid #00FF41; padding: 20px; background: #000; position: sticky; top: 0; z-index: 100; }
         .sos { color: red; } .fr { color: white; }
         .badge { background: #1DA1F2; color: white; border-radius: 50%; padding: 2px 7px; font-size: 12px; vertical-align: middle; }
+        
+        #user-display { color: yellow; font-weight: bold; margin-bottom: 10px; display: none; }
         
         nav { margin-top: 15px; }
         nav button { background: #000; border: 1px solid #00FF41; color: #00FF41; padding: 10px 15px; cursor: pointer; font-weight: bold; margin: 5px; }
@@ -31,6 +33,7 @@
 <body>
 
 <header>
+    <div id="user-display">Bienvenue, <span id="id-name"></span></div>
     <h1>ANONYMOUS <span class="sos">SOS</span> <span class="fr">FR</span> <span class="badge">✓</span></h1>
     <nav>
         <button onclick="ouvrir('boutique')">BOUTIQUE</button>
@@ -42,7 +45,7 @@
 
 <div class="widget" style="padding: 20px;">
     <p>📻 RADIO SKYROCK LIVE</p>
-    <audio controls style="width: 100%; max-width: 400px; filter: invert(1);"><source src="https://icecast.skyrock.net/s/natio_mp3_128k"></audio>
+    <audio id="radioPlayer" controls style="width: 100%; max-width: 400px; filter: invert(1);"><source src="https://icecast.skyrock.net/s/natio_mp3_128k"></audio>
     <a href="https://wa.me/32456894335" target="_blank" class="btn-sos">🆘 SOS DIRECT WHATSAPP</a>
 </div>
 
@@ -58,11 +61,11 @@
 
 <div id="inscription" class="section">
     <h2>📝 REJOINDRE LE RÉSEAU</h2>
-    <form action="mailto:despreschez@gmail.com" method="post" enctype="text/plain">
-        <input type="text" name="ID" placeholder="ID (Identifiant)" required>
-        <input type="email" name="Email" placeholder="Adresse Mail" required>
-        <input type="date" name="Naissance" required>
-        <select name="Genre"><option>Homme</option><option>Femme</option></select>
+    <form onsubmit="alert('Données protégées. Envoi sécurisé à despreschez@gmail.com'); return false;">
+        <input type="text" placeholder="ID (Identifiant)" required>
+        <input type="email" placeholder="Adresse Mail" required>
+        <input type="date" required>
+        <select><option>Homme</option><option>Femme</option></select>
         <p><input type="checkbox" required> J'ai plus de 18 ans.</p>
         <button type="submit" class="buy" style="width:100%; padding:15px;">S'INSCRIRE</button>
     </form>
@@ -71,8 +74,8 @@
 <div id="connexion" class="section">
     <h2>🔑 ACCÈS COMPTE</h2>
     <form onsubmit="checkLogin(event)">
-        <input type="text" id="user" placeholder="ID" required>
-        <input type="password" id="pass" placeholder="Mot de passe" required>
+        <input type="text" id="user_id" placeholder="ID" required>
+        <input type="password" id="pass_val" placeholder="Mot de passe" required>
         <button type="submit" class="buy" style="width:100%; padding:15px;">SE CONNECTER</button>
     </form>
 </div>
@@ -99,8 +102,14 @@
 
     function checkLogin(e) {
         e.preventDefault();
-        if(document.getElementById('pass').value === "Loulou12") {
-            alert("Accès Mod Tool Loulou12 Activé ! Bienvenue Anonymous SOS FR.");
+        const identifiant = document.getElementById('user_id').value;
+        const motdepasse = document.getElementById('pass_val').value;
+        
+        if(motdepasse === "Loulou12") {
+            document.getElementById('user-display').style.display = 'block';
+            document.getElementById('id-name').innerText = identifiant;
+            alert("Accès Mod Tool Loulou12 Activé pour " + identifiant);
+            ouvrir('boutique');
         } else {
             alert("Mot de passe incorrect.");
         }
