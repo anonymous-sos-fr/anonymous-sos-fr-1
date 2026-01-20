@@ -1,3 +1,39 @@
+// Générer les 30 slots d'invités au chargement
+document.addEventListener('DOMContentLoaded', () => {
+    const grid = document.getElementById('guestsGrid');
+    for (let i = 1; i <= 30; i++) {
+        const slot = document.createElement('div');
+        slot.className = 'guest-slot';
+        slot.innerHTML = '+';
+        slot.onclick = () => inviteMember(i);
+        grid.appendChild(slot);
+    }
+});
+
+// Système de Tapotage (Cœurs)
+function sendHeart() {
+    const container = document.getElementById('heart-container');
+    const heart = document.createElement('div');
+    heart.innerHTML = '❤️';
+    heart.className = 'floating-heart';
+    container.appendChild(heart);
+    setTimeout(() => heart.remove(), 2000);
+}
+
+// Gestion des pièces et commission (Anonymous SOS FR)
+function processGift(amountInCoins) {
+    const commission = 0.20; // Tu prends 20%
+    const adminProfit = amountInCoins * commission;
+    const streamerNet = amountInCoins - adminProfit;
+
+    console.log("Profit pour le site : " + adminProfit + " pièces");
+    console.log("Crédit pour le streamer : " + streamerNet + " pièces");
+}
+
+// Simuler la traduction de voix
+function startVoiceTranslation() {
+    alert("Traduction vocale activée (Français <-> Anglais)");
+}
 function modAction(type) {
     let target = prompt("Entrez le nom (ID) de l'utilisateur :");
     
