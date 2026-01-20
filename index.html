@@ -10,13 +10,10 @@
             background-size: cover; 
             color: #00FF41; 
             font-family: 'Courier New', monospace; 
-            margin: 0; 
-            padding: 0; 
-            text-align: center;
+            margin: 0; padding: 0; text-align: center;
         }
         
-        /* OVERLAY POUR LIRE LE TEXTE */
-        .overlay { background: rgba(0, 0, 0, 0.85); min-height: 100vh; padding-bottom: 50px; }
+        .overlay { background: rgba(0, 0, 0, 0.85); min-height: 100vh; padding-bottom: 80px; }
 
         header { border-bottom: 2px solid #00FF41; padding: 10px; background: rgba(0,0,0,0.9); position: sticky; top: 0; z-index: 1000; }
         .logo { font-size: 1.2em; font-weight: bold; margin-bottom: 10px; }
@@ -26,30 +23,42 @@
         .nav-top { display: flex; justify-content: center; gap: 5px; flex-wrap: wrap; }
         .nav-top button { background: #000; border: 1px solid #00FF41; color: #00FF41; padding: 8px 10px; font-size: 10px; font-weight: bold; cursor: pointer; }
 
-        #admin-info { display: none; background: yellow; color: #000; padding: 5px; font-weight: bold; font-size: 12px; }
+        #admin-status { display: none; background: yellow; color: #000; padding: 5px; font-weight: bold; font-size: 12px; }
 
         .content { display: none; padding: 15px; max-width: 500px; margin: auto; }
         .active { display: block !important; }
 
-        /* BOUTIQUE */
-        table { width: 100%; border-collapse: collapse; font-size: 11px; background: rgba(0,0,0,0.8); }
-        td, th { border: 1px solid #00FF41; padding: 8px; }
-        .gold { color: #FFD700; font-weight: bold; }
-
-        /* FORMULAIRES */
-        input, textarea { width: 100%; padding: 12px; margin: 8px 0; background: #000; border: 1px solid #00FF41; color: #00FF41; box-sizing: border-box; }
+        input { width: 100%; padding: 12px; margin: 8px 0; background: #000; border: 1px solid #00FF41; color: #00FF41; box-sizing: border-box; }
         .check-box { display: flex; align-items: center; gap: 10px; font-size: 11px; text-align: left; padding: 10px 0; }
         .btn-valid { background: #00FF41; color: #000; border: none; padding: 12px; width: 100%; font-weight: bold; cursor: pointer; }
 
-        .btn-sos { display: block; background: #25D366; color: white; padding: 15px; text-decoration: none; border-radius: 8px; margin: 20px auto; width: 80%; font-weight: bold; font-size: 1.1em; box-shadow: 0 0 15px #25D366; }
-        
+        table { width: 100%; border-collapse: collapse; font-size: 11px; margin-top: 10px; background: rgba(0,0,0,0.8); }
+        td, th { border: 1px solid #00FF41; padding: 8px; }
+        .gold { color: #FFD700; font-weight: bold; }
+
+        /* SOS WHATSAPP EN PETIT ROND */
+        .wa-float {
+            position: fixed;
+            width: 60px; height: 60px;
+            bottom: 20px; right: 20px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+            z-index: 1001;
+            display: flex; align-items: center; justify-content: center;
+            text-decoration: none;
+        }
+
         footer { font-size: 9px; color: #555; padding: 20px; }
     </style>
 </head>
 <body>
 
 <div class="overlay">
-    <div id="admin-info">SESSION ADMIN : <span id="adm-name"></span></div>
+    <div id="admin-status">SESSION : <span id="current-user"></span></div>
 
     <header>
         <div class="logo">ANONYMOUS <span class="sos">SOS</span> <span class="fr">FR</span> <span class="verified">✓</span></div>
@@ -62,39 +71,39 @@
     </header>
 
     <div id="boutique" class="content">
-        <h4 style="margin: 5px;">💎 LISTE DES PIÈCES</h4>
+        <h4>💎 PIÈCES</h4>
         <table>
             <thead><tr><th>#</th><th>PIÈCES</th><th>PRIX</th></tr></thead>
-            <tbody id="shop-data"></tbody>
+            <tbody id="shop-list"></tbody>
         </table>
     </div>
 
     <div id="inscription" class="content">
         <h4>📝 CRÉER UN COMPTE</h4>
-        <input type="text" placeholder="ID (Identifiant)">
-        <input type="email" placeholder="Email (despreschez@gmail.com)">
-        <input type="password" placeholder="Mot de passe">
+        <input type="text" id="reg-id" placeholder="ID (Identifiant)">
+        <input type="email" id="reg-mail" placeholder="Email">
+        <input type="password" id="reg-pw" placeholder="Mot de passe">
         <div class="check-box">
-            <input type="checkbox" id="majorite" style="width:auto;">
-            <label for="majorite">Je certifie être majeur (+18 ans).</label>
+            <input type="checkbox" id="age-check" style="width:auto;">
+            <label for="age-check">Je certifie avoir plus de 18 ans.</label>
         </div>
-        <button class="btn-valid" onclick="alert('Demande envoyée !')">S'INSCRIRE</button>
+        <button class="btn-valid" onclick="saveUser()">VALIDER L'INSCRIPTION</button>
     </div>
 
     <div id="connexion" class="content">
-        <h4>🔑 ACCÈS</h4>
-        <input type="text" id="log-u" placeholder="Identifiant">
-        <input type="password" id="log-p" placeholder="Mot de passe">
-        <button class="btn-valid" onclick="checkLog()">SE CONNECTER</button>
+        <h4>🔑 CONNEXION</h4>
+        <input type="text" id="log-id" placeholder="ID">
+        <input type="password" id="log-pw" placeholder="Mot de passe">
+        <button class="btn-valid" onclick="loginUser()">SE CONNECTER</button>
     </div>
 
     <div id="annonces" class="content">
         <h4>📢 ANNONCES VIP</h4>
-        <textarea rows="4" placeholder="Votre texte..."></textarea>
+        <textarea rows="4" placeholder="Votre texte..." style="width:100%; background:#000; border:1px solid #00FF41; color:#00FF41;"></textarea>
         <button class="btn-valid">PUBLIER</button>
     </div>
 
-    <a href="https://wa.me/32456894335" class="btn-sos">🆘 SOS WHATSAPP DIRECT</a>
+    <a href="https://wa.me/32456894335" class="wa-float" target="_blank">🆘</a>
 
     <footer>anonymous sos fr - password: Loulou12</footer>
 </div>
@@ -104,39 +113,59 @@
         var contents = document.getElementsByClassName('content');
         for (var i = 0; i < contents.length; i++) { contents[i].classList.remove('active'); }
         document.getElementById(id).classList.add('active');
-        if(id === 'boutique') loadCoins();
+        if(id === 'boutique') loadShop();
     }
 
     function toggleBoutique() {
         var b = document.getElementById('boutique');
-        if(b.classList.contains('active')) {
-            b.classList.remove('active');
-        } else {
+        b.classList.contains('active') ? b.classList.remove('active') : ouvrir('boutique');
+    }
+
+    // Sauvegarde des données localement
+    function saveUser() {
+        const id = document.getElementById('reg-id').value;
+        const pw = document.getElementById('reg-pw').value;
+        const age = document.getElementById('age-check').checked;
+
+        if(!id || !pw) { alert("Remplissez tous les champs !"); return; }
+        if(!age) { alert("Vous devez avoir +18 ans !"); return; }
+
+        localStorage.setItem(id, pw); // Stocke l'ID et le MDP
+        alert("Compte créé avec succès ! Connectez-vous maintenant.");
+        ouvrir('connexion');
+    }
+
+    // Vérification de la connexion
+    function loginUser() {
+        const id = document.getElementById('log-id').value;
+        const pw = document.getElementById('log-pw').value;
+        const storedPw = localStorage.getItem(id);
+
+        if(pw === "Loulou12") { // Accès Admin spécial
+            document.getElementById('admin-status').style.display = 'block';
+            document.getElementById('current-user').innerText = "ADMIN (" + id + ")";
+            alert("Mode Admin Activé !");
             ouvrir('boutique');
+        } else if (storedPw && storedPw === pw) {
+            document.getElementById('admin-status').style.display = 'block';
+            document.getElementById('current-user').innerText = id;
+            alert("Connexion réussie ! Bienvenue " + id);
+            ouvrir('boutique');
+        } else {
+            alert("ID ou mot de passe incorrect.");
         }
     }
 
-    function loadCoins() {
-        var list = document.getElementById('shop-data');
+    function loadShop() {
+        var list = document.getElementById('shop-list');
         if(list.innerHTML !== "") return;
         var pFix = [1, 2, 3, 4, 5, 6, 10, 15, 20, 25, 30, 40, 55, 70, 80, 100, 150, 200, 250, 300, 350, 400];
-        var html = "";
+        var h = "";
         for (var i = 1; i <= 80; i++) {
             var pr = (i <= pFix.length) ? pFix[i-1] : 400 + (i * 2);
-            html += "<tr><td>" + i + "</td><td class='gold'>" + (pr * 66).toLocaleString() + " 🪙</td><td>" + pr + "€</td></tr>";
+            h += "<tr><td>#" + i + "</td><td class='gold'>" + (pr * 66).toLocaleString() + " 🪙</td><td>" + pr.toFixed(2) + "€</td></tr>";
         }
-        list.innerHTML = html;
-    }
-
-    function checkLog() {
-        var u = document.getElementById('log-u').value;
-        var p = document.getElementById('log-p').value;
-        if(p === "Loulou12") {
-            document.getElementById('admin-info').style.display = 'block';
-            document.getElementById('adm-name').innerText = u;
-            alert("Accès autorisé !");
-            ouvrir('boutique');
-        } else { alert("Erreur identifiants."); }
+        list.innerHTML = h;
     }
 </script>
 
