@@ -3,145 +3,185 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>anonymous sos fr</title>
+    <title>Anonymous SOS FR - Official Site</title>
     <style>
-        body { font-family: sans-serif; background: #0d0d0d; color: white; text-align: center; margin: 0; padding: 10px; }
-        .site-title { font-size: 1.4em; font-weight: bold; margin: 20px 0; display: flex; align-items: center; justify-content: center; gap: 10px; }
-        .badge { width: 20px; cursor: pointer; }
-        .nav-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; margin-bottom: 20px; }
-        .btn { padding: 12px; background: #1a1a1a; border: 1px solid #333; color: white; border-radius: 5px; font-weight: bold; cursor: pointer; font-size: 0.8em; }
-        .section { display: none; background: #111; border: 1px solid #333; padding: 20px; border-radius: 10px; text-align: left; margin-bottom: 100px; }
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .item { background: #1a1a1a; padding: 15px; border-radius: 8px; text-align: center; text-decoration: none; color: white; border: 1px solid #333; }
-        .qty { color: #ffd700; font-weight: bold; display: block; }
-        input, textarea { width: 100%; padding: 12px; margin: 10px 0; background: #222; border: 1px solid #444; color: white; border-radius: 5px; box-sizing: border-box; }
-        .footer { position: fixed; bottom: 0; left: 0; right: 0; background: #000; padding: 15px; display: flex; align-items: center; justify-content: space-around; border-top: 1px solid #333; z-index: 1000; }
-        .sos-btn { background: red; color: white; padding: 10px 20px; border-radius: 20px; text-decoration: none; font-weight: bold; }
+        /* DESIGN MATRIX & STYLE GÉNÉRAL */
+        body { background-color: #000; color: #00FF41; font-family: 'Courier New', monospace; margin: 0; padding: 0; }
+        
+        header {
+            border-bottom: 2px solid #00FF41;
+            padding: 20px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.9);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .brand h1 { font-size: 1.8em; margin: 0 0 15px 0; letter-spacing: 2px; }
+        .sos { color: #ff0000; text-shadow: 0 0 5px #ff0000; }
+        .fr { color: #ffffff; text-shadow: 0 0 5px #ffffff; }
+        
+        /* BADGE BLEU CERTIFIÉ */
+        .verified-badge {
+            display: inline-flex; align-items: center; justify-content: center;
+            background-color: #1DA1F2; color: white; border-radius: 50%;
+            width: 20px; height: 20px; font-size: 12px; margin-left: 8px;
+            border: 1px solid #fff; vertical-align: middle;
+        }
+
+        /* NAVIGATION */
+        .top-nav { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+        .top-nav button {
+            background: black; border: 1px solid #00FF41; color: #00FF41;
+            padding: 10px 15px; cursor: pointer; font-weight: bold; text-transform: uppercase;
+        }
+        .top-nav button:hover { background: #00FF41; color: black; box-shadow: 0 0 15px #00FF41; }
+
+        .container { max-width: 900px; margin: auto; padding: 20px; text-align: center; }
+
+        /* WIDGETS RADIO & SOS */
+        .widget-box { border: 1px solid #00FF41; padding: 15px; margin-bottom: 20px; background: #050505; }
+        .btn-sos-wa {
+            display: inline-block; background: #25D366; color: white; padding: 15px 30px;
+            text-decoration: none; font-weight: bold; border-radius: 50px; margin: 20px 0;
+            box-shadow: 0 0 20px #25D366; animation: blink 1.5s infinite;
+        }
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.7; } 100% { opacity: 1; } }
+
+        /* TABLEAU BOUTIQUE 80 LIGNES */
+        .shop-table { width: 100%; border-collapse: collapse; margin-top: 20px; background: #080808; }
+        .shop-table th { background: #00FF41; color: black; padding: 12px; position: sticky; top: 115px; }
+        .shop-table td { border: 1px solid #111; padding: 15px; font-size: 1.1em; }
+        .shop-table tr:hover { background: #001a00; }
+        .coin-val { color: #FFD700; font-weight: bold; }
+        .price-val { color: #ffffff; font-weight: bold; }
+        .buy-btn { background: #00FF41; border: none; padding: 8px 15px; cursor: pointer; font-weight: bold; border-radius: 5px; }
+
+        /* FORMULAIRES */
+        .section-content { display: none; padding: 30px; border: 1px dashed #00FF41; margin-top: 20px; text-align: left; }
+        input, select, textarea { width: 100%; padding: 12px; margin: 10px 0; background: #000; border: 1px solid #00FF41; color: #00FF41; box-sizing: border-box; }
+        
+        footer { padding: 60px; text-align: center; color: #444; font-size: 0.8em; border-top: 1px solid #111; }
     </style>
 </head>
 <body>
 
-    <div class="site-title">
-        anonymous sos fr 
-        <img class="badge" src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Twitter_Verified_Badge.svg" onclick="demanderTool()">
+<header>
+    <div class="brand">
+        <h1>ANONYMOUS <span class="sos">SOS</span> <span class="fr">FR</span> <span class="verified-badge">✓</span></h1>
+    </div>
+    <nav class="top-nav">
+        <button onclick="nav('inscription')">INSCRIPTION</button>
+        <button onclick="nav('connexion')">CONNEXION</button>
+        <button onclick="nav('boutique')">BOUTIQUE</button>
+        <button onclick="nav('annonces')">ANNONCES</button>
+    </nav>
+</header>
+
+<div class="container">
+    <div class="widget-box">
+        <p>📻 RADIO SKYROCK EN DIRECT</p>
+        <iframe src="https://player.skyrock.fm/v3/skyrock/" width="100%" height="80" frameborder="0"></iframe>
     </div>
 
-    <div class="nav-container">
-        <button class="btn" onclick="ouvrir('boutique')">Boutique</button>
-        <button class="btn" onclick="ouvrir('annonces')">Annonces</button>
-        <button class="btn" onclick="ouvrir('inscription')">Inscription</button>
-        <button class="btn" onclick="ouvrir('connexion')">Connexion</button>
-    </div>
+    <a href="https://wa.me/votre_numero" class="btn-sos-wa">🆘 CONTACT SOS DIRECT WHATSAPP</a>
 
-    <div id="boutique" class="section">
-        <p style="color:red; font-weight:bold; text-align:center;">🔞 +18 ANS - AUCUN REMBOURSEMENT</p>
-        <div class="grid">
-            <a href="https://wa.me/32456894335?text=Achat+15+p" class="item"><span class="qty">15 Pièces</span><span>0.15€</span></a>
-            <a href="https://wa.me/32456894335?text=Achat+100+p" class="item"><span class="qty">100 Pièces</span><span>1€</span></a>
-            <a href="https://wa.me/32456894335?text=Achat+1200+p" class="item"><span class="qty">1 200 Pièces</span><span>10€</span></a>
-            <a href="https://wa.me/32456894335?text=Achat+6500+p" class="item"><span class="qty">6 500 Pièces</span><span>50€</span></a>
-            <a href="https://wa.me/32456894335?text=Achat+13000+p" class="item"><span class="qty">13 000 Pièces</span><span>100€</span></a>
-            <a href="https://wa.me/32456894335?text=Achat+150000+p" class="item"><span class="qty">150 000 Pièces</span><span>800€</span></a>
-        </div>
-    </div>
+    <section id="boutique" style="display:block;">
+        <h2>💎 BOUTIQUE DE PIÈCES (80 PACKS)</h2>
+        <table class="shop-table">
+            <thead>
+                <tr>
+                    <th>PACK</th>
+                    <th>PIÈCES</th>
+                    <th>PRIX</th>
+                    <th>ACTION</th>
+                </tr>
+            </thead>
+            <tbody id="shop-list">
+                </tbody>
+        </table>
+    </section>
 
-    <div id="inscription" class="section">
-        <h3>Créer un compte</h3>
-        <p style="font-size:0.8em; color:#1DA1F2;">Étape 1 : Demandez votre code de validation.</p>
-        <input type="text" id="ins-pseudo" placeholder="Pseudo">
-        <input type="email" id="ins-email" placeholder="Adresse Email (despreschez@gmail.com)">
-        <button class="btn" style="width:100%; background:#25D366;" onclick="demanderValidation()">Demander mon code par WhatsApp</button>
-        
-        <div style="margin-top:20px; border-top:1px solid #333; padding-top:10px;">
-            <p style="font-size:0.8em;">Étape 2 : Entrez le code de vérification :</p>
-            <input type="text" id="code-entree" placeholder="Code reçu">
-            <button class="btn" style="width:100%; background:green;" onclick="verifierCode()">Finaliser l'inscription</button>
-        </div>
-    </div>
+    <section id="inscription" class="section-content">
+        <h2>📝 REJOINDRE LE RÉSEAU</h2>
+        <form onsubmit="alert('Inscription envoyée !'); return false;">
+            <input type="text" placeholder="ID (Identifiant unique)" required>
+            <input type="email" placeholder="Adresse Mail" required>
+            <label>Date de naissance :</label>
+            <input type="date" required>
+            <select required>
+                <option value="">Genre</option>
+                <option>Homme</option>
+                <option>Femme</option>
+            </select>
+            <p style="font-size: 0.8em;">
+                <input type="checkbox" required> J'ai plus de 18 ans.<br>
+                <input type="checkbox" required> J'accepte les consignes (Réseau type TikTok).
+            </p>
+            <button class="buy-btn" style="width:100%; padding: 15px;">S'INSCRIRE</button>
+        </form>
+    </section>
 
-    <div id="tool" class="section" style="border-color: #1DA1F2;">
-        <h3>🛠 MODE TOOL</h3>
-        <input type="text" placeholder="ID Utilisateur">
-        <button class="btn" style="width:100%; background:red;">Désactiver</button>
-        <br><br>
-        <input type="number" placeholder="Set Licence (€)">
-        <button class="btn" style="width:100%; background:green;">Valider</button>
-    </div>
+    <section id="connexion" class="section-content">
+        <h2>🔑 ACCÈS COMPTE</h2>
+        <form onsubmit="alert('Connexion...'); return false;">
+            <input type="text" placeholder="Identifiant (ID)" required>
+            <input type="password" placeholder="Mot de passe" required>
+            <button class="buy-btn" style="width:100%; padding: 15px;">SE CONNECTER</button>
+        </form>
+    </section>
 
-    <div class="footer">
-        <audio controls style="width:100px; height:30px;"><source src="https://icecast.skyrock.net/s/natio_aac_64k"></audio>
-        <a href="https://wa.me/32456894335" class="sos-btn">SOS DIRECT</a>
-    </div>
+    <section id="annonces" class="section-content">
+        <h2>📢 ANNONCES VIP</h2>
+        <p>Postez votre message. Il sera vérifié par l'administrateur avant publication.</p>
+        <textarea placeholder="Votre message VIP ici..."></textarea>
+        <button class="buy-btn" style="width:100%; padding: 15px;">ENVOYER L'ANNONCE</button>
+    </section>
+</div>
 
-    <script>
-        var num = "32456894335";
+<footer>
+    <p>anonymous sos fr - MODDZ TOOL - PASSWORD: Loulou12</p>
+</footer>
 
-        function ouvrir(id) {
-            var s = ['boutique', 'annonces', 'inscription', 'connexion', 'tool'];
-            s.forEach(x => { if(document.getElementById(x)) document.getElementById(x).style.display = 'none'; });
-            document.getElementById(id).style.display = 'block';
+<script>
+    // GÉNÉRATION DES 80 LIGNES
+    const shopList = document.getElementById('shop-list');
+    
+    // Tes paliers demandés
+    const fixedPrices = [
+        1, 2, 3, 4, 5, 6, 10, 15, 20, 25, 30, 40, 55, 70, 80, 100, 
+        150, 200, 250, 300, 350, 400
+    ];
+
+    for (let i = 1; i <= 80; i++) {
+        let price;
+        // On utilise tes prix fixes, puis on remplit le reste logiquement
+        if (i <= fixedPrices.length) {
+            price = fixedPrices[i-1];
+        } else {
+            price = 400 + ((i - fixedPrices.length) * 10);
         }
 
-        function demanderValidation() {
-            var p = document.getElementById('ins-pseudo').value;
-            var e = document.getElementById('ins-email').value;
-            if(p && e) {
-                window.location.href = "https://wa.me/"+num+"?text=VALIDATION: Pseudo: "+p+" / Email: "+e;
-            } else { alert("Remplis tout !"); }
-        }
+        // Ratio TikTok : ~66 pièces pour 1€
+        let coins = Math.floor(price * 66);
 
-        function verifierCode() {
-            var code = document.getElementById('code-entree').value;
-// --- Insertion à la ligne 95 ---
-// Confirmation visuelle et préparation de l'espace VIP
-document.getElementById('status-message').innerText = "Code valeur valide avec succès !";
+        let row = `<tr>
+            <td>#${i}</td>
+            <td class="coin-val">${coins.toLocaleString()} 🪙</td>
+            <td class="price-val">${price.toFixed(2)} €</td>
+            <td><button class="buy-btn">ACHETER</button></td>
+        </tr>`;
+        shopList.innerHTML += row;
+    }
 
-// Affichage du pseudo coloré (permanent comme demandé)
-const zonePseudo = document.getElementById('user-identity'); 
-zonePseudo.innerHTML = 'Connecté en tant que : <span style="color: cyan; font-weight: bold;">Anonymous sos fr</span>';
+    // NAVIGATION
+    function nav(id) {
+        const sections = ['boutique', 'inscription', 'connexion', 'annonces'];
+        sections.forEach(s => document.getElementById(s).style.display = 'none');
+        document.getElementById(id).style.display = 'block';
+    }
+</script>
 
-// Zone de rédaction pour l'annonce VIP avec avertissement admin
-const zoneRedaction = document.getElementById('vip-action-area');
-zoneRedaction.innerHTML = `
-    <div style="border: 2px solid #555; padding: 15px; background-color: #1a1a1a; border-radius: 8px;">
-        <h3 style="color: #ffcc00;">📢 Créer une annonce VIP</h3>
-        <p style="color: #bbb; font-style: italic;">
-            Note : Votre annonce sera soumise à la validation d'un administrateur du site "anonymous sos fr" avant publication.
-        </p>
-        <textarea id="msg-vip" style="width: 100%; height: 80px; background: #333; color: white;" placeholder="Votre message..."></textarea>
-        <br>
-        <button style="margin-top: 10px; cursor: pointer;" onclick="soumettreAnnonce()">Envoyer pour vérification</button>
-    </div>
-`;
-// -------------------------------            if(code === "19851985") {
-                alert("Compte validé avec succès !");
-            } else {
-                alert("Code incorrect.");
-            }
-        }
-
-        function demanderTool() {
-            var mdp = prompt("Mot de passe Mode Tool :");
-            if(mdp === "Loulou12") { ouvrir('tool'); }
-        }
-    </script>
-// Après la validation réussie du code
-console.log("Code valeur valide avec succès");
-
-// 1. Affichage du pseudo de l'utilisateur
-const pseudoUtilisateur = "Utilisateur_Test"; // Ici, on récupérera le pseudo réel plus tard
-document.getElementById('affichage-pseudo').innerHTML = Bienvenue, <span style="color: #00ff00;">${pseudoUtilisateur}</span> !;
-
-// 2. Message d'avertissement pour les annonces VIP
-const zoneAnnonce = document.getElementById('section-annonce');
-zoneAnnonce.innerHTML = `
-    <div style="background: #222; border: 1px solid #444; padding: 10px; margin-top: 20px;">
-        <p><strong>Système d'Annonce VIP :</strong></p>
-        <p style="font-size: 0.9em; color: #ffcc00;">
-            ⚠️ Note : Tous les messages seront vérifiés par un admin du site "anonymous sos fr" avant d'être publiés.
-        </p>
-        <textarea id="input-annonce" placeholder="Tapez votre annonce ici..."></textarea>
-        <button onclick="envoyerAnnonce()">Envoyer pour validation</button>
-    </div>
-`;</body>
+</body>
 </html>
