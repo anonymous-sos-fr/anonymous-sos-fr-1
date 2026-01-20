@@ -2,137 +2,123 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>ANONYMOUS SOS FR</title>
     <style>
-        body { background: #000; color: #00FF41; font-family: 'Courier New', monospace; margin: 0; padding: 0; text-align: center; }
-        
-        /* HEADER PROPRE */
-        header { border-bottom: 2px solid #00FF41; padding: 15px; background: #000; }
-        .logo { font-size: 1.5em; font-weight: bold; margin-bottom: 10px; }
+        body { background: #000; color: #00FF41; font-family: sans-serif; margin: 0; padding: 0; text-align: center; -webkit-tap-highlight-color: transparent; }
+        header { border-bottom: 2px solid #00FF41; padding: 10px; background: #000; }
+        .logo { font-size: 1.2em; font-weight: bold; }
         .sos { color: red; } .fr { color: white; }
+        
+        #mod-bar { display: none; background: yellow; color: #000; padding: 5px; font-weight: bold; font-size: 0.8em; }
 
-        /* BARRE ADMIN CACHÉE PAR DÉFAUT */
-        #admin-zone { display: none; background: yellow; color: black; padding: 10px; font-weight: bold; border-bottom: 2px solid #00FF41; }
-
-        /* MENU BOUTONS */
-        .menu { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 15px; }
-        .menu button { background: #000; border: 2px solid #00FF41; color: #00FF41; padding: 15px; font-weight: bold; font-size: 0.9em; cursor: pointer; text-transform: uppercase; }
-        .menu button:active { background: #00FF41; color: #000; }
-
-        /* SECTIONS */
-        .content { display: none; padding: 20px; min-height: 200px; }
+        .nav-container { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 10px; }
+        .nav-container button { background: #111; border: 1px solid #00FF41; color: #00FF41; padding: 15px; font-weight: bold; font-size: 0.8em; cursor: pointer; }
+        
+        .page { display: none; padding: 10px; }
         .active { display: block !important; }
 
-        /* TABLEAU BOUTIQUE */
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.9em; }
-        th { background: #00FF41; color: #000; padding: 10px; }
-        td { border: 1px solid #333; padding: 12px; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.75em; margin-top: 10px; }
+        th { background: #00FF41; color: #000; padding: 8px; }
+        td { border: 1px solid #222; padding: 8px; }
         .gold { color: #FFD700; font-weight: bold; }
 
-        /* FORMULAIRES */
-        input, textarea { width: 100%; padding: 15px; margin: 10px 0; background: #111; border: 1px solid #00FF41; color: #00FF41; box-sizing: border-box; font-size: 1em; }
-        .btn-green { background: #00FF41; color: #000; border: none; padding: 15px; width: 100%; font-weight: bold; cursor: pointer; border-radius: 5px; }
+        input, textarea { width: 100%; padding: 12px; margin: 8px 0; background: #000; border: 1px solid #00FF41; color: #00FF41; box-sizing: border-box; }
+        .btn-go { background: #00FF41; color: #000; border: none; padding: 12px; width: 100%; font-weight: bold; border-radius: 4px; }
         
-        /* RADIO PETITE */
-        .radio-container { padding: 10px; background: #050505; border-bottom: 1px solid #222; }
-        audio { width: 100%; height: 35px; filter: invert(1); }
+        .radio-mini { padding: 5px; background: #050505; }
+        audio { width: 100%; height: 30px; filter: invert(1); }
 
-        /* SOS WHATSAPP */
-        .whatsapp { display: block; background: #25D366; color: white; padding: 15px; text-decoration: none; border-radius: 10px; margin: 20px auto; width: 85%; font-weight: bold; box-shadow: 0 0 15px #25D366; }
-        
+        .btn-whatsapp { display: block; background: #25D366; color: white; padding: 15px; text-decoration: none; border-radius: 8px; margin: 20px auto; width: 80%; font-weight: bold; box-shadow: 0 0 10px #25D366; }
         footer { padding: 20px; color: #333; font-size: 0.7em; }
     </style>
 </head>
 <body>
 
-<div id="admin-zone">🛠️ MOD TOOL ACTIVÉ : <span id="admin-id"></span></div>
+<div id="mod-bar">MOD TOOL ACTIF : <span id="admin-name"></span></div>
 
 <header>
     <div class="logo">ANONYMOUS <span class="sos">SOS</span> <span class="fr">FR</span> ✓</div>
 </header>
 
-<div class="radio-container">
-    <small>📻 RADIO SKYROCK</small>
+<div class="radio-mini">
     <audio controls><source src="https://icecast.skyrock.net/s/natio_mp3_128k"></audio>
 </div>
 
-<nav class="menu">
-    <button onclick="ouvrir('boutique')">Boutique</button>
-    <button onclick="ouvrir('inscription')">S'inscrire</button>
-    <button onclick="ouvrir('connexion')">Connexion</button>
-    <button onclick="ouvrir('annonces')">Annonces</button>
-</nav>
+<div class="nav-container">
+    <button onclick="showPage('boutique')">BOUTIQUE</button>
+    <button onclick="showPage('inscription')">S'INSCRIRE</button>
+    <button onclick="showPage('connexion')">CONNEXION</button>
+    <button onclick="showPage('annonces')">ANNONCES</button>
+</div>
 
-<div id="boutique" class="content active">
-    <h3>💎 PIÈCES DISPONIBLES</h3>
+<div id="boutique" class="page active">
+    <h3>💎 PIÈCES</h3>
     <table>
         <thead><tr><th>PACK</th><th>PIÈCES</th><th>PRIX</th></tr></thead>
-        <tbody id="shop-list"></tbody>
+        <tbody id="paliers"></tbody>
     </table>
 </div>
 
-<div id="inscription" class="content">
+<div id="inscription" class="page">
     <h3>📝 REJOINDRE</h3>
-    <p>Envoyez votre demande à despreschez@gmail.com</p>
-    <input type="text" placeholder="ID Souhaité">
+    <p style="font-size: 0.8em;">Contact : despreschez@gmail.com</p>
+    <input type="text" id="ins-id" placeholder="ID Souhaité">
     <input type="email" placeholder="Votre Email">
-    <button class="btn-green">VALIDER L'INSCRIPTION</button>
+    <button class="btn-go" onclick="alert('Demande envoyée !')">VALIDER</button>
 </div>
 
-<div id="connexion" class="content">
+<div id="connexion" class="page">
     <h3>🔑 CONNEXION</h3>
-    <input type="text" id="login-id" placeholder="Identifiant">
-    <input type="password" id="login-pass" placeholder="Mot de passe">
-    <button class="btn-green" onclick="validerLogin()">SE CONNECTER</button>
+    <input type="text" id="log-id" placeholder="Identifiant">
+    <input type="password" id="log-pass" placeholder="Mot de passe">
+    <button class="btn-go" onclick="tryLogin()">SE CONNECTER</button>
 </div>
 
-<div id="annonces" class="content">
+<div id="annonces" class="page">
     <h3>📢 ANNONCES VIP</h3>
-    <textarea placeholder="Votre message publicitaire..." rows="5"></textarea>
-    <button class="btn-green">PUBLIER L'ANNONCE</button>
+    <textarea placeholder="Votre message..." rows="4"></textarea>
+    <button class="btn-go" onclick="alert('Annonce en attente de validation')">PUBLIER</button>
 </div>
 
-<a href="https://wa.me/32456894335" class="whatsapp">🆘 WHATSAPP DIRECT</a>
+<a href="https://wa.me/32456894335" class="btn-whatsapp">🆘 WHATSAPP DIRECT</a>
 
-<footer>
-    anonymous sos fr - password: Loulou12
-</footer>
+<footer>anonymous sos fr - password: Loulou12</footer>
 
 <script>
-    // Navigation entre les sections
-    function ouvrir(id) {
-        let sections = document.getElementsByClassName('content');
-        for (let s of sections) {
-            s.classList.remove('active');
+    // Navigation ultra-simple
+    function showPage(id) {
+        var pages = document.getElementsByClassName('page');
+        for (var i = 0; i < pages.length; i++) {
+            pages[i].style.display = 'none';
         }
-        document.getElementById(id).classList.add('active');
+        document.getElementById(id).style.display = 'block';
+        window.scrollTo(0,0);
     }
 
-    // Connexion et activation du Mod Tool (Invisible pour les autres)
-    function validerLogin() {
-        let user = document.getElementById('login-id').value;
-        let pass = document.getElementById('login-pass').value;
-        
+    // Connexion Mod Tool
+    function tryLogin() {
+        var user = document.getElementById('log-id').value;
+        var pass = document.getElementById('log-pass').value;
         if (pass === "Loulou12") {
-            document.getElementById('admin-zone').style.display = 'block';
-            document.getElementById('admin-id').innerText = user;
-            alert("Bienvenue " + user + " ! Le Mod Tool est maintenant actif.");
-            ouvrir('boutique');
+            document.getElementById('mod-bar').style.display = 'block';
+            document.getElementById('admin-name').innerText = user;
+            alert("Accès Mod Tool Validé !");
+            showPage('boutique');
         } else {
             alert("Mot de passe incorrect.");
         }
     }
 
-    // Génération automatique des 80 paliers de prix
-    const list = document.getElementById('shop-list');
-    const fixedPrices = [1, 2, 3, 4, 5, 6, 10, 15, 20, 25, 30, 40, 55, 70, 80, 100, 150, 200, 250, 300, 350, 400];
-    
-    for (let i = 1; i <= 80; i++) {
-        let p = (i <= fixedPrices.length) ? fixedPrices[i-1] : 400 + (i * 5);
-        let c = Math.floor(p * 66); // Ratio TikTok
-        list.innerHTML += <tr><td>#${i}</td><td class="gold">${c.toLocaleString()} 🪙</td><td>${p.toFixed(2)}€</td></tr>;
+    // Génération Boutique
+    var list = document.getElementById('paliers');
+    var prices = [1, 2, 3, 4, 5, 6, 10, 15, 20, 25, 30, 40, 55, 70, 80, 100, 150, 200, 250, 300, 350, 400];
+    var out = "";
+    for (var k = 1; k <= 80; k++) {
+        var p = (k <= prices.length) ? prices[k-1] : 400 + (k * 5);
+        out += "<tr><td>#" + k + "</td><td class='gold'>" + (p * 66) + " 🪙</td><td>" + p.toFixed(2) + "€</td></tr>";
     }
+    list.innerHTML = out;
 </script>
 
 </body>
