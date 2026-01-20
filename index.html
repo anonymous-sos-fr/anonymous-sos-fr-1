@@ -145,7 +145,7 @@
             document.getElementById('admin-status').style.display = 'block';
             document.getElementById('current-user').innerText = "ADMIN (" + id + ")";
             alert("Mode Admin Activé !");
-            ouvrir('boutique');
+            window.location.href = 'forum.html';
         } else if (storedPw && storedPw === pw) {
             document.getElementById('admin-status').style.display = 'block';
             document.getElementById('current-user').innerText = id;
