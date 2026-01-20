@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Anonymous SOS FR</title>
+    <style>
+        body { background-color: #0a0a0a; color: white; font-family: sans-serif; padding: 20px; }
+        h1 { color: #ff0000; border-bottom: 2px solid #ff0000; padding-bottom: 10px; }
+        .admin-container { display: flex; flex-direction: column; gap: 20px; }
+        .user-card { background: #1a1a1a; padding: 15px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center; border: 1px solid #333; }
+        .user-info b { color: #ff0000; }
+        .badge-pro { background: gold; color: black; padding: 2px 5px; border-radius: 3px; font-size: 12px; font-weight: bold; }
+        button { cursor: pointer; border: none; border-radius: 5px; font-weight: bold; padding: 10px 15px; }
+        .btn-activate { background: #28a745; color: white; }
+        .btn-disable { background: #dc3545; color: white; }
+        .stats-box { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 30px; }
+        .stat-card { background: #222; padding: 20px; text-align: center; border-radius: 10px; border-top: 4px solid #ff0000; }
+    </style>
+</head>
+<body>
+
+    <h1>Dashboard Administrateur - Anonymous SOS FR</h1>
+
+    <div class="stats-box">
+        <div class="stat-card"><h3>Total Pièces</h3><p id="total-coins">1,250,000</p></div>
+        <div class="stat-card"><h3>Ta Commission (20%)</h3><p id="my-profit" style="color: #28a745;">250,000</p></div>
+        <div class="stat-card"><h3>Membres Pro</h3><p>12</p></div>
+    </div>
+
+    <h2>Gestion des Utilisateurs</h2>
+    <div class="admin-container" id="user-list">
+        <div class="user-card">
+            <div class="user-info">
+                <b>Kévin M.</b> (ID: #001) <span class="badge-pro">PRO</span><br>
+                <span>Pièces ce mois : 45,000</span>
+            </div>
+            <div class="actions">
+                <button class="btn-disable" onclick="toggleUser(1)">Désactiver Compte</button>
+            </div>
+        </div>
+
+        <div class="user-card">
+            <div class="user-info">
+                <b>User_45</b> (ID: #045)<br>
+                <span>Pièces ce mois : 1,200</span>
+            </div>
+            <div class="actions">
+                <button class="btn-activate" onclick="activatePro(45)">Donner LIVE PRO</button>
+                <button class="btn-disable" onclick="toggleUser(45)">Bannir</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Fonction pour activer le Live Pro (Licence)
+        function activatePro(userId) {
+            const confirmation = confirm("Voulez-vous donner la licence LIVE PRO à l'utilisateur #" + userId + " ?");
+            if(confirmation) {
+                alert("Licence activée ! L'utilisateur peut maintenant inviter 30 personnes.");
+                // Ici, le code enverra l'ordre à ta base de données
+            }
+        }
+
+        // Fonction pour désactiver un utilisateur
+        function toggleUser(userId) {
+            const reason = prompt("Raison du bannissement :");
+            if(reason) {
+                alert("Utilisateur #" + userId + " désactivé pour : " + reason);
+            }
+        }
+    </script>
+</body>
+</html>
