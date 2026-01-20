@@ -3,244 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANONYMOUS SOS FR</title>
+    <title>anonymous sos fr - Officiel</title>
     <style>
-        body { 
-            background: #000 url('https://w0.peakpx.com/wallpaper/301/1004/HD-wallpaper-matrix-code-binary-code-numbers-matrix-background.jpg') fixed; 
-            background-size: cover; 
-            color: #00FF41; 
-            font-family: 'Courier New', monospace; 
-            margin: 0; padding: 0; text-align: center;
-        }
+        body { font-family: 'Arial', sans-serif; background-color: #050505; color: white; margin: 0; padding: 0; text-align: center; }
         
-        .overlay { background: rgba(0, 0, 0, 0.85); min-height: 100vh; padding-bottom: 80px; }
+        /* BARRE DE NAVIGATION */
+        .navbar { background: #111; padding: 15px; display: flex; justify-content: center; gap: 20px; border-bottom: 2px solid #ff0000; position: sticky; top: 0; z-index: 1000; }
+        .btn { padding: 10px 20px; text-decoration: none; color: white; font-weight: bold; border: 1px solid #444; border-radius: 5px; transition: 0.3s; cursor: pointer; }
+        .btn:hover { background: #ff0000; }
+        .btn-admin { background: #4a148c; border: none; } /* Bouton Équipe uniquement */
 
-        header { border-bottom: 2px solid #00FF41; padding: 10px; background: rgba(0,0,0,0.9); position: sticky; top: 0; z-index: 1000; }
-        .logo { font-size: 1.2em; font-weight: bold; margin-bottom: 10px; }
-        .sos { color: red; } .fr { color: white; }
-        .verified { background: #1DA1F2; color: white; border-radius: 50%; padding: 2px 5px; font-size: 10px; vertical-align: middle; border: 1px solid white; }
+        /* BOUTIQUE STYLE TIKTOK */
+        .shop-container { padding: 40px; background: #111; margin: 20px; border-radius: 10px; border: 1px solid #333; }
+        .coin-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; margin-top: 20px; }
+        .coin-card { background: #222; padding: 20px; border-radius: 10px; border: 1px solid #ff0000; }
+        .price { color: #ffd700; font-size: 1.2em; font-weight: bold; display: block; margin-top: 10px; }
 
-        .nav-top { display: flex; justify-content: center; gap: 5px; flex-wrap: wrap; }
-        .nav-top button { background: #000; border: 1px solid #00FF41; color: #00FF41; padding: 8px 10px; font-size: 10px; font-weight: bold; cursor: pointer; }
+        /* MEILLEURS LIVEURS */
+        .live-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 20px; }
+        .live-card { background: #1a1a1a; height: 180px; border: 2px solid #ff0000; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; }
 
-        #admin-status { display: none; background: yellow; color: #000; padding: 5px; font-weight: bold; font-size: 12px; }
-
-        .content { display: none; padding: 15px; max-width: 500px; margin: auto; }
-        .active { display: block !important; }
-
-        input { width: 100%; padding: 12px; margin: 8px 0; background: #000; border: 1px solid #00FF41; color: #00FF41; box-sizing: border-box; }
-        .check-box { display: flex; align-items: center; gap: 10px; font-size: 11px; text-align: left; padding: 10px 0; }
-        .btn-valid { background: #00FF41; color: #000; border: none; padding: 12px; width: 100%; font-weight: bold; cursor: pointer; }
-
-        table { width: 100%; border-collapse: collapse; font-size: 11px; margin-top: 10px; background: rgba(0,0,0,0.8); }
-        td, th { border: 1px solid #00FF41; padding: 8px; }
-        .gold { color: #FFD700; font-weight: bold; }
-
-        /* SOS WHATSAPP EN PETIT ROND */
-        .wa-float {
-            position: fixed;
-            width: 60px; height: 60px;
-            bottom: 20px; right: 20px;
-            background-color: #25d366;
-            color: #FFF;
-            border-radius: 50px;
-            text-align: center;
-            font-size: 30px;
-            box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
-            z-index: 1001;
-            display: flex; align-items: center; justify-content: center;
-            text-decoration: none;
-        }
-
-        footer { font-size: 9px; color: #555; padding: 20px; }
+        /* RADIO & CONTACT */
+        .radio-player { margin: 25px auto; padding: 15px; background: #222; border-radius: 50px; width: fit-content; border: 1px solid #444; }
+        .contact-box { background: #004d40; padding: 20px; border-radius: 8px; margin: 20px auto; width: 85%; border: 1px solid #00c853; }
+        
+        /* ESPACE UPLOAD VIDÉO */
+        .upload-zone { background: #111; padding: 30px; border-radius: 10px; margin: 20px; border: 2px dashed #444; }
     </style>
 </head>
 <body>
 
-<div class="overlay">
-    <div id="admin-status">SESSION : <span id="current-user"></span></div>
+    <div class="navbar">
+        <a href="index.html" class="btn">ACCUEIL</a>
+        <a href="#boutique" class="btn">BOUTIQUE</a>
+        <a href="#profil" class="btn">MON PROFIL</a>
+        <a href="admin.html" class="btn btn-admin">ADMINISTRATEUR</a>
+    </div>
 
-    <header>
-        <div class="logo">ANONYMOUS <span class="sos">SOS</span> <span class="fr">FR</span> <span class="verified">✓</span></div>
-        <div class="nav-top">
-            <button onclick="toggleBoutique()">BOUTIQUE</button>
-            <button onclick="ouvrir('inscription')">S'INSCRIRE</button>
-            <button onclick="ouvrir('connexion')">CONNEXION</button>
-            <button onclick="ouvrir('annonces')">ANNONCES</button>
+    <div class="radio-player">
+        <span style="color: #ff0000; font-weight: bold; margin-right: 15px;">LIVE SKYROCK 📻</span>
+        <audio controls autoplay>
+            <source src="https://icecast.skyrock.net/s/natio_mp3_128k" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <h2>🔥 MEILLEURS LIVEURS ICI</h2>
+    <div class="live-grid">
+        <div class="live-card">TOP LIVER #1</div>
+        <div class="live-card image-placeholder">TOP LIVER #2</div>
+        <div class="live-card">TOP LIVER #3</div>
+    </div>
+
+    <div id="boutique" class="shop-container">
+        <h2>💎 BOUTIQUE (MOINS CHER QUE TIKTOK)</h2>
+        <div class="coin-grid">
+            <div class="coin-card">70 Pièces <span class="price">0,95€</span></div>
+            <div class="coin-card">350 Pièces <span class="price">4,50€</span></div>
+            <div class="coin-card">700 Pièces <span class="price">8,90€</span></div>
+            <div class="coin-card">1400 Pièces <span class="price">17,50€</span></div>
+            <div class="coin-card">3500 Pièces <span class="price">43,00€</span></div>
+            <div class="coin-card">7000 Pièces <span class="price">85,00€</span></div>
         </div>
-    </header>
-
-    <div id="boutique" class="content">
-        <h4>💎 PIÈCES</h4>
-        <table>
-            <thead><tr><th>#</th><th>PIÈCES</th><th>PRIX</th></tr></thead>
-            <tbody id="shop-list"></tbody>
-        </table>
-    </div>
-
-    <div id="inscription" class="content">
-        <h4>📝 CRÉER UN COMPTE</h4>
-        <input type="text" id="reg-id" placeholder="ID (Identifiant)">
-        <input type="email" id="reg-mail" placeholder="Email">
-        <input type="password" id="reg-pw" placeholder="Mot de passe">
-        <div class="check-box">
-            <input type="checkbox" id="age-check" style="width:auto;">
-            <label for="age-check">Je certifie avoir plus de 18 ans.</label>
-        </div>
-        <button class="btn-valid" onclick="saveUser()">VALIDER L'INSCRIPTION</button>
-    </div>
-
-    <div id="connexion" class="content">
-        <h4>🔑 CONNEXION</h4>
-        <input type="text" id="log-id" placeholder="ID">
-        <input type="password" id="log-pw" placeholder="Mot de passe">
-        <button class="btn-valid" onclick="loginUser()">SE CONNECTER</button>
-    </div>
-
-    <div id="annonces" class="content">
-        <h4>📢 ANNONCES VIP</h4>
-        <textarea rows="4" placeholder="Votre texte..." style="width:100%; background:#000; border:1px solid #00FF41; color:#00FF41;"></textarea>
-        <button class="btn-valid">PUBLIER</button>
-    </div>
-
-    <a href="https://wa.me/32456894335" class="wa-float" target="_blank">🆘</a>
-
-    <footer>anonymous sos fr -</footer>
-</div>
-
-<script>
-    function ouvrir(id) {
-        var contents = document.getElementsByClassName('content');
-        for (var i = 0; i < contents.length; i++) { contents[i].classList.remove('active'); }
-        document.getElementById(id).classList.add('active');
-        if(id === 'boutique') loadShop();
-    }
-
-    function toggleBoutique() {
-        var b = document.getElementById('boutique');
-        b.classList.contains('active') ? b.classList.remove('active') : ouvrir('boutique');
-    }
-
-    // Sauvegarde des données localement
-    function saveUser() {
-        const id = document.getElementById('reg-id').value;
-        const pw = document.getElementById('reg-pw').value;
-        const age = document.getElementById('age-check').checked;
-
-        if(!id || !pw) { alert("Remplissez tous les champs !"); return; }
-        if(!age) { alert("Vous devez avoir +18 ans !"); return; }
-
-        localStorage.setItem(id, pw); // Stocke l'ID et le MDP
-        alert("Compte créé avec succès ! Connectez-vous maintenant.");
-        ouvrir('connexion');
-    }
-
-    // Vérification de la connexion
-    function loginUser() {
-        const id = document.getElementById('log-id').value;
-        const pw = document.getElementById('log-pw').value;
-        const storedPw = localStorage.getItem(id);
-
-        if(pw === "Loulou12") { // Accès Admin spécial
-            document.getElementById('admin-status').style.display = 'block';
-            document.getElementById('current-user').innerText = "ADMIN (" + id + ")";
-            alert("Mode Admin Activé !");
-       window.location.href = 'forum.html';
-        } else if (storedPw && storedPw === pw) {
-            document.getElementById('admin-status').style.display = 'block';
-            document.getElementById('current-user').innerText = id;
-            alert("Connexion réussie ! Bienvenue " + id);
-           window.location.href = 'forum.html'; // Remplace 'forum.html' par le nom de ta page d'accueil
-        } else {
-            alert("ID ou mot de passe incorrect.");
-        }
-    }
-
-    function loadShop() {
-        var list = document.getElementById('shop-list');
-        if(list.innerHTML !== "") return;
-        var pFix = [1, 2, 3, 4, 5, 6, 10, 15, 20, 25, 30, 40, 55, 70, 80, 100, 150, 200, 250, 300, 350, 400];
-        var h = "";
-        for (var i = 1; i <= 80; i++) {
-            var pr = (i <= pFix.length) ? pFix[i-1] : 400 + (i * 2);
-            h += "<tr><td>#" + i + "</td><td class='gold'>" + (pr * 66).toLocaleString() + " 🪙</td><td>" + pr.toFixed(2) + "€</td></tr>";
-        }
-        list.innerHTML = h;
-    }
-</script>
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel - Anonymous SOS FR</title>
-    <style>
-        body { background-color: #0a0a0a; color: white; font-family: sans-serif; padding: 20px; }
-        h1 { color: #ff0000; border-bottom: 2px solid #ff0000; padding-bottom: 10px; }
-        .admin-container { display: flex; flex-direction: column; gap: 20px; }
-        .user-card { background: #1a1a1a; padding: 15px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center; border: 1px solid #333; }
-        .user-info b { color: #ff0000; }
-        .badge-pro { background: gold; color: black; padding: 2px 5px; border-radius: 3px; font-size: 12px; font-weight: bold; }
-        button { cursor: pointer; border: none; border-radius: 5px; font-weight: bold; padding: 10px 15px; }
-        .btn-activate { background: #28a745; color: white; }
-        .btn-disable { background: #dc3545; color: white; }
-        .stats-box { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 30px; }
-        .stat-card { background: #222; padding: 20px; text-align: center; border-radius: 10px; border-top: 4px solid #ff0000; }
-    </style>
-</head>
-<body>
-
-    <h1>Dashboard Administrateur - Anonymous SOS FR</h1>
-
-    <div class="stats-box">
-        <div class="stat-card"><h3>Total Pièces</h3><p id="total-coins">1,250,000</p></div>
-        <div class="stat-card"><h3>Ta Commission (20%)</h3><p id="my-profit" style="color: #28a745;">250,000</p></div>
-        <div class="stat-card"><h3>Membres Pro</h3><p>12</p></div>
-    </div>
-
-    <h2>Gestion des Utilisateurs</h2>
-    <div class="admin-container" id="user-list">
-        <div class="user-card">
-            <div class="user-info">
-                <b>Kévin M.</b> (ID: #001) <span class="badge-pro">PRO</span><br>
-                <span>Pièces ce mois : 45,000</span>
-            </div>
-            <div class="actions">
-                <button class="btn-disable" onclick="toggleUser(1)">Désactiver Compte</button>
-            </div>
-        </div>
-
-        <div class="user-card">
-            <div class="user-info">
-                <b>User_45</b> (ID: #045)<br>
-                <span>Pièces ce mois : 1,200</span>
-            </div>
-            <div class="actions">
-                <button class="btn-activate" onclick="activatePro(45)">Donner LIVE PRO</button>
-                <button class="btn-disable" onclick="toggleUser(45)">Bannir</button>
-            </div>
+        
+        <div class="contact-box">
+            <p><strong>PAIEMENT DIRECT, WHATSAPP & SUPPORT :</strong></p>
+            <p>📞 Téléphone / WhatsApp : <strong>+32 456 89 43 35</strong></p>
+            <p>✉️ Gmail : <strong>despreschez@gmail.com</strong></p>
+            <p>💳 Mode : StarPass / PayPal / Virement</p>
         </div>
     </div>
 
-    <script>
-        // Fonction pour activer le Live Pro (Licence)
-        function activatePro(userId) {
-            const confirmation = confirm("Voulez-vous donner la licence LIVE PRO à l'utilisateur #" + userId + " ?");
-            if(confirmation) {
-                alert("Licence activée ! L'utilisateur peut maintenant inviter 30 personnes.");
-                // Ici, le code enverra l'ordre à ta base de données
-            }
-        }
+    <div id="profil" class="upload-zone">
+        <h2>VOTRE PROFIL @anonymous_sos_fr</h2>
+        <p>Ajoutez vos vidéos pour vos abonnés :</p>
+        <input type="file" accept="video/*" id="videoFile">
+        <br><br>
+        <button class="btn" style="background: #2e7d32; border:none;" onclick="alert('Envoi de la vidéo vers votre profil...')">PUBLIER MAINTENANT</button>
+    </div>
 
-        // Fonction pour désactiver un utilisateur
-        function toggleUser(userId) {
-            const reason = prompt("Raison du bannissement :");
-            if(reason) {
-                alert("Utilisateur #" + userId + " désactivé pour : " + reason);
-            }
-        }
-    </script>
-</body>
-</html>
+    <footer style="padding: 30px; color: #555;">
+        &copy; 2026 anonymous sos fr - Système de gestion sécurisé.
+    </footer>
+
 </body>
 </html>
