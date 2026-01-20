@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Vidéos - anonymous sos fr</title>
+    <style>
+        /* Le cadre qui contient tout */
+        .video-box {
+            max-width: 650px;
+            margin: 20px auto;
+            background: #ffffff;
+            border: 2px solid #444;
+            border-radius: 15px;
+            padding: 15px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            box-shadow: 0px 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Le lecteur vidéo */
+        video {
+            width: 100%;
+            border-radius: 10px;
+            background: #000;
+        }
+
+        /* Barre des stats (Vues et Likes) */
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 15px 0;
+            padding: 0 5px;
+        }
+
+        .count-vues {
+            color: #555;
+            font-weight: bold;
+        }
+
+        .btn-like {
+            background-color: #ff4757;
+            color: white;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .btn-like:hover {
+            transform: scale(1.1);
+        }
+
+        /* Zone des commentaires */
+        .comments-area {
+            border-top: 1px solid #ddd;
+            padding-top: 15px;
+        }
+
+        #list-messages {
+            height: 150px;
+            overflow-y: auto;
+            background: #f9f9f9;
+            border: 1px solid #eee;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+        /* Style pour les noms colorés des utilisateurs */
+        .user-name {
+            color: #007bff; /* Identifiants colorés en bleu par exemple */
+            font-weight: bold;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 5px;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .btn-send {
+            background: #2ed573;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="video-box">
+        <h2 style="text-align: center;">Vidéos anonymous sos fr</h2>
+
+        <video controls>
+            <source src="ta-video.mp4" type="video/mp4">
+            Lecteur non supporté.
+        </video>
+
+        <div class="stats">
+            <div class="count-vues">👁️ <span id="nb-vues">342</span> vues</div>
+            <button class="btn-like" onclick="like()">❤️ J'aime (<span id="nb-likes">0</span>)</button>
+        </div>
+
+        <div class="comments-area">
+            <h4>Commentaires</h4>
+            <div id="list-messages">
+                <p><i>Aucun message pour l'instant...</i></p>
+            </div>
+            
+            <div class="input-group">
+                <input type="text" id="mon-input" placeholder="Ajouter un commentaire...">
+                <button class="btn-send" onclick="envoyer()">Publier</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Fonction pour les Likes
+        let totalLikes = 0;
+        function like() {
+            totalLikes++;
+            document.getElementById('nb-likes').innerText = totalLikes;
+        }
+
+        // Fonction pour envoyer un commentaire
+        function envoyer() {
+            let input = document.getElementById('mon-input');
+            let liste = document.getElementById('list-messages');
+
+            if(input.value !== "") {
+                // Créer le message avec l'identifiant coloré
+                let nouveauMsg = document.createElement('p');
+                nouveauMsg.innerHTML = "<span class='user-name'>Utilisateur :</span> " + input.value;
+                
+                // Enlever le texte "aucun message" si c'est le premier
+                if(liste.innerText.includes("Aucun message")) {
+                    liste.innerHTML = "";
+                }
+
+                liste.prepend(nouveauMsg);
+                input.value = ""; // Vider la case
+            }
+        }
+    </script>
+
+</body>
+</html>
