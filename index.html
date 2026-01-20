@@ -3,127 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANONYMOUS SOS FR - MODDZ TOOL</title>
+    <title>ANONYMOUS SOS FR</title>
     <style>
-        /* STYLE MATRIX ULTRA-STABLE */
-        body { background: #000; color: #00FF41; font-family: 'Courier New', monospace; margin: 0; text-align: center; }
-        header { border-bottom: 2px solid #00FF41; padding: 15px; background: #000; position: sticky; top: 0; z-index: 1000; }
+        body { background: #000; color: #00FF41; font-family: sans-serif; margin: 0; padding: 0; text-align: center; }
+        header { border-bottom: 1px solid #00FF41; padding: 10px; background: #000; sticky; top: 0; z-index: 100; }
+        h1 { font-size: 1.2em; margin: 5px; }
         .sos { color: red; } .fr { color: white; }
-        .badge { background: #1DA1F2; color: white; border-radius: 50%; padding: 2px 6px; font-size: 11px; vertical-align: middle; }
         
-        #top-bar { background: #111; padding: 8px; border-bottom: 1px solid #333; display: none; color: yellow; font-weight: bold; font-size: 14px; }
+        #user-bar { background: #111; color: yellow; font-size: 0.8em; padding: 5px; display: none; border-bottom: 1px solid #333; }
+
+        nav { display: flex; justify-content: center; gap: 5px; padding: 10px; flex-wrap: wrap; }
+        nav button { background: #000; border: 1px solid #00FF41; color: #00FF41; padding: 8px 10px; font-size: 0.7em; font-weight: bold; cursor: pointer; }
+
+        .section { display: none; padding: 15px; }
+        .active { display: block; }
+
+        table { width: 100%; border-collapse: collapse; font-size: 0.8em; margin-top: 10px; }
+        td, th { border: 1px solid #222; padding: 8px; }
+        .coins { color: #FFD700; }
         
-        nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
-        nav button { background: #000; border: 1px solid #00FF41; color: #00FF41; padding: 8px 12px; cursor: pointer; font-weight: bold; font-size: 12px; }
+        .btn-action { background: #00FF41; color: #000; border: none; padding: 10px; width: 100%; font-weight: bold; margin-top: 10px; }
+        .btn-sos { display: block; background: #25D366; color: white; padding: 12px; text-decoration: none; border-radius: 5px; margin: 15px auto; width: 70%; font-weight: bold; font-size: 0.9em; }
 
-        .section { display: none; padding: 15px; max-width: 100%; margin: auto; }
-        .active { display: block !important; }
-
-        .btn-sos { display: block; background: #25D366; color: white; padding: 12px; text-decoration: none; border-radius: 5px; margin: 15px auto; width: 80%; font-weight: bold; box-shadow: 0 0 10px #25D366; }
-        
-        table { width: 100%; border-collapse: collapse; background: #080808; margin-top: 15px; font-size: 13px; }
-        th { background: #00FF41; color: #000; padding: 8px; }
-        td { border: 1px solid #222; padding: 10px; }
-        .coins { color: #FFD700; font-weight: bold; }
-        .buy { background: #00FF41; border: none; padding: 6px 10px; cursor: pointer; font-weight: bold; border-radius: 3px; }
-
-        input, textarea { width: 90%; padding: 10px; margin: 8px 0; background: #000; border: 1px solid #00FF41; color: #00FF41; }
-        footer { margin-top: 30px; padding: 20px; color: #444; font-size: 10px; border-top: 1px solid #111; }
+        input, textarea { width: 100%; padding: 10px; margin: 5px 0; background: #000; border: 1px solid #00FF41; color: #00FF41; box-sizing: border-box; }
+        footer { font-size: 0.6em; color: #444; margin-top: 20px; padding: 10px; }
     </style>
 </head>
 <body>
 
-<div id="top-bar">✅ CONNECTÉ : <span id="display-id"></span></div>
+<div id="user-bar">ADMIN: <span id="logged-id"></span></div>
 
 <header>
-    <h1>ANONYMOUS <span class="sos">SOS</span> <span class="fr">FR</span> <span class="badge">✓</span></h1>
+    <h1>ANONYMOUS <span class="sos">SOS</span> <span class="fr">FR</span> <small>✓</small></h1>
     <nav>
-        <button onclick="ouvrirSection('boutique')">BOUTIQUE</button>
-        <button onclick="ouvrirSection('inscription')">REJOINDRE</button>
-        <button onclick="ouvrirSection('connexion')">CONNEXION</button>
-        <button onclick="ouvrirSection('annonces')">ANNONCES</button>
+        <button onclick="go('boutique')">BOUTIQUE</button>
+        <button onclick="go('inscription')">REJOINDRE</button>
+        <button onclick="go('connexion')">CONNEXION</button>
+        <button onclick="go('annonces')">ANNONCE</button>
     </nav>
 </header>
 
-<div style="padding: 15px; border-bottom: 1px solid #111;">
-    <p style="font-size: 12px;">📻 RADIO SKYROCK LIVE</p>
-    <audio controls style="width: 100%; filter: invert(1); height: 35px;">
-        <source src="https://icecast.skyrock.net/s/natio_mp3_128k" type="audio/mpeg">
-    </audio>
-    <a href="https://wa.me/32456894335" class="btn-sos">🆘 SOS WHATSAPP DIRECT</a>
+<div style="padding: 10px;">
+    <audio id="radio" controls style="width: 100%; height: 30px; filter: invert(1);"><source src="https://icecast.skyrock.net/s/natio_mp3_128k"></audio>
 </div>
 
 <div id="boutique" class="section active">
-    <h3>💎 PIÈCES (TARIFS TIKTOK)</h3>
     <table>
         <thead><tr><th>PACK</th><th>PIÈCES</th><th>PRIX</th></tr></thead>
-        <tbody id="shop-data">
-            </tbody>
+        <tbody id="list"></tbody>
     </table>
 </div>
 
-<div id="connexion" class="section">
-    <h3>🔑 MODDZ TOOL LOGIN</h3>
-    <input type="text" id="id-in" placeholder="Votre ID">
-    <input type="password" id="pass-in" placeholder="Mot de passe">
-    <button class="buy" style="width:90%; padding:15px;" onclick="logMe()">SE CONNECTER</button>
+<div id="inscription" class="section">
+    <h3>INSCRIPTION</h3>
+    <input type="text" placeholder="ID">
+    <input type="email" placeholder="Email (despreschez@gmail.com)">
+    <button class="btn-action">VALIDER</button>
 </div>
 
-<div id="inscription" class="section">
-    <h3>📝 INSCRIPTION</h3>
-    <p style="font-size: 11px;">Envoi vers : despreschez@gmail.com</p>
-    <input type="text" placeholder="ID Choisi">
-    <input type="email" placeholder="Email">
-    <button class="buy" style="width:90%; padding:15px;">VALIDER</button>
+<div id="connexion" class="section">
+    <h3>MOD TOOL</h3>
+    <input type="text" id="id-in" placeholder="ID">
+    <input type="password" id="pass-in" placeholder="Mot de passe">
+    <button class="btn-action" onclick="login()">ENTRER</button>
 </div>
 
 <div id="annonces" class="section">
-    <h3>📢 ANNONCES VIP</h3>
-    <textarea placeholder="Votre message..." rows="4"></textarea>
-    <button class="buy" style="width:90%; padding:15px;">POSTER</button>
+    <h3>ANNONCE VIP</h3>
+    <textarea placeholder="Votre message..."></textarea>
+    <button class="btn-action">POSTER</button>
 </div>
 
+<a href="https://wa.me/32456894335" class="btn-sos">🆘 SOS WHATSAPP</a>
+
 <footer>
-    ANONYMOUS SOS FR - MODDZ TOOL - PASSWORD: Loulou12
+    MODDZ TOOL - PW: Loulou12
 </footer>
 
 <script>
-    // Navigation forcée
-    function ouvrirSection(nom) {
-        var sections = document.getElementsByClassName('section');
-        for (var i = 0; i < sections.length; i++) {
-            sections[i].classList.remove('active');
-            sections[i].style.display = 'none';
-        }
-        var target = document.getElementById(nom);
-        target.classList.add('active');
-        target.style.display = 'block';
+    function go(id) {
+        let sections = document.getElementsByClassName('section');
+        for (let s of sections) s.style.display = 'none';
+        document.getElementById(id).style.display = 'block';
     }
 
-    // Système de connexion
-    function logMe() {
-        var user = document.getElementById('id-in').value;
-        var mdp = document.getElementById('pass-in').value;
-        if (mdp === "Loulou12") {
-            document.getElementById('top-bar').style.display = 'block';
-            document.getElementById('display-id').innerText = user;
-            alert("Accès validé pour " + user);
-            ouvrirSection('boutique');
-        } else {
-            alert("Erreur : Mot de passe incorrect.");
-        }
+    function login() {
+        let id = document.getElementById('id-in').value;
+        let pw = document.getElementById('pass-in').value;
+        if(pw === "Loulou12") {
+            document.getElementById('user-bar').style.display = 'block';
+            document.getElementById('logged-id').innerText = id;
+            alert("Mod Tool Activé !");
+            go('boutique');
+        } else { alert("Erreur MDP"); }
     }
 
-    // Génération des 80 lignes (statique pour mobile)
-    var tableBody = document.getElementById('shop-data');
-    var tarifs = [1, 2, 3, 4, 5, 6, 10, 15, 20, 25, 30, 40, 55, 70, 80, 100, 150, 200, 250, 300, 350, 400];
-    var htmlContent = "";
-    for (var j = 1; j <= 80; j++) {
-        var p = (j <= tarifs.length) ? tarifs[j-1] : 400 + (j * 2);
-        var c = Math.floor(p * 66);
-        htmlContent += "<tr><td>#" + j + "</td><td class='coins'>" + c.toLocaleString() + " 🪙</td><td>" + p.toFixed(2) + "€</td></tr>";
+    const list = document.getElementById('list');
+    const prices = [1, 2, 3, 4, 5, 6, 10, 15, 20, 25, 30, 40, 55, 70, 80, 100, 150, 200, 250, 300, 350, 400];
+    for (let i = 1; i <= 80; i++) {
+        let p = (i <= prices.length) ? prices[i-1] : 400 + (i * 2);
+        let c = Math.floor(p * 66);
+        list.innerHTML += <tr><td>#${i}</td><td class="coins">${c} 🪙</td><td>${p}€</td></tr>;
     }
-    tableBody.innerHTML = htmlContent;
 </script>
 </body>
 </html>
