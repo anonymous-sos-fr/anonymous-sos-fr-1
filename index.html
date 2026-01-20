@@ -3,144 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anonymous SOS FR - Officiel</title>
+    <title>Anonymous SOS FR</title>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background-color: #0b0b0b; color: white; margin: 0; text-align: center; }
+        body { background: #000; color: #fff; font-family: sans-serif; text-align: center; margin: 0; }
+        .nav { background: #111; padding: 10px; border-bottom: 2px solid red; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
         
-        /* NAVIGATION */
-        .navbar { background: #151515; padding: 15px; display: flex; justify-content: center; gap: 10px; border-bottom: 2px solid #ff0000; position: sticky; top: 0; z-index: 1000; }
-        .btn { padding: 10px 15px; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; background: #333; color: white; text-transform: uppercase; font-size: 12px; }
-        .btn:hover { background: #ff0000; }
-        .btn-admin { background: #4a148c !important; }
-        .btn-sos { background: #25d366 !important; text-decoration: none; display: inline-flex; align-items: center; }
-
-        /* PAGES */
-        .page { display: none; padding: 30px 15px; }
+        /* Boutons avec effet de clic visuel */
+        .btn { padding: 12px; background: #333; color: #fff; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        .btn:active { background: #ff0000; } 
+        
+        .section { display: none; padding: 20px; }
         .active { display: block !important; }
-
-        /* BADGE CERTIFIÉ */
-        .badge { width: 18px; margin-left: 5px; vertical-align: middle; }
-
-        /* BOUTIQUE MODALE */
-        #modalBoutique { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #1a1a1a; padding: 25px; border: 2px solid #ffd700; border-radius: 15px; z-index: 3000; width: 85%; max-width: 450px; }
-        .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 2500; }
-
-        /* FORMULAIRES */
-        input, select { padding: 12px; margin: 10px auto; width: 90%; max-width: 300px; border-radius: 8px; border: 1px solid #333; background: #000; color: white; display: block; }
-        .btn-submit { background: #ff0000; padding: 15px; width: 90%; max-width: 320px; font-size: 16px; margin-top: 10px; }
-
-        /* FIL D'ACTUALITÉ / PROFIL */
-        .post-container { background: #181818; border: 1px solid #333; border-radius: 15px; padding: 20px; margin-top: 20px; text-align: left; }
-        .video-placeholder { background: #000; width: 100%; height: 200px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #444; margin-top: 10px; }
+        
+        .badge { width: 18px; vertical-align: middle; }
+        input { width: 80%; padding: 10px; margin: 10px 0; background: #222; color: #fff; border: 1px solid #444; }
+        .box { border: 1px solid #333; padding: 15px; margin-top: 20px; border-radius: 10px; }
     </style>
 </head>
 <body>
 
-    <div id="overlay" class="overlay" onclick="fermerBoutique()"></div>
-
-    <div class="navbar">
-        <button class="btn" onclick="ouvrirBoutique()">BOUTIQUE</button>
-        <button class="btn" onclick="allerA('section-inscription')">INSCRIPTION</button>
-        <button class="btn" onclick="allerA('section-connexion')">CONNEXION</button>
-        <button class="btn btn-admin" onclick="ouvrirAdmin()">ADMIN</button>
-        <a href="https://wa.me/32456894335" class="btn btn-sos" target="_blank">🆘 SOS</a>
+    <div class="nav">
+        <button class="btn" onclick="ouvrir('page-boutique')">BOUTIQUE</button>
+        <button class="btn" onclick="ouvrir('page-inscription')">INSCRIPTION</button>
+        <button class="btn" onclick="ouvrir('page-connexion')">CONNEXION</button>
+        <button class="btn" style="background:#4b0082" onclick="accesAdmin()">ADMIN</button>
+        <a href="https://wa.me/32456894335" class="btn" style="background:#25D366; text-decoration:none;">🆘 SOS</a>
     </div>
 
-    <div id="modalBoutique">
-        <h2 style="color:#ffd700;">💎 BOUTIQUE</h2>
-        <p>70 Pièces : 0,95€ | 350 Pièces : 4,50€</p>
-        <p>1400 Pièces : 17,50€ | 7000 Pièces : 85,00€</p>
-        <hr border="1" color="#333">
-        <p>🎁 CAISSES : Uniquement via Admin</p>
-        <button class="btn" onclick="fermerBoutique()">RETOUR</button>
-    </div>
-
-    <div id="section-accueil" class="page active">
-        <h1>🔥 ANONYMOUS SOS FR <img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Twitter_Verified_Badge.svg" class="badge"></h1>
-        <p><i>"Le présent est très important pour moi."</i></p>
-        <div style="margin: 20px 0; background: #222; padding: 15px; border-radius: 50px; display: inline-block;">
-            <p style="margin:0 0 5px 0; font-size: 12px;">📻 RADIO SKYROCK</p>
+    <div id="page-accueil" class="section active">
+        <h1>ANONYMOUS SOS FR <img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Twitter_Verified_Badge.svg" class="badge"></h1>
+        <p>Le présent est très important.</p>
+        <div class="box">
+            <p>📻 RADIO SKYROCK</p>
             <audio controls><source src="https://icecast.skyrock.net/s/natio_mp3_128k" type="audio/mpeg"></audio>
         </div>
-        <p>Inscris-toi ou connecte-toi pour voir les vidéos des membres.</p>
     </div>
 
-    <div id="section-inscription" class="page">
-        <h2>REJOINDRE L'ÉQUIPE</h2>
-        <input type="text" id="reg-id" placeholder="Choisis ton ID">
-        <input type="email" placeholder="Ton Email">
+    <div id="page-boutique" class="section">
+        <h2 style="color:gold">💎 BOUTIQUE</h2>
+        <p>70 Pièces : 0,95€ | 350 Pièces : 4,50€</p>
+        <p>1400 Pièces : 17,50€ | 7000 Pièces : 85,00€</p>
+        <p>Pour les caisses, contactez l'Admin.</p>
+        <button class="btn" onclick="ouvrir('page-accueil')">RETOUR</button>
+    </div>
+
+    <div id="page-inscription" class="section">
+        <h2>INSCRIPTION</h2>
+        <input type="text" id="reg-name" placeholder="Pseudo">
         <input type="password" placeholder="Mot de passe">
-        <p style="font-size: 12px;">Date de naissance :</p>
-        <div style="display: flex; justify-content: center;"><select id="j" style="width:60px;"></select><select id="m" style="width:80px;"></select><select id="a" style="width:80px;"></select></div>
-        <button class="btn btn-submit" onclick="connexionDirecte('reg-id')">CRÉER ET VOIR LES VIDÉOS</button>
+        <button class="btn" style="background:red; width:85%" onclick="allerProfil('reg-name')">VALIDER & ENTRER</button>
     </div>
 
-    <div id="section-connexion" class="page">
-        <h2>ACCÈS PROFIL</h2>
-        <input type="text" id="log-id" placeholder="Ton ID">
-        <input type="password" placeholder="Ton Mot de passe">
-        <button class="btn btn-submit" onclick="connexionDirecte('log-id')">ENTRER SUR MON PROFIL</button>
+    <div id="page-connexion" class="section">
+        <h2>CONNEXION</h2>
+        <input type="text" id="log-name" placeholder="Pseudo">
+        <input type="password" placeholder="Mot de passe">
+        <button class="btn" style="background:red; width:85%" onclick="allerProfil('log-name')">SE CONNECTER</button>
     </div>
 
-    <div id="section-profil" class="page">
-        <h1 id="user-display">Bienvenue sur ton espace</h1>
-        <p>Ici, tu peux partager tes vidéos et photos avec toute la communauté.</p>
-        
-        <div class="post-container">
-            <h3>📤 PUBLIER DU CONTENU</h3>
-            <input type="file" id="upload" accept="video/,image/">
-            <button class="btn" style="background: #2e7d32; width: 100%; margin-top: 10px;" onclick="envoyerContenu()">ENVOYER À L'ADMIN</button>
-            <p style="font-size: 11px; color: #888; margin-top: 5px;">* Votre publication doit être validée par Anonymous SOS FR avant d'être visible par tous.</p>
+    <div id="page-profil" class="section">
+        <h1 id="titre-profil">Mon Profil <img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Twitter_Verified_Badge.svg" class="badge"></h1>
+        <div class="box">
+            <h3>PUBLIER UNE VIDÉO / PHOTO</h3>
+            <input type="file" id="up">
+            <button class="btn" style="background:green" onclick="alert('Envoyé ! Un admin doit accepter votre message.')">PUBLIER SUR LE FIL</button>
         </div>
-
-        <h2 style="margin-top: 40px; border-bottom: 2px solid #ff0000; padding-bottom: 10px;">🎞️ FIL D'ACTUALITÉ GÉNÉRAL</h2>
-        <div id="feed">
-            <div class="post-container">
-                <strong>@Admin_SOS</strong> <img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Twitter_Verified_Badge.svg" class="badge">
-                <p>Bienvenue sur la nouvelle plateforme ! Postez vos meilleurs moments ici.</p>
-                <div class="video-placeholder">Vidéo de bienvenue.mp4</div>
-            </div>
-        </div>
+        <h3>FIL D'ACTUALITÉ</h3>
+        <div class="box">Aucune vidéo pour le moment.</div>
     </div>
 
     <script>
-        // Remplir les dates
-        const j=document.getElementById('j'), m=document.getElementById('m'), a=document.getElementById('a');
-        for(let i=1;i<=31;i++) j.innerHTML += <option>${i}</option>;
-        const mois = ["Jan","Fév","Mar","Avr","Mai","Jui","Juil","Aoû","Sep","Oct","Nov","Déc"];
-        mois.forEach((mn, i) => m.innerHTML += <option value="${i+1}">${mn}</option>);
-        for(let i=2010;i>=1950;i--) a.innerHTML += <option>${i}</option>;
-
-        // Navigation
-        function allerA(id) {
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        // Fonction principale pour changer de page
+        function ouvrir(id) {
+            console.log("Ouverture de : " + id); // Pour vérifier dans la console
+            // Cache tout
+            var pages = document.getElementsByClassName('section');
+            for (var i = 0; i < pages.length; i++) {
+                pages[i].classList.remove('active');
+            }
+            // Affiche la page
             document.getElementById(id).classList.add('active');
-            window.scrollTo(0,0);
         }
 
-        // Boutique
-        function ouvrirBoutique() { document.getElementById('modalBoutique').style.display='block'; document.getElementById('overlay').style.display='block'; }
-        function fermerBoutique() { document.getElementById('modalBoutique').style.display='none'; document.getElementById('overlay').style.display='none'; }
-
-        // CONNEXION DIRECTE VERS PAGE 2 (PROFIL/ACCUEIL)
-        function connexionDirecte(inputId) {
-            const nom = document.getElementById(inputId).value || "Membre";
-            document.getElementById('user-display').innerHTML = "Profil de " + nom + " <img src='https://upload.wikimedia.org/wikipedia/commons/e/e4/Twitter_Verified_Badge.svg' class='badge'>";
-            allerA('section-profil');
+        // Connexion vers Page 2
+        function allerProfil(inputId) {
+            var nom = document.getElementById(inputId).value || "Membre";
+            document.getElementById('titre-profil').innerHTML = "Profil de " + nom + " <img src='https://upload.wikimedia.org/wikipedia/commons/e/e4/Twitter_Verified_Badge.svg' class='badge'>";
+            ouvrir('page-profil');
         }
 
         // Admin
-        function ouvrirAdmin() {
-            if(prompt("Mot de passe équipe :") === "Loulou12") {
-                alert("Accès autorisé, bienvenue Anonymous SOS FR.");
-            } else { alert("Accès refusé."); }
-        }
-
-        // Publication
-        function envoyerContenu() {
-            if(document.getElementById('upload').value !== "") {
-                alert("Fichier envoyé ! L'administrateur va vérifier votre contenu avant de le rendre public.");
-            } else { alert("Sélectionnez une vidéo ou une photo d'abord."); }
+        function accesAdmin() {
+            var pass = prompt("Mot de passe Admin :");
+            if (pass === "Loulou12") {
+                alert("Bienvenue Anonymous SOS FR");
+            } else {
+                alert("Erreur.");
+            }
         }
     </script>
 </body>
