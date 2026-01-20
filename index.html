@@ -5,106 +5,111 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ANONYMOUS SOS FR</title>
     <style>
-        body { background: #000; color: #00FF41; font-family: sans-serif; margin: 0; padding: 0; text-align: center; }
-        header { border-bottom: 1px solid #00FF41; padding: 10px; background: #000; sticky; top: 0; z-index: 100; }
-        h1 { font-size: 1.2em; margin: 5px; }
+        body { background: #000; color: #00FF41; font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        header { border-bottom: 1px solid #00FF41; padding: 5px; text-align: center; background: #000; position: sticky; top: 0; z-index: 100; }
         .sos { color: red; } .fr { color: white; }
         
-        #user-bar { background: #111; color: yellow; font-size: 0.8em; padding: 5px; display: none; border-bottom: 1px solid #333; }
+        #admin-bar { background: #111; color: yellow; font-size: 12px; padding: 5px; display: none; text-align: center; border-bottom: 1px solid #333; }
+        
+        .nav-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; padding: 10px; }
+        .nav-grid button { background: #000; border: 1px solid #00FF41; color: #00FF41; padding: 10px; font-size: 11px; font-weight: bold; cursor: pointer; }
+        .nav-grid button:active { background: #00FF41; color: #000; }
 
-        nav { display: flex; justify-content: center; gap: 5px; padding: 10px; flex-wrap: wrap; }
-        nav button { background: #000; border: 1px solid #00FF41; color: #00FF41; padding: 8px 10px; font-size: 0.7em; font-weight: bold; cursor: pointer; }
-
-        .section { display: none; padding: 15px; }
+        .section { display: none; padding: 10px; }
         .active { display: block; }
 
-        table { width: 100%; border-collapse: collapse; font-size: 0.8em; margin-top: 10px; }
-        td, th { border: 1px solid #222; padding: 8px; }
-        .coins { color: #FFD700; }
+        table { width: 100%; border-collapse: collapse; font-size: 11px; margin-top: 5px; }
+        td, th { border: 1px solid #222; padding: 6px; text-align: center; }
+        .coins { color: #FFD700; font-weight: bold; }
         
-        .btn-action { background: #00FF41; color: #000; border: none; padding: 10px; width: 100%; font-weight: bold; margin-top: 10px; }
-        .btn-sos { display: block; background: #25D366; color: white; padding: 12px; text-decoration: none; border-radius: 5px; margin: 15px auto; width: 70%; font-weight: bold; font-size: 0.9em; }
+        .btn-send { background: #00FF41; color: #000; border: none; padding: 10px; width: 100%; font-weight: bold; margin-top: 10px; border-radius: 4px; }
+        .btn-wa { display: block; background: #25D366; color: white; padding: 12px; text-decoration: none; border-radius: 5px; margin: 10px auto; width: 85%; font-weight: bold; font-size: 14px; text-align: center; box-shadow: 0 0 10px #25D366; }
 
-        input, textarea { width: 100%; padding: 10px; margin: 5px 0; background: #000; border: 1px solid #00FF41; color: #00FF41; box-sizing: border-box; }
-        footer { font-size: 0.6em; color: #444; margin-top: 20px; padding: 10px; }
+        input, textarea { width: 100%; padding: 10px; margin: 5px 0; background: #000; border: 1px solid #00FF41; color: #00FF41; box-sizing: border-box; border-radius: 4px; }
+        .radio-box { padding: 5px; border-bottom: 1px solid #111; }
+        audio { width: 100%; height: 30px; filter: invert(1); opacity: 0.8; }
+        footer { font-size: 9px; color: #333; padding: 10px; text-align: center; }
     </style>
 </head>
 <body>
 
-<div id="user-bar">ADMIN: <span id="logged-id"></span></div>
+<div id="admin-bar">🌟 MOD TOOL ACTIF : <span id="admin-name"></span></div>
 
 <header>
-    <h1>ANONYMOUS <span class="sos">SOS</span> <span class="fr">FR</span> <small>✓</small></h1>
-    <nav>
-        <button onclick="go('boutique')">BOUTIQUE</button>
-        <button onclick="go('inscription')">REJOINDRE</button>
-        <button onclick="go('connexion')">CONNEXION</button>
-        <button onclick="go('annonces')">ANNONCE</button>
-    </nav>
+    <div style="font-size: 14px; font-weight: bold;">ANONYMOUS <span class="sos">SOS</span> <span class="fr">FR</span> ✓</div>
+    <div class="nav-grid">
+        <button onclick="show('boutique')">BOUTIQUE</button>
+        <button onclick="show('inscription')">REJOINDRE</button>
+        <button onclick="show('connexion')">CONNEXION</button>
+        <button onclick="show('annonces')">ANNONCE</button>
+    </div>
 </header>
 
-<div style="padding: 10px;">
-    <audio id="radio" controls style="width: 100%; height: 30px; filter: invert(1);"><source src="https://icecast.skyrock.net/s/natio_mp3_128k"></audio>
+<div class="radio-box">
+    <audio controls><source src="https://icecast.skyrock.net/s/natio_mp3_128k"></audio>
 </div>
 
 <div id="boutique" class="section active">
     <table>
-        <thead><tr><th>PACK</th><th>PIÈCES</th><th>PRIX</th></tr></thead>
-        <tbody id="list"></tbody>
+        <thead><tr><th>#</th><th>PIÈCES</th><th>PRIX</th></tr></thead>
+        <tbody id="coin-list"></tbody>
     </table>
 </div>
 
 <div id="inscription" class="section">
-    <h3>INSCRIPTION</h3>
-    <input type="text" placeholder="ID">
-    <input type="email" placeholder="Email (despreschez@gmail.com)">
-    <button class="btn-action">VALIDER</button>
+    <h4 style="margin: 5px 0;">REJOINDRE</h4>
+    <input type="text" placeholder="Ton ID">
+    <input type="email" placeholder="despreschez@gmail.com">
+    <button class="btn-send">VALIDER INSCRIPTION</button>
 </div>
 
 <div id="connexion" class="section">
-    <h3>MOD TOOL</h3>
-    <input type="text" id="id-in" placeholder="ID">
-    <input type="password" id="pass-in" placeholder="Mot de passe">
-    <button class="btn-action" onclick="login()">ENTRER</button>
+    <h4 style="margin: 5px 0;">MOD TOOL LOGIN</h4>
+    <input type="text" id="id-log" placeholder="ID">
+    <input type="password" id="pw-log" placeholder="Mot de passe">
+    <button class="btn-send" onclick="doLogin()">ACTIVER MOD TOOL</button>
 </div>
 
 <div id="annonces" class="section">
-    <h3>ANNONCE VIP</h3>
-    <textarea placeholder="Votre message..."></textarea>
-    <button class="btn-action">POSTER</button>
+    <h4 style="margin: 5px 0;">ANNONCE VIP</h4>
+    <textarea placeholder="Ton message ici..." rows="3"></textarea>
+    <button class="btn-send">PUBLIER</button>
 </div>
 
-<a href="https://wa.me/32456894335" class="btn-sos">🆘 SOS WHATSAPP</a>
+<a href="https://wa.me/32456894335" class="btn-wa">🆘 WHATSAPP DIRECT</a>
 
-<footer>
-    MODDZ TOOL - PW: Loulou12
-</footer>
+<footer>MODDZ TOOL - PW: Loulou12</footer>
 
 <script>
-    function go(id) {
-        let sections = document.getElementsByClassName('section');
-        for (let s of sections) s.style.display = 'none';
+    // Navigation Forcée
+    function show(id) {
+        var s = document.getElementsByClassName('section');
+        for(var i=0; i<s.length; i++) { s[i].style.display = 'none'; }
         document.getElementById(id).style.display = 'block';
     }
 
-    function login() {
-        let id = document.getElementById('id-in').value;
-        let pw = document.getElementById('pass-in').value;
-        if(pw === "Loulou12") {
-            document.getElementById('user-bar').style.display = 'block';
-            document.getElementById('logged-id').innerText = id;
-            alert("Mod Tool Activé !");
-            go('boutique');
-        } else { alert("Erreur MDP"); }
+    // Connexion Directe
+    function doLogin() {
+        var u = document.getElementById('id-log').value;
+        var p = document.getElementById('pw-log').value;
+        if(p === "Loulou12") {
+            document.getElementById('admin-bar').style.display = 'block';
+            document.getElementById('admin-name').innerText = u;
+            alert("MOD TOOL ACTIVÉ");
+            show('boutique');
+        } else { alert("MDP FAUX"); }
     }
 
-    const list = document.getElementById('list');
-    const prices = [1, 2, 3, 4, 5, 6, 10, 15, 20, 25, 30, 40, 55, 70, 80, 100, 150, 200, 250, 300, 350, 400];
-    for (let i = 1; i <= 80; i++) {
-        let p = (i <= prices.length) ? prices[i-1] : 400 + (i * 2);
-        let c = Math.floor(p * 66);
-        list.innerHTML += <tr><td>#${i}</td><td class="coins">${c} 🪙</td><td>${p}€</td></tr>;
+    // Remplissage Pièces
+    var list = document.getElementById('coin-list');
+    var pArr = [1, 2, 3, 4, 5, 6, 10, 15, 20, 25, 30, 40, 55, 70, 80, 100, 150, 200, 250, 300, 350, 400];
+    var html = "";
+    for (var i = 1; i <= 80; i++) {
+        var pr = (i <= pArr.length) ? pArr[i-1] : 400 + (i * 2);
+        html += "<tr><td>" + i + "</td><td class='coins'>" + (pr * 66) + " 🪙</td><td>" + pr + "€</td></tr>";
     }
+    list.innerHTML = html;
 </script>
+
 </body>
 </html>
