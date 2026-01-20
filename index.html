@@ -2,172 +2,117 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anonymous SOS FR - Admin Edition</title>
+    <title>ANONYMOUS SOS FR - OFFICIAL</title>
     <style>
-        body { background-color: #000; color: #00FF41; font-family: 'Courier New', monospace; margin: 0; padding: 0; }
+        body { background: #000; color: #00FF41; font-family: 'Courier New', monospace; margin: 0; text-align: center; }
+        header { border-bottom: 2px solid #00FF41; padding: 20px; background: #000; position: sticky; top: 0; z-index: 100; }
+        .sos { color: red; } .fr { color: white; }
+        .badge { background: #1DA1F2; color: white; border-radius: 50%; padding: 2px 7px; font-size: 12px; vertical-align: middle; }
         
-        header {
-            border-bottom: 2px solid #00FF41;
-            padding: 20px;
-            text-align: center;
-            background: rgba(0, 0, 0, 0.95);
-            position: sticky; top: 0; z-index: 1000;
-        }
+        nav { margin-top: 15px; }
+        nav button { background: #000; border: 1px solid #00FF41; color: #00FF41; padding: 10px 15px; cursor: pointer; font-weight: bold; margin: 5px; }
+        nav button:hover { background: #00FF41; color: #000; }
 
-        .brand h1 { font-size: 1.8em; margin: 0 0 15px 0; letter-spacing: 2px; }
-        .sos { color: #ff0000; text-shadow: 0 0 5px #ff0000; }
-        .fr { color: #ffffff; text-shadow: 0 0 5px #ffffff; }
+        .section { display: none; padding: 20px; max-width: 800px; margin: auto; }
+        .active { display: block; }
+
+        .btn-sos { display: block; background: #25D366; color: white; padding: 15px; text-decoration: none; border-radius: 5px; margin: 20px auto; width: fit-content; font-weight: bold; box-shadow: 0 0 15px #25D366; }
         
-        .verified-badge {
-            display: inline-flex; align-items: center; justify-content: center;
-            background-color: #1DA1F2; color: white; border-radius: 50%;
-            width: 20px; height: 20px; font-size: 12px; margin-left: 8px;
-            border: 1px solid #fff; vertical-align: middle;
-        }
+        table { width: 100%; border-collapse: collapse; background: #080808; margin-top: 20px; }
+        th { background: #00FF41; color: #000; padding: 10px; }
+        td { border: 1px solid #111; padding: 10px; }
+        .coins { color: #FFD700; font-weight: bold; }
+        .buy { background: #00FF41; border: none; padding: 5px 10px; cursor: pointer; font-weight: bold; }
 
-        .top-nav { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
-        .top-nav button {
-            background: black; border: 1px solid #00FF41; color: #00FF41;
-            padding: 10px 15px; cursor: pointer; font-weight: bold; text-transform: uppercase;
-        }
-        .top-nav button:hover { background: #00FF41; color: black; box-shadow: 0 0 15px #00FF41; }
-
-        .container { max-width: 900px; margin: auto; padding: 20px; text-align: center; }
-
-        /* RADIO FIX */
-        .widget-box { border: 1px solid #00FF41; padding: 15px; margin-bottom: 20px; background: #050505; }
-        
-        .btn-sos-wa {
-            display: inline-block; background: #25D366; color: white; padding: 15px 30px;
-            text-decoration: none; font-weight: bold; border-radius: 50px; margin: 20px 0;
-            box-shadow: 0 0 20px #25D366; animation: blink 1.5s infinite;
-        }
-        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.7; } 100% { opacity: 1; } }
-
-        .shop-table { width: 100%; border-collapse: collapse; margin-top: 20px; background: #080808; }
-        .shop-table th { background: #00FF41; color: black; padding: 12px; position: sticky; top: 115px; }
-        .shop-table td { border: 1px solid #111; padding: 15px; }
-        .coin-val { color: #FFD700; font-weight: bold; }
-        .price-val { color: #ffffff; font-weight: bold; }
-        .buy-btn { background: #00FF41; border: none; padding: 8px 15px; cursor: pointer; font-weight: bold; border-radius: 5px; }
-
-        .section-content { display: none; padding: 30px; border: 1px dashed #00FF41; margin-top: 20px; text-align: left; background: #080808; }
-        input, select, textarea { width: 100%; padding: 12px; margin: 10px 0; background: #000; border: 1px solid #00FF41; color: #00FF41; box-sizing: border-box; font-family: 'Courier New', monospace; }
-        
-        footer { padding: 60px; text-align: center; color: #444; font-size: 0.8em; border-top: 1px solid #111; }
+        input, select, textarea { width: 100%; padding: 12px; margin: 10px 0; background: #000; border: 1px solid #00FF41; color: #00FF41; box-sizing: border-box; }
+        footer { margin-top: 50px; padding: 20px; color: #333; font-size: 10px; border-top: 1px solid #111; }
     </style>
 </head>
 <body>
 
 <header>
-    <div class="brand">
-        <h1>ANONYMOUS <span class="sos">SOS</span> <span class="fr">FR</span> <span class="verified-badge">✓</span></h1>
-    </div>
-    <nav class="top-nav">
-        <button onclick="nav('inscription')">INSCRIPTION</button>
-        <button onclick="nav('connexion')">CONNEXION</button>
-        <button onclick="nav('boutique')">BOUTIQUE</button>
-        <button onclick="nav('annonces')">ANNONCES</button>
+    <h1>ANONYMOUS <span class="sos">SOS</span> <span class="fr">FR</span> <span class="badge">✓</span></h1>
+    <nav>
+        <button onclick="ouvrir('boutique')">BOUTIQUE</button>
+        <button onclick="ouvrir('inscription')">INSCRIPTION</button>
+        <button onclick="ouvrir('connexion')">CONNEXION</button>
+        <button onclick="ouvrir('annonces')">ANNONCES</button>
     </nav>
 </header>
 
-<div class="container">
-    <div class="widget-box">
-        <p>📻 RADIO SKYROCK LIVE</p>
-        <audio id="radioPlayer" controls style="width: 100%; filter: invert(1); height: 35px;">
-            <source src="https://icecast.skyrock.net/s/natio_mp3_128k" type="audio/mpeg">
-        </audio>
-    </div>
+<div class="widget" style="padding: 20px;">
+    <p>📻 RADIO SKYROCK LIVE</p>
+    <audio controls style="width: 100%; max-width: 400px; filter: invert(1);"><source src="https://icecast.skyrock.net/s/natio_mp3_128k"></audio>
+    <a href="https://wa.me/32456894335" target="_blank" class="btn-sos">🆘 SOS DIRECT WHATSAPP</a>
+</div>
 
-    <a href="https://wa.me/+32456894335
-" class="btn-sos-wa">🆘 CONTACT SOS DIRECT WHATSAPP</a>
+<div id="boutique" class="section active">
+    <h2>💎 BOUTIQUE (80 PACKS)</h2>
+    <table>
+        <thead>
+            <tr><th>PACK</th><th>PIÈCES</th><th>PRIX</th><th>ACTION</th></tr>
+        </thead>
+        <tbody id="shop-data"></tbody>
+    </table>
+</div>
 
-    <section id="boutique" class="section-content" style="display:block; border:none; padding:0;">
-        <h2>💎 BOUTIQUE DE PIÈCES (80 PACKS)</h2>
-        <table class="shop-table">
-            <thead>
-                <tr>
-                    <th>PACK</th>
-                    <th>PIÈCES</th>
-                    <th>PRIX</th>
-                    <th>ACTION</th>
-                </tr>
-            </thead>
-            <tbody id="shop-list"></tbody>
-        </table>
-    </section>
+<div id="inscription" class="section">
+    <h2>📝 REJOINDRE LE RÉSEAU</h2>
+    <form action="mailto:despreschez@gmail.com" method="post" enctype="text/plain">
+        <input type="text" name="ID" placeholder="ID (Identifiant)" required>
+        <input type="email" name="Email" placeholder="Adresse Mail" required>
+        <input type="date" name="Naissance" required>
+        <select name="Genre"><option>Homme</option><option>Femme</option></select>
+        <p><input type="checkbox" required> J'ai plus de 18 ans.</p>
+        <button type="submit" class="buy" style="width:100%; padding:15px;">S'INSCRIRE</button>
+    </form>
+</div>
 
-    <section id="connexion" class="section-content">
-        <h2>🔑 ACCÈS COMPTE</h2>
-        <div id="loginMessage"></div>
-        <form onsubmit="checkLogin(event)">
-            <input type="text" id="loginID" placeholder="Identifiant (ID)" required>
-            <input type="password" id="loginPass" placeholder="Mot de passe" required>
-            <button class="buy-btn" style="width:100%; padding: 15px;">SE CONNECTER</button>
-        </form>
-    </section>
+<div id="connexion" class="section">
+    <h2>🔑 ACCÈS COMPTE</h2>
+    <form onsubmit="checkLogin(event)">
+        <input type="text" id="user" placeholder="ID" required>
+        <input type="password" id="pass" placeholder="Mot de passe" required>
+        <button type="submit" class="buy" style="width:100%; padding:15px;">SE CONNECTER</button>
+    </form>
+</div>
 
-    <section id="inscription" class="section-content">
-        <h2>📝 INSCRIPTION</h2>
-        <form onsubmit="alert('Demande d\'inscription envoyée !'); return false;">
-            <input type="text" placeholder="ID (Identifiant souhaité)" required>
-            <input type="email" placeholder="Adresse Mail" required>
-            <label>Date de naissance :</label>
-            <input type="date" required>
-            <select required>
-                <option value="">Genre</option>
-                <option>Homme</option>
-                <option>Femme</option>
-            </select>
-            <p style="font-size: 0.8em;"><input type="checkbox" required> J'ai plus de 18 ans.</p>
-            <button class="buy-btn" style="width:100%; padding: 15px;">S'INSCRIRE</button>
-        </form>
-    </section>
-
-    <section id="annonces" class="section-content">
-        <h2>📢 ANNONCES VIP</h2>
-        <p>Les messages sont vérifiés avant d'être publiés.</p>
-        <textarea placeholder="Écrivez votre annonce..."></textarea>
-        <button class="buy-btn" style="width:100%; padding: 15px;">ENVOYER L'ANNONCE</button>
-    </section>
+<div id="annonces" class="section">
+    <h2>📢 ANNONCES VIP</h2>
+    <p>Contact admin : despreschez@gmail.com</p>
+    <textarea placeholder="Votre annonce sera vérifiée par l'admin..."></textarea>
+    <button class="buy" style="width:100%; padding:15px;">ENVOYER</button>
 </div>
 
 <footer>
-    <p>anonymous sos fr - MODDZ TOOL - PASSWORD: Loulou12</p>
+    ANONYMOUS SOS FR - MODDZ TOOL - PASSWORD: Loulou12
 </footer>
 
 <script>
-    // GÉNÉRATION 80 LIGNES
-    const shopList = document.getElementById('shop-list');
-    const fixedPrices = [1, 2, 3, 4, 5, 6, 10, 15, 20, 25, 30, 40, 55, 70, 80, 100, 150, 200, 250, 300, 350, 400];
-    for (let i = 1; i <= 80; i++) {
-        let price = (i <= fixedPrices.length) ? fixedPrices[i-1] : 400 + ((i - fixedPrices.length) * 10);
-        let coins = Math.floor(price * 66);
-        shopList.innerHTML += <tr><td>#${i}</td><td class="coin-val">${coins.toLocaleString()} 🪙</td><td class="price-val">${price.toFixed(2)} €</td><td><button class="buy-btn">ACHETER</button></td></tr>;
+    function ouvrir(id) {
+        var sections = document.getElementsByClassName('section');
+        for (var i = 0; i < sections.length; i++) {
+            sections[i].style.display = 'none';
+        }
+        document.getElementById(id).style.display = 'block';
     }
 
-    // FONCTION CONNEXION
     function checkLogin(e) {
         e.preventDefault();
-        const id = document.getElementById('loginID').value;
-        const pass = document.getElementById('loginPass').value;
-        const msg = document.getElementById('loginMessage');
-
-        if (pass === "Loulou12") {
-            msg.innerHTML = "<p style='color:yellow'>✅ Bienvenue Administrateur Anonymous SOS FR !</p>";
+        if(document.getElementById('pass').value === "Loulou12") {
+            alert("Accès Mod Tool Loulou12 Activé ! Bienvenue Anonymous SOS FR.");
         } else {
-            msg.innerHTML = "<p style='color:red'>❌ Mot de passe incorrect.</p>";
+            alert("Mot de passe incorrect.");
         }
     }
 
-    // NAVIGATION
-    function nav(id) {
-        const sections = ['boutique', 'inscription', 'connexion', 'annonces'];
-        sections.forEach(s => document.getElementById(s).style.display = 'none');
-        document.getElementById(id).style.display = 'block';
+    const table = document.getElementById('shop-data');
+    const prixFixes = [1, 2, 3, 4, 5, 6, 10, 15, 20, 25, 30, 40, 55, 70, 80, 100, 150, 200, 250, 300, 350, 400];
+    for (let i = 1; i <= 80; i++) {
+        let p = (i <= prixFixes.length) ? prixFixes[i-1] : 400 + (i * 5);
+        let c = Math.floor(p * 66);
+        table.innerHTML += "<tr><td>#" + i + "</td><td class='coins'>" + c.toLocaleString() + " 🪙</td><td>" + p.toFixed(2) + " €</td><td><button class='buy'>ACHETER</button></td></tr>";
     }
 </script>
-
 </body>
 </html>
