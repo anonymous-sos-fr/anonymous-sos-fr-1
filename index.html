@@ -92,7 +92,28 @@
 
         function verifierCode() {
             var code = document.getElementById('code-entree').value;
-            if(code === "19851985") {
+// --- Insertion à la ligne 95 ---
+// Confirmation visuelle et préparation de l'espace VIP
+document.getElementById('status-message').innerText = "Code valeur valide avec succès !";
+
+// Affichage du pseudo coloré (permanent comme demandé)
+const zonePseudo = document.getElementById('user-identity'); 
+zonePseudo.innerHTML = 'Connecté en tant que : <span style="color: cyan; font-weight: bold;">Anonymous sos fr</span>';
+
+// Zone de rédaction pour l'annonce VIP avec avertissement admin
+const zoneRedaction = document.getElementById('vip-action-area');
+zoneRedaction.innerHTML = `
+    <div style="border: 2px solid #555; padding: 15px; background-color: #1a1a1a; border-radius: 8px;">
+        <h3 style="color: #ffcc00;">📢 Créer une annonce VIP</h3>
+        <p style="color: #bbb; font-style: italic;">
+            Note : Votre annonce sera soumise à la validation d'un administrateur du site "anonymous sos fr" avant publication.
+        </p>
+        <textarea id="msg-vip" style="width: 100%; height: 80px; background: #333; color: white;" placeholder="Votre message..."></textarea>
+        <br>
+        <button style="margin-top: 10px; cursor: pointer;" onclick="soumettreAnnonce()">Envoyer pour vérification</button>
+    </div>
+`;
+// -------------------------------            if(code === "19851985") {
                 alert("Compte validé avec succès !");
             } else {
                 alert("Code incorrect.");
@@ -104,5 +125,23 @@
             if(mdp === "Loulou12") { ouvrir('tool'); }
         }
     </script>
-</body>
+// Après la validation réussie du code
+console.log("Code valeur valide avec succès");
+
+// 1. Affichage du pseudo de l'utilisateur
+const pseudoUtilisateur = "Utilisateur_Test"; // Ici, on récupérera le pseudo réel plus tard
+document.getElementById('affichage-pseudo').innerHTML = Bienvenue, <span style="color: #00ff00;">${pseudoUtilisateur}</span> !;
+
+// 2. Message d'avertissement pour les annonces VIP
+const zoneAnnonce = document.getElementById('section-annonce');
+zoneAnnonce.innerHTML = `
+    <div style="background: #222; border: 1px solid #444; padding: 10px; margin-top: 20px;">
+        <p><strong>Système d'Annonce VIP :</strong></p>
+        <p style="font-size: 0.9em; color: #ffcc00;">
+            ⚠️ Note : Tous les messages seront vérifiés par un admin du site "anonymous sos fr" avant d'être publiés.
+        </p>
+        <textarea id="input-annonce" placeholder="Tapez votre annonce ici..."></textarea>
+        <button onclick="envoyerAnnonce()">Envoyer pour validation</button>
+    </div>
+`;</body>
 </html>
