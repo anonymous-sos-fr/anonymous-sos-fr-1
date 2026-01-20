@@ -5,145 +5,142 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anonymous SOS FR - Officiel</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #0b0b0b; color: #ffffff; margin: 0; text-align: center; }
+        body { font-family: 'Segoe UI', sans-serif; background-color: #0b0b0b; color: white; margin: 0; text-align: center; }
         
-        /* BARRE DE NAVIGATION */
-        .navbar { background: #151515; padding: 15px; display: flex; justify-content: center; gap: 15px; border-bottom: 2px solid #ff0000; position: sticky; top: 0; z-index: 1000; flex-wrap: wrap; }
-        .btn { padding: 12px 20px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; background: #252525; color: white; text-transform: uppercase; font-size: 13px; }
-        .btn:hover { background: #ff0000; transform: scale(1.05); }
-        .btn-admin { background: #4a148c; }
-        .btn-sos { background: #25d366; color: white; display: flex; align-items: center; gap: 8px; }
+        /* NAVIGATION */
+        .navbar { background: #151515; padding: 15px; display: flex; justify-content: center; gap: 10px; border-bottom: 2px solid #ff0000; position: sticky; top: 0; z-index: 1000; }
+        .btn { padding: 10px 15px; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; background: #333; color: white; text-transform: uppercase; font-size: 12px; }
+        .btn:hover { background: #ff0000; }
+        .btn-admin { background: #4a148c !important; }
+        .btn-sos { background: #25d366 !important; text-decoration: none; display: inline-flex; align-items: center; }
 
-        /* BADGE CERTIFIE */
-        .badge-certifie { width: 18px; vertical-align: middle; margin-left: 5px; }
+        /* PAGES */
+        .page { display: none; padding: 30px 15px; }
+        .active { display: block !important; }
 
-        /* SECTIONS */
-        .section { display: none; padding: 50px 20px; animation: fadeIn 0.5s; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        
-        /* BOUTIQUE */
-        #boutique-modal { display: none; background: rgba(0,0,0,0.9); position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 2000; padding-top: 100px; }
-        .boutique-content { background: #1a1a1a; width: 80%; max-width: 600px; margin: auto; padding: 30px; border: 2px solid #ffd700; border-radius: 15px; }
-        .grid-boutique { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
-        .item-boutique { background: #222; padding: 15px; border-radius: 10px; border: 1px solid #444; }
-        .prix { color: #ffd700; font-weight: bold; }
+        /* BADGE CERTIFIÉ */
+        .badge { width: 18px; margin-left: 5px; vertical-align: middle; }
+
+        /* BOUTIQUE MODALE */
+        #modalBoutique { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #1a1a1a; padding: 25px; border: 2px solid #ffd700; border-radius: 15px; z-index: 3000; width: 85%; max-width: 450px; }
+        .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 2500; }
 
         /* FORMULAIRES */
-        input, select { padding: 12px; margin: 10px 0; width: 100%; max-width: 300px; border-radius: 5px; border: 1px solid #333; background: #000; color: white; }
-        .btn-submit { background: #ff0000; width: 100%; max-width: 325px; padding: 12px; margin-top: 10px; }
+        input, select { padding: 12px; margin: 10px auto; width: 90%; max-width: 300px; border-radius: 8px; border: 1px solid #333; background: #000; color: white; display: block; }
+        .btn-submit { background: #ff0000; padding: 15px; width: 90%; max-width: 320px; font-size: 16px; margin-top: 10px; }
 
-        /* PAGE 2 - PROFIL */
-        .feed { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 20px; }
-        .post-card { background: #181818; border-radius: 12px; padding: 15px; border: 1px solid #333; }
-        .upload-zone { background: #222; padding: 30px; border: 2px dashed #444; border-radius: 15px; margin-bottom: 30px; }
+        /* FIL D'ACTUALITÉ / PROFIL */
+        .post-container { background: #181818; border: 1px solid #333; border-radius: 15px; padding: 20px; margin-top: 20px; text-align: left; }
+        .video-placeholder { background: #000; width: 100%; height: 200px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #444; margin-top: 10px; }
     </style>
 </head>
 <body>
 
+    <div id="overlay" class="overlay" onclick="fermerBoutique()"></div>
+
     <div class="navbar">
-        <button class="btn" onclick="openBoutique()">BOUTIQUE</button>
-        <button class="btn" onclick="showPage('inscription')">INSCRIPTION</button>
-        <button class="btn" onclick="showPage('connexion')">CONNEXION</button>
-        <button class="btn btn-admin" onclick="accesAdmin()">ADMIN</button>
-        <a href="https://wa.me/32456894335" class="btn btn-sos" target="_blank">🆘 SOS WHATSAPP</a>
+        <button class="btn" onclick="ouvrirBoutique()">BOUTIQUE</button>
+        <button class="btn" onclick="allerA('section-inscription')">INSCRIPTION</button>
+        <button class="btn" onclick="allerA('section-connexion')">CONNEXION</button>
+        <button class="btn btn-admin" onclick="ouvrirAdmin()">ADMIN</button>
+        <a href="https://wa.me/32456894335" class="btn btn-sos" target="_blank">🆘 SOS</a>
     </div>
 
-    <div id="boutique-modal">
-        <div class="boutique-content">
-            <h2>💎 BOUTIQUE OFFICIELLE</h2>
-            <div class="grid-boutique">
-                <div class="item-boutique">70 Pièces <br><span class="prix">0,95€</span></div>
-                <div class="item-boutique">350 Pièces <br><span class="prix">4,50€</span></div>
-                <div class="item-boutique">1400 Pièces <br><span class="prix">17,50€</span></div>
-                <div class="item-boutique">7000 Pièces <br><span class="prix">85,00€</span></div>
-                <div class="item-boutique" style="grid-column: span 2; border-color: #ff0000;">🎁 CAISSE MYSTÈRE <br><span class="prix">Sur demande Admin</span></div>
-            </div>
-            <br>
-            <button class="btn" onclick="closeBoutique()">FERMER</button>
-        </div>
+    <div id="modalBoutique">
+        <h2 style="color:#ffd700;">💎 BOUTIQUE</h2>
+        <p>70 Pièces : 0,95€ | 350 Pièces : 4,50€</p>
+        <p>1400 Pièces : 17,50€ | 7000 Pièces : 85,00€</p>
+        <hr border="1" color="#333">
+        <p>🎁 CAISSES : Uniquement via Admin</p>
+        <button class="btn" onclick="fermerBoutique()">RETOUR</button>
     </div>
 
-    <div id="accueil" class="section" style="display: block;">
-        <h1>🔥 ANONYMOUS SOS FR <img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Twitter_Verified_Badge.svg" class="badge-certifie" alt="Certifié"></h1>
+    <div id="section-accueil" class="page active">
+        <h1>🔥 ANONYMOUS SOS FR <img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Twitter_Verified_Badge.svg" class="badge"></h1>
         <p><i>"Le présent est très important pour moi."</i></p>
-        <br>
-        <div style="background: #1a1a1a; padding: 20px; border-radius: 50px; display: inline-block;">
-            <p style="margin: 0 0 10px 0;">📻 EN DIRECT : RADIO SKYROCK</p>
+        <div style="margin: 20px 0; background: #222; padding: 15px; border-radius: 50px; display: inline-block;">
+            <p style="margin:0 0 5px 0; font-size: 12px;">📻 RADIO SKYROCK</p>
             <audio controls><source src="https://icecast.skyrock.net/s/natio_mp3_128k" type="audio/mpeg"></audio>
         </div>
+        <p>Inscris-toi ou connecte-toi pour voir les vidéos des membres.</p>
     </div>
 
-    <div id="inscription" class="section">
-        <h2>INSCRIPTION</h2>
-        <input type="text" id="reg-id" placeholder="Votre ID (ex: Anonymous77)"><br>
-        <input type="email" id="reg-email" placeholder="Adresse Email"><br>
-        <input type="password" id="reg-pass" placeholder="Mot de passe"><br>
-        <p>Date de naissance :</p>
-        <select id="j"></select> <select id="m"></select> <select id="a"></select><br>
-        <button class="btn btn-submit" onclick="showPage('page2')">S'INSCRIRE ET SE CONNECTER</button>
+    <div id="section-inscription" class="page">
+        <h2>REJOINDRE L'ÉQUIPE</h2>
+        <input type="text" id="reg-id" placeholder="Choisis ton ID">
+        <input type="email" placeholder="Ton Email">
+        <input type="password" placeholder="Mot de passe">
+        <p style="font-size: 12px;">Date de naissance :</p>
+        <div style="display: flex; justify-content: center;"><select id="j" style="width:60px;"></select><select id="m" style="width:80px;"></select><select id="a" style="width:80px;"></select></div>
+        <button class="btn btn-submit" onclick="connexionDirecte('reg-id')">CRÉER ET VOIR LES VIDÉOS</button>
     </div>
 
-    <div id="connexion" class="section">
-        <h2>CONNEXION</h2>
-        <input type="text" id="login-id" placeholder="ID"><br>
-        <input type="password" id="login-pass" placeholder="Mot de passe"><br>
-        <button class="btn btn-submit" onclick="validerConnexion()">SE CONNECTER</button>
+    <div id="section-connexion" class="page">
+        <h2>ACCÈS PROFIL</h2>
+        <input type="text" id="log-id" placeholder="Ton ID">
+        <input type="password" placeholder="Ton Mot de passe">
+        <button class="btn btn-submit" onclick="connexionDirecte('log-id')">ENTRER SUR MON PROFIL</button>
     </div>
 
-    <div id="page2" class="section">
-        <h1 id="pseudo-title">Mon Profil</h1>
-        <div class="upload-zone">
-            <h3>PARTAGER DU CONTENU</h3>
-            <p>Ajoutez vos vidéos ou photos pour la communauté.</p>
-            <input type="file" accept="video/,image/" id="file-input"><br>
-            <button class="btn" style="background: green;" onclick="publier()">PUBLIER SUR LE FIL</button>
+    <div id="section-profil" class="page">
+        <h1 id="user-display">Bienvenue sur ton espace</h1>
+        <p>Ici, tu peux partager tes vidéos et photos avec toute la communauté.</p>
+        
+        <div class="post-container">
+            <h3>📤 PUBLIER DU CONTENU</h3>
+            <input type="file" id="upload" accept="video/,image/">
+            <button class="btn" style="background: #2e7d32; width: 100%; margin-top: 10px;" onclick="envoyerContenu()">ENVOYER À L'ADMIN</button>
+            <p style="font-size: 11px; color: #888; margin-top: 5px;">* Votre publication doit être validée par Anonymous SOS FR avant d'être visible par tous.</p>
         </div>
 
-        <h3>📽️ FIL D'ACTUALITÉ PUBLIQUE</h3>
-        <div class="feed" id="video-feed">
-            <div class="post-card">Dernière vidéo de la communauté...</div>
+        <h2 style="margin-top: 40px; border-bottom: 2px solid #ff0000; padding-bottom: 10px;">🎞️ FIL D'ACTUALITÉ GÉNÉRAL</h2>
+        <div id="feed">
+            <div class="post-container">
+                <strong>@Admin_SOS</strong> <img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Twitter_Verified_Badge.svg" class="badge">
+                <p>Bienvenue sur la nouvelle plateforme ! Postez vos meilleurs moments ici.</p>
+                <div class="video-placeholder">Vidéo de bienvenue.mp4</div>
+            </div>
         </div>
     </div>
 
     <script>
-        // Initialisation dates
+        // Remplir les dates
         const j=document.getElementById('j'), m=document.getElementById('m'), a=document.getElementById('a');
         for(let i=1;i<=31;i++) j.innerHTML += <option>${i}</option>;
         const mois = ["Jan","Fév","Mar","Avr","Mai","Jui","Juil","Aoû","Sep","Oct","Nov","Déc"];
         mois.forEach((mn, i) => m.innerHTML += <option value="${i+1}">${mn}</option>);
         for(let i=2010;i>=1950;i--) a.innerHTML += <option>${i}</option>;
 
-        // FONCTIONS NAVIGATION
-        function showPage(pageId) {
-            document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
-            document.getElementById(pageId).style.display = 'block';
+        // Navigation
+        function allerA(id) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
             window.scrollTo(0,0);
         }
 
-        function openBoutique() { document.getElementById('boutique-modal').style.display = 'block'; }
-        function closeBoutique() { document.getElementById('boutique-modal').style.display = 'none'; }
+        // Boutique
+        function ouvrirBoutique() { document.getElementById('modalBoutique').style.display='block'; document.getElementById('overlay').style.display='block'; }
+        function fermerBoutique() { document.getElementById('modalBoutique').style.display='none'; document.getElementById('overlay').style.display='none'; }
 
-        function validerConnexion() {
-            const id = document.getElementById('login-id').value;
-            const pass = document.getElementById('login-pass').value;
-            if(id && pass) {
-                document.getElementById('pseudo-title').innerText = "Profil de " + id;
-                showPage('page2');
-            } else { alert("Remplis l'ID et le MDP !"); }
+        // CONNEXION DIRECTE VERS PAGE 2 (PROFIL/ACCUEIL)
+        function connexionDirecte(inputId) {
+            const nom = document.getElementById(inputId).value || "Membre";
+            document.getElementById('user-display').innerHTML = "Profil de " + nom + " <img src='https://upload.wikimedia.org/wikipedia/commons/e/e4/Twitter_Verified_Badge.svg' class='badge'>";
+            allerA('section-profil');
         }
 
-        function accesAdmin() {
-            const p = prompt("Mot de passe ADMIN requis :");
-            if(p === "Loulou12") {
-                alert("Accès autorisé. Bienvenue Anonymous SOS FR.");
+        // Admin
+        function ouvrirAdmin() {
+            if(prompt("Mot de passe équipe :") === "Loulou12") {
+                alert("Accès autorisé, bienvenue Anonymous SOS FR.");
             } else { alert("Accès refusé."); }
         }
 
-        function publier() {
-            const file = document.getElementById('file-input').value;
-            if(file) {
-                alert("En attente de validation par un admin avant publication...");
-            } else { alert("Choisis un fichier !"); }
+        // Publication
+        function envoyerContenu() {
+            if(document.getElementById('upload').value !== "") {
+                alert("Fichier envoyé ! L'administrateur va vérifier votre contenu avant de le rendre public.");
+            } else { alert("Sélectionnez une vidéo ou une photo d'abord."); }
         }
     </script>
 </body>
