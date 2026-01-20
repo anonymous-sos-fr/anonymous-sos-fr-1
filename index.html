@@ -150,7 +150,7 @@
             document.getElementById('admin-status').style.display = 'block';
             document.getElementById('current-user').innerText = id;
             alert("Connexion réussie ! Bienvenue " + id);
-            ouvrir('boutique');
+           window.location.href = 'forum.html'; // Remplace 'forum.html' par le nom de ta page d'accueil
         } else {
             alert("ID ou mot de passe incorrect.");
         }
