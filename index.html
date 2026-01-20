@@ -5,110 +5,134 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ANONYMOUS SOS FR</title>
     <style>
-        body { background: #000; color: #00FF41; font-family: Arial, sans-serif; margin: 0; padding: 0; }
-        header { border-bottom: 1px solid #00FF41; padding: 5px; text-align: center; background: #000; position: sticky; top: 0; z-index: 100; }
+        body { background: #000; color: #00FF41; font-family: 'Courier New', monospace; margin: 0; padding: 0; text-align: center; }
+        
+        /* HEADER PROPRE */
+        header { border-bottom: 2px solid #00FF41; padding: 15px; background: #000; }
+        .logo { font-size: 1.5em; font-weight: bold; margin-bottom: 10px; }
         .sos { color: red; } .fr { color: white; }
-        
-        #admin-bar { background: #111; color: yellow; font-size: 12px; padding: 5px; display: none; text-align: center; border-bottom: 1px solid #333; }
-        
-        .nav-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; padding: 10px; }
-        .nav-grid button { background: #000; border: 1px solid #00FF41; color: #00FF41; padding: 10px; font-size: 11px; font-weight: bold; cursor: pointer; }
-        .nav-grid button:active { background: #00FF41; color: #000; }
 
-        .section { display: none; padding: 10px; }
-        .active { display: block; }
+        /* BARRE ADMIN CACHÉE PAR DÉFAUT */
+        #admin-zone { display: none; background: yellow; color: black; padding: 10px; font-weight: bold; border-bottom: 2px solid #00FF41; }
 
-        table { width: 100%; border-collapse: collapse; font-size: 11px; margin-top: 5px; }
-        td, th { border: 1px solid #222; padding: 6px; text-align: center; }
-        .coins { color: #FFD700; font-weight: bold; }
+        /* MENU BOUTONS */
+        .menu { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 15px; }
+        .menu button { background: #000; border: 2px solid #00FF41; color: #00FF41; padding: 15px; font-weight: bold; font-size: 0.9em; cursor: pointer; text-transform: uppercase; }
+        .menu button:active { background: #00FF41; color: #000; }
+
+        /* SECTIONS */
+        .content { display: none; padding: 20px; min-height: 200px; }
+        .active { display: block !important; }
+
+        /* TABLEAU BOUTIQUE */
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.9em; }
+        th { background: #00FF41; color: #000; padding: 10px; }
+        td { border: 1px solid #333; padding: 12px; }
+        .gold { color: #FFD700; font-weight: bold; }
+
+        /* FORMULAIRES */
+        input, textarea { width: 100%; padding: 15px; margin: 10px 0; background: #111; border: 1px solid #00FF41; color: #00FF41; box-sizing: border-box; font-size: 1em; }
+        .btn-green { background: #00FF41; color: #000; border: none; padding: 15px; width: 100%; font-weight: bold; cursor: pointer; border-radius: 5px; }
         
-        .btn-send { background: #00FF41; color: #000; border: none; padding: 10px; width: 100%; font-weight: bold; margin-top: 10px; border-radius: 4px; }
-        .btn-wa { display: block; background: #25D366; color: white; padding: 12px; text-decoration: none; border-radius: 5px; margin: 10px auto; width: 85%; font-weight: bold; font-size: 14px; text-align: center; box-shadow: 0 0 10px #25D366; }
+        /* RADIO PETITE */
+        .radio-container { padding: 10px; background: #050505; border-bottom: 1px solid #222; }
+        audio { width: 100%; height: 35px; filter: invert(1); }
 
-        input, textarea { width: 100%; padding: 10px; margin: 5px 0; background: #000; border: 1px solid #00FF41; color: #00FF41; box-sizing: border-box; border-radius: 4px; }
-        .radio-box { padding: 5px; border-bottom: 1px solid #111; }
-        audio { width: 100%; height: 30px; filter: invert(1); opacity: 0.8; }
-        footer { font-size: 9px; color: #333; padding: 10px; text-align: center; }
+        /* SOS WHATSAPP */
+        .whatsapp { display: block; background: #25D366; color: white; padding: 15px; text-decoration: none; border-radius: 10px; margin: 20px auto; width: 85%; font-weight: bold; box-shadow: 0 0 15px #25D366; }
+        
+        footer { padding: 20px; color: #333; font-size: 0.7em; }
     </style>
 </head>
 <body>
 
-<div id="admin-bar">🌟 MOD TOOL ACTIF : <span id="admin-name"></span></div>
+<div id="admin-zone">🛠️ MOD TOOL ACTIVÉ : <span id="admin-id"></span></div>
 
 <header>
-    <div style="font-size: 14px; font-weight: bold;">ANONYMOUS <span class="sos">SOS</span> <span class="fr">FR</span> ✓</div>
-    <div class="nav-grid">
-        <button onclick="show('boutique')">BOUTIQUE</button>
-        <button onclick="show('inscription')">REJOINDRE</button>
-        <button onclick="show('connexion')">CONNEXION</button>
-        <button onclick="show('annonces')">ANNONCE</button>
-    </div>
+    <div class="logo">ANONYMOUS <span class="sos">SOS</span> <span class="fr">FR</span> ✓</div>
 </header>
 
-<div class="radio-box">
+<div class="radio-container">
+    <small>📻 RADIO SKYROCK</small>
     <audio controls><source src="https://icecast.skyrock.net/s/natio_mp3_128k"></audio>
 </div>
 
-<div id="boutique" class="section active">
+<nav class="menu">
+    <button onclick="ouvrir('boutique')">Boutique</button>
+    <button onclick="ouvrir('inscription')">S'inscrire</button>
+    <button onclick="ouvrir('connexion')">Connexion</button>
+    <button onclick="ouvrir('annonces')">Annonces</button>
+</nav>
+
+<div id="boutique" class="content active">
+    <h3>💎 PIÈCES DISPONIBLES</h3>
     <table>
-        <thead><tr><th>#</th><th>PIÈCES</th><th>PRIX</th></tr></thead>
-        <tbody id="coin-list"></tbody>
+        <thead><tr><th>PACK</th><th>PIÈCES</th><th>PRIX</th></tr></thead>
+        <tbody id="shop-list"></tbody>
     </table>
 </div>
 
-<div id="inscription" class="section">
-    <h4 style="margin: 5px 0;">REJOINDRE</h4>
-    <input type="text" placeholder="Ton ID">
-    <input type="email" placeholder="despreschez@gmail.com">
-    <button class="btn-send">VALIDER INSCRIPTION</button>
+<div id="inscription" class="content">
+    <h3>📝 REJOINDRE</h3>
+    <p>Envoyez votre demande à despreschez@gmail.com</p>
+    <input type="text" placeholder="ID Souhaité">
+    <input type="email" placeholder="Votre Email">
+    <button class="btn-green">VALIDER L'INSCRIPTION</button>
 </div>
 
-<div id="connexion" class="section">
-    <h4 style="margin: 5px 0;">MOD TOOL LOGIN</h4>
-    <input type="text" id="id-log" placeholder="ID">
-    <input type="password" id="pw-log" placeholder="Mot de passe">
-    <button class="btn-send" onclick="doLogin()">ACTIVER MOD TOOL</button>
+<div id="connexion" class="content">
+    <h3>🔑 CONNEXION</h3>
+    <input type="text" id="login-id" placeholder="Identifiant">
+    <input type="password" id="login-pass" placeholder="Mot de passe">
+    <button class="btn-green" onclick="validerLogin()">SE CONNECTER</button>
 </div>
 
-<div id="annonces" class="section">
-    <h4 style="margin: 5px 0;">ANNONCE VIP</h4>
-    <textarea placeholder="Ton message ici..." rows="3"></textarea>
-    <button class="btn-send">PUBLIER</button>
+<div id="annonces" class="content">
+    <h3>📢 ANNONCES VIP</h3>
+    <textarea placeholder="Votre message publicitaire..." rows="5"></textarea>
+    <button class="btn-green">PUBLIER L'ANNONCE</button>
 </div>
 
-<a href="https://wa.me/32456894335" class="btn-wa">🆘 WHATSAPP DIRECT</a>
+<a href="https://wa.me/32456894335" class="whatsapp">🆘 WHATSAPP DIRECT</a>
 
-<footer>MODDZ TOOL - PW: Loulou12</footer>
+<footer>
+    anonymous sos fr - password: Loulou12
+</footer>
 
 <script>
-    // Navigation Forcée
-    function show(id) {
-        var s = document.getElementsByClassName('section');
-        for(var i=0; i<s.length; i++) { s[i].style.display = 'none'; }
-        document.getElementById(id).style.display = 'block';
+    // Navigation entre les sections
+    function ouvrir(id) {
+        let sections = document.getElementsByClassName('content');
+        for (let s of sections) {
+            s.classList.remove('active');
+        }
+        document.getElementById(id).classList.add('active');
     }
 
-    // Connexion Directe
-    function doLogin() {
-        var u = document.getElementById('id-log').value;
-        var p = document.getElementById('pw-log').value;
-        if(p === "Loulou12") {
-            document.getElementById('admin-bar').style.display = 'block';
-            document.getElementById('admin-name').innerText = u;
-            alert("MOD TOOL ACTIVÉ");
-            show('boutique');
-        } else { alert("MDP FAUX"); }
+    // Connexion et activation du Mod Tool (Invisible pour les autres)
+    function validerLogin() {
+        let user = document.getElementById('login-id').value;
+        let pass = document.getElementById('login-pass').value;
+        
+        if (pass === "Loulou12") {
+            document.getElementById('admin-zone').style.display = 'block';
+            document.getElementById('admin-id').innerText = user;
+            alert("Bienvenue " + user + " ! Le Mod Tool est maintenant actif.");
+            ouvrir('boutique');
+        } else {
+            alert("Mot de passe incorrect.");
+        }
     }
 
-    // Remplissage Pièces
-    var list = document.getElementById('coin-list');
-    var pArr = [1, 2, 3, 4, 5, 6, 10, 15, 20, 25, 30, 40, 55, 70, 80, 100, 150, 200, 250, 300, 350, 400];
-    var html = "";
-    for (var i = 1; i <= 80; i++) {
-        var pr = (i <= pArr.length) ? pArr[i-1] : 400 + (i * 2);
-        html += "<tr><td>" + i + "</td><td class='coins'>" + (pr * 66) + " 🪙</td><td>" + pr + "€</td></tr>";
+    // Génération automatique des 80 paliers de prix
+    const list = document.getElementById('shop-list');
+    const fixedPrices = [1, 2, 3, 4, 5, 6, 10, 15, 20, 25, 30, 40, 55, 70, 80, 100, 150, 200, 250, 300, 350, 400];
+    
+    for (let i = 1; i <= 80; i++) {
+        let p = (i <= fixedPrices.length) ? fixedPrices[i-1] : 400 + (i * 5);
+        let c = Math.floor(p * 66); // Ratio TikTok
+        list.innerHTML += <tr><td>#${i}</td><td class="gold">${c.toLocaleString()} 🪙</td><td>${p.toFixed(2)}€</td></tr>;
     }
-    list.innerHTML = html;
 </script>
 
 </body>
